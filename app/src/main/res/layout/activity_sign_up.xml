@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.troubleshooters.diu.phrm.ProfileActivity">
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
+    android:background="@drawable/screen_background_gradient"
+    tools:context="com.troubleshooters.diu.phrm.SignUpActivity">
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:text="Sign Up"
+        android:textColor="#FBC8FF"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
-
+        android:textSize="40sp"/>
 </RelativeLayout>

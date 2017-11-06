@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen_background_gradient"
+    tools:context="com.troubleshooters.diu.phrm.WelcomeScreenActivity">
+
+    <ImageView
+        android:id="@+id/app_logo_welcome_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/app_logo"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/textview_welcome_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="welcome"
+        android:textSize="30sp"
+        android:textColor="#d9a7c7"
+        android:textStyle="bold"
+        android:layout_below="@+id/app_logo_welcome_screen"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
