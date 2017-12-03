@@ -11,7 +11,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/profilePicture_Name_holder">
+        android:id="@+id/profilePicture_Name_holder"
+        android:background="@drawable/profile_detail_background"
+        >
 
 
         <TextView
@@ -22,6 +24,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="10dp"
             android:textSize="25sp"
+            android:textColor="#daceef"
             android:text="Ferdouse Oahid" />
 
     </RelativeLayout>
@@ -47,12 +50,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:textColor="#f2e3e3"
+                android:drawableLeft="@drawable/ic_gender"
                 android:text="Gender"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textColor="#f2e3e3"
                 android:textAlignment="viewEnd"
                 android:layout_weight="1"
                 android:text="Male"
@@ -72,6 +78,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:layout_weight="1"
+                android:textColor="#f2e3e3"
+                android:drawableLeft="@drawable/ic_birthday_cake"
                 android:text="Birthday"
                 />
             <TextView
@@ -79,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textAlignment="viewEnd"
+                android:textColor="#f2e3e3"
                 android:layout_weight="1"
                 android:text="24-03-1992"
                 />
@@ -95,13 +104,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textColor="#f2e3e3"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_age"
                 android:text="Age"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textColor="#f2e3e3"
                 android:textAlignment="viewEnd"
                 android:layout_weight="1"
                 android:text="25 Years, 11 Month, 10 Days"
@@ -120,7 +132,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textColor="#f2e3e3"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_height"
                 android:text="Height"
                 />
             <TextView
@@ -128,8 +142,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textAlignment="viewEnd"
+                android:textColor="#f2e3e3"
                 android:layout_weight="1"
-                android:text="5'10'' >"
+                android:drawableRight="@drawable/ic_action_right_arrow"
+                android:text="5'10''"
                 />
         </LinearLayout>
         <LinearLayout
@@ -144,7 +160,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
+                android:textColor="#f2e3e3"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_weight"
                 android:text="Weight"
                 />
             <TextView
@@ -152,8 +170,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
                 android:textAlignment="viewEnd"
+                android:textColor="#f2e3e3"
                 android:layout_weight="1"
-                android:text="69.5 Kg >"
+                android:drawableRight="@drawable/ic_action_right_arrow"
+                android:text="69.5 Kg"
                 />
         </LinearLayout>
 
