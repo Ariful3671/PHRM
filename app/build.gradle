@@ -34,4 +34,5 @@ dependencies {
     compile 'com.android.support:design:26.+'
     compile 'com.android.support:support-vector-drawable:26.1.0'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
 }

@@ -4,14 +4,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/screen_background_gradient"
     tools:context="com.troubleshooters.diu.phrm.ProfileActivity">
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profilePicture_Name_holder">
 
 
-    </ListView>
+        <TextView
+            android:id="@+id/profile_activity_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="25sp"
+            android:text="Ferdouse Oahid" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_below="@id/profilePicture_Name_holder">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_activity_gender"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="Gender"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="Male"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_activity_birthday"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="Birthday"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="24-03-1992"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_activity_age"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="Age"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="25 Years, 11 Month, 10 Days"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_activity_height"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="Height"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="5'10'' >"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/profile_activity_weight"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_weight="1"
+                android:text="Weight"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textAlignment="viewEnd"
+                android:layout_weight="1"
+                android:text="69.5 Kg >"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -22,5 +168,7 @@
         android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"/>
+
+
 
 </RelativeLayout>
