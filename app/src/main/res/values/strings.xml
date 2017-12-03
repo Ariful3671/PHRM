@@ -4,6 +4,6 @@
     <string name="fb_login_protocol_scheme">fb384558705309331</string>
 
 
-
-    <string name="welcome_text">welcome</string><!--Used in activity_welcome_screen.xml textview-->
+    <string name="welcome_text">welcome</string>
+    <string name="nutrition_plan" /><!--Used in activity_welcome_screen.xml textview-->
 </resources>

@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#42275a</color>
+    <color name="colorPrimaryDark">#331935</color>
     <color name="colorAccent">#734b6d</color>
 
 
     <!--//Used in screen_background_gradient.xml-->
-    <color name="startColorScreenBackgroundGradient">#734b6d</color>
-    <color name="endColorScreenBackgroundGradient">#42275a</color>
+    <color name="startColorScreenBackgroundGradient">#A95591</color>
+    <color name="endColorScreenBackgroundGradient">#360F2A</color>
 
+
+    <!--//Used in status bar-->
+    <color name="statusBarColor">#3E1332</color>
+
+    <!--//Used in action bar-->
+    <color name="actionBarColor">#582649</color>
+
+    <!--//Used in bottom navigation bar bar-->
+    <color name="bottomNavigationBarColor">#582649</color>
+
+    <!--//Used in log in and signup button-->
+    <color name="logInSignUpButtonColor">#331935</color>
+
+
+    <!--//Used in log in  grid view background-->
+    <color name="grid_view_background_color">#503664</color>
+
+
+    <!--//Used in log in exercise grid item-->
+    <color name="exercise_grid_item_color">#E3DFBF</color>
+
+    <!--//Used in log in nutrition grid item-->
+    <color name="nutrition_grid_item_color">#DEC8EF</color>
+
+    <!--//Used in log in medication grid item-->
+    <color name="medication_grid_item_color">#EFC8DD</color>
+
+
+    <color name="Transparent">#00000000</color>
 
 
 </resources>

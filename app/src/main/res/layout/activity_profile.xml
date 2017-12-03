@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.troubleshooters.diu.phrm.ProfileActivity">
 
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+    </ListView>
+
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
         android:layout_width="wrap_content"

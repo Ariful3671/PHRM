@@ -32,6 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        setTitle("Profile");
         login_button=(LoginButton) findViewById(R.id.login_button);
         login_button.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"));
         callbackManager = CallbackManager.Factory.create();

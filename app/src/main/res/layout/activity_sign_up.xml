@@ -7,12 +7,79 @@
     android:background="@drawable/screen_background_gradient"
     tools:context="com.troubleshooters.diu.phrm.SignUpActivity">
     <TextView
+        android:id="@+id/text_view_sign_up_screen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:textColor="#FBC8FF"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="90dp"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"/>
+    <EditText
+        android:id="@+id/edit_text_name_sign_up_screen"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:hint="Username"
+        android:drawableLeft="@drawable/ic_action_name"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittext_rectangle_round_corner"
+        android:layout_below="@+id/text_view_sign_up_screen"/>
+    <EditText
+        android:id="@+id/edit_text_user_name_sign_up_screen"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:hint="User Id"
+        android:inputType="text"
+        android:drawableLeft="@drawable/ic_action_id"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittext_rectangle_round_corner"
+        android:layout_below="@+id/edit_text_name_sign_up_screen"/>
+    <EditText
+        android:id="@+id/edit_text_email_sign_up_screen"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:hint="Email"
+        android:drawableLeft="@drawable/ic_action_email"
+        android:inputType="textEmailAddress"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittext_rectangle_round_corner"
+        android:layout_below="@+id/edit_text_user_name_sign_up_screen"/>
+    <EditText
+        android:id="@+id/edit_text_password_sign_up_screen"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:paddingLeft="10dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:drawableLeft="@drawable/ic_action_lock"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/edittext_rectangle_round_corner"
+        android:layout_below="@+id/edit_text_email_sign_up_screen"/>
+    <Button
+        android:id="@+id/button_creat_profile_sign_up_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Creat my account"
+        android:textColor="#FFFF"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_rectangle_round_corner"
+        android:layout_below="@+id/edit_text_password_sign_up_screen"/>
+
+
 </RelativeLayout>

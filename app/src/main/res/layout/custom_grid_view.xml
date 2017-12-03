@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    >
+
+    <ImageView
+        android:id="@+id/image_view_custom_grid"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/exercise_icon"
+        />
+
+    <TextView
+        android:id="@+id/text_view_custom_Grid"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:textColor="#FFF"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/image_view_custom_grid"/>
+    <TextView
+        android:id="@+id/button_custom_grid"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_below="@+id/text_view_custom_Grid"
+        android:background="@drawable/button_custom_grid_round_corner"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

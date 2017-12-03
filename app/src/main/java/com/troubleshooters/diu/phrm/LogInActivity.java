@@ -16,9 +16,8 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_log_in);
+        getSupportActionBar().hide();
         buttoSignUp=(Button)findViewById(R.id.button_sign_up);
         buttonLogIn=(Button)findViewById(R.id.button_log_in);
         buttoSignUp.setOnClickListener(

@@ -1,9 +1,242 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.troubleshooters.diu.phrm.NutritionActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+            <LinearLayout
+                android:id="@+id/reminder_heading_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5"
+                    android:layout_marginTop="5dp">
+
+                    <ImageView
+                        android:id="@+id/icon_nutrition_plan"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/nutrition_icon"
+                        />
+
+                    <TextView
+                        android:id="@+id/text_view_1_meal_reminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:text="Meal Reminder"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="25sp"
+                        android:layout_toRightOf="@+id/icon_nutrition_plan"
+                        android:gravity="center"/>
+
+                    <Switch
+                        android:id="@+id/switch_reminder"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="5dp"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="5">
+
+                    <TextView
+                        android:id="@+id/text_view_2_meal_reminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="65dp"
+                        android:text="Reminders to have your meal"
+                        android:gravity="center"/>
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reminder_item_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="4"
+                android:layout_below="@+id/reminder_heading_linear_layout">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/image_breakfast"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/breakfast_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Breakfast"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/image_breakfast"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:gravity="center"
+                        android:text="Time"
+                        android:layout_marginRight="10dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/image_lunch"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/lunch_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Lunch"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/image_lunch"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:text="Time"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/image_Snake"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/snack_icon"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Snake"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/image_Snake"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_alignParentRight="true"
+                        android:text="Time"
+                        android:gravity="center"
+                        android:layout_marginRight="10dp"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/image_dinner"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/dinner_icon"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Dinner"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/image_dinner"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:text="Time"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/reminder_item_linear_layout"
+                >
+                <TextView
+                    android:id="@+id/text_view_daily_nutrition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daily Nutrition"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:layout_marginLeft="10dp"/>
+
+                <com.github.mikephil.charting.charts.HorizontalBarChart
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/bar_chart"
+                    android:layout_below="@+id/text_view_daily_nutrition">
+
+                </com.github.mikephil.charting.charts.HorizontalBarChart>
+
+            </RelativeLayout>
+
+
+
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+</RelativeLayout>
