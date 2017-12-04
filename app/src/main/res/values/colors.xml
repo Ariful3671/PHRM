@@ -27,6 +27,9 @@
     <color name="grid_view_background_color">#503664</color>
 
 
+    <color name="grid_view_background_color_test_records">#643642</color>
+
+
     <!--//Used in log in exercise grid item-->
     <color name="exercise_grid_item_color">#E3DFBF</color>
 

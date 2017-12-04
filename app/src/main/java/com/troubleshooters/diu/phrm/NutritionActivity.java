@@ -25,7 +25,7 @@ public class NutritionActivity extends AppCompatActivity {
 
     Switch switch_reminder;
     LinearLayout linearLayout;
-    HorizontalBarChart bar_chart;
+    HorizontalBarChart bar_chart_record,bar_chart_suggestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,8 @@ public class NutritionActivity extends AppCompatActivity {
                 }
         );
 
-        bar_chart=(HorizontalBarChart)findViewById(R.id.bar_chart);
+        bar_chart_record=(HorizontalBarChart)findViewById(R.id.bar_chart_record);
+        bar_chart_suggestion=(HorizontalBarChart)findViewById(R.id.bar_chart_suggestion);
         setData();
 
     }
@@ -104,13 +105,22 @@ public class NutritionActivity extends AppCompatActivity {
         //bar_chart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         bar_chart.getXAxis().setDrawGridLines(false);*/
-        XAxis xAxis = bar_chart.getXAxis();
+        XAxis xAxis = bar_chart_record.getXAxis();
         xAxis.setEnabled(false);
-        YAxis yAxisRight = bar_chart.getAxisRight();
+        YAxis yAxisRight = bar_chart_record.getAxisRight();
         yAxisRight.setEnabled(false);
-        YAxis yAxisLeft = bar_chart.getAxisLeft();
+        YAxis yAxisLeft = bar_chart_record.getAxisLeft();
         yAxisLeft.setEnabled(false);
-        bar_chart.setData(data);
+        bar_chart_record.setData(data);
+
+
+        xAxis = bar_chart_suggestion.getXAxis();
+        xAxis.setEnabled(false);
+        yAxisRight = bar_chart_suggestion.getAxisRight();
+        yAxisRight.setEnabled(false);
+        yAxisLeft = bar_chart_suggestion.getAxisLeft();
+        yAxisLeft.setEnabled(false);
+        bar_chart_suggestion.setData(data);
     }
 
 
