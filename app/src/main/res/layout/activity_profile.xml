@@ -52,7 +52,7 @@
                 android:layout_weight="1"
                 android:textColor="#f2e3e3"
                 android:drawableLeft="@drawable/ic_gender"
-                android:text="Gender"
+                android:text=" Gender"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_weight="1"
                 android:textColor="#f2e3e3"
                 android:drawableLeft="@drawable/ic_birthday_cake"
-                android:text="Birthday"
+                android:text=" Birthday"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
                 android:textColor="#f2e3e3"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_age"
-                android:text="Age"
+                android:text=" Age"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -135,7 +135,7 @@
                 android:textColor="#f2e3e3"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_height"
-                android:text="Height"
+                android:text=" Height"
                 />
             <TextView
                 android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                 android:textColor="#f2e3e3"
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_weight"
-                android:text="Weight"
+                android:text=" Weight"
                 />
             <TextView
                 android:layout_width="wrap_content"
