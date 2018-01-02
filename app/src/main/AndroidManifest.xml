@@ -40,7 +40,8 @@
         <activity android:name=".CreatMedicationPlanActivity" />
         <activity android:name=".ManageItemActivity" />
         <activity android:name=".BloodPressureActivity" />
-        <activity android:name=".GlucoseActivity"></activity>
+        <activity android:name=".GlucoseActivity" />
+        <activity android:name=".AddMealActivity"></activity>
     </application>
 
 </manifest>

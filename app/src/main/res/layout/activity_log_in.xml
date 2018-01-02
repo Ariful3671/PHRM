@@ -4,88 +4,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_background_gradient"
+    android:background="@drawable/background"
     tools:context="com.troubleshooters.diu.phrm.LogInActivity">
 
     <ImageView
         android:id="@+id/app_logo_log_in_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:src="@drawable/app_logo"
-        android:layout_marginTop="50dp"
-        android:layout_centerHorizontal="true"/>
-
-    <EditText
-        android:id="@+id/edit_text_User_Id_log_in_screen"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:hint="User ID"
-        android:paddingLeft="10dp"
-        android:drawableLeft="@drawable/ic_action_name"
-        android:inputType="text"
-        android:textSize="16sp"
-        android:background="@drawable/edittext_rectangle_round_corner"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/app_logo_log_in_screen"
         android:layout_centerHorizontal="true"
-        />
-    <EditText
-        android:id="@+id/edit_text_password_log_in_screen"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:paddingLeft="10dp"
-        android:textSize="16sp"
-        android:inputType="textPassword"
-        android:drawableLeft="@drawable/ic_action_lock"
-        android:background="@drawable/edittext_rectangle_round_corner"
-        android:layout_below="@+id/edit_text_User_Id_log_in_screen"
+        android:layout_marginTop="60dp"/>
+
+
+        <EditText
+            android:id="@+id/edit_text_User_Id_log_in_screen"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="User ID"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/ic_action_name"
+            android:inputType="text"
+            android:textSize="16sp"
+            android:background="@drawable/edittext_rectangle_round_corner"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/app_logo_log_in_screen"
+            android:layout_centerHorizontal="true"/>
+        <EditText
+            android:id="@+id/edit_text_password_log_in_screen"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_action_lock"
+            android:background="@drawable/edittext_rectangle_round_corner"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/edit_text_User_Id_log_in_screen"
+            android:layout_centerHorizontal="true"/>
+        <Button
+            android:id="@+id/button_log_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_text_password_log_in_screen"
+            android:text="Log In"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_rectangle_round_corner"
+            android:textColor="#FFFF"
+            android:paddingLeft="70dp"
+            android:paddingRight="70dp"
+            android:layout_marginTop="5dp"/>
+    <ProgressBar
+        android:id="@+id/progress_bar_log_in"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_centerHorizontal="true"
-        />
-    <Button
-        android:id="@+id/button_log_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edit_text_password_log_in_screen"
-        android:layout_marginTop="10dp"
-        android:text="Log In"
-        android:background="@drawable/button_rectangle_round_corner"
-        android:textColor="#FFFF"
-        android:paddingLeft="70dp"
-        android:paddingRight="70dp"
-        android:layout_centerHorizontal="true"/>
-
+        android:layout_below="@id/edit_text_password_log_in_screen"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:background="@drawable/progress"/>
     <TextView
-        android:id="@+id/textview_forget_password"
+        android:id="@+id/text_view_logging_in"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:gravity="center"
-        android:text="Forget Password?"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/button_log_in"
-        android:layout_centerHorizontal="true"/>
-    <TextView
-        android:id="@+id/textview_dont_have_account"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:gravity="center"
-        android:text="Don't have an account yet?"
-        android:layout_marginTop="55dp"
-        android:layout_above="@+id/button_sign_up"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="20dp"
+        android:text="Logging In.."
+        android:textColor="#FBC8FF"
+        android:layout_below="@id/progress_bar_log_in"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+        <TextView
+            android:id="@+id/textview_forget_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#FBC8FF"
+            android:text="Forget Password?"
+            android:layout_below="@+id/button_log_in"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"/>
 
-    <Button
-        android:id="@+id/button_sign_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="30dp"
-        android:text="Creat a new profile"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
-        android:background="@drawable/button_rectangle_round_corner"
-        android:textColor="#FFFF"
-        android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/textview_dont_have_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#FBC8FF"
+            android:text="Don't have an account yet?"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@+id/button_sign_up"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/button_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creat a new profile"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:background="@drawable/button_rectangle_round_corner"
+            android:textColor="#FFFF"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"/>
+
 
 </RelativeLayout>

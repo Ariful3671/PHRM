@@ -6,8 +6,8 @@
     android:id="@+id/item_profile"
     android:title="Profile"
     android:icon="@drawable/user_icon"
-    android:orderInCategory="100"
-    app:showAsAction="ifRoom">
+    android:orderInCategory="1"
+    app:showAsAction="always">
 
 </item>
     <item
@@ -15,7 +15,15 @@
         android:id="@+id/item_setting"
         android:title="Setting"
         android:icon="@drawable/setting_icon"
-        android:orderInCategory="101"
-        app:showAsAction="ifRoom">
+        android:orderInCategory="2"
+        app:showAsAction="always">
+    </item>
+    <item
+
+        android:id="@+id/item_log_out"
+        android:title="Log Out"
+        android:icon="@drawable/ic_action_log_out"
+        android:orderInCategory="3"
+        app:showAsAction="never">
     </item>
 </menu>

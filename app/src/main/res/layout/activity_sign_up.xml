@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_background_gradient"
+    android:background="@drawable/background"
     tools:context="com.troubleshooters.diu.phrm.SignUpActivity">
 
     <TextView
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="70dp"
         android:text="Sign Up"
         android:textColor="#FBC8FF"
         android:textSize="40sp"
@@ -25,6 +25,7 @@
         android:layout_marginTop="30dp"
         android:textSize="16sp"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:hint="Username"
         android:drawableLeft="@drawable/ic_action_name"
         android:inputType="text"
@@ -38,6 +39,7 @@
         android:layout_marginTop="10dp"
         android:textSize="16sp"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:hint="Phone"
         android:inputType="text"
         android:drawableLeft="@drawable/phone_icon"
@@ -51,6 +53,7 @@
         android:layout_marginTop="10dp"
         android:textSize="16sp"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:hint="Password"
         android:inputType="textPassword"
         android:drawableLeft="@drawable/ic_action_lock"
@@ -64,14 +67,17 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_alignStart="@+id/edit_text_password_sign_up_screen"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/edit_text_password_sign_up_screen"
         android:background="@drawable/edittext_rectangle_round_corner"
         android:drawableLeft="@drawable/ic_birthday_signup"
         android:hint="Birthday"
         android:inputType="textEmailAddress"
-        android:padding="8dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:textSize="16sp"
+        android:textColor="#000"
+        android:gravity="center_vertical"
         />
 
     <TextView
@@ -79,14 +85,17 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_alignStart="@+id/edit_text_userDOB_sign_up_screen"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/edit_text_userDOB_sign_up_screen"
         android:background="@drawable/edittext_rectangle_round_corner"
         android:drawableLeft="@drawable/ic_gender"
         android:hint="Gender"
         android:inputType="textEmailAddress"
-        android:padding="8dp"
-        android:textSize="16sp" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textSize="16sp"
+        android:textColor="#000"
+        android:gravity="center_vertical"/>
 
     <Button
         android:id="@+id/button_create_profile_sign_up_screen"
@@ -100,6 +109,27 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/button_rectangle_round_corner"
         android:layout_below="@+id/edit_text_userGender_sign_up_screen"/>
+    <ProgressBar
+        android:id="@+id/progress_bar_sign_up"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/edit_text_userGender_sign_up_screen"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:background="@drawable/progress"/>
+    <TextView
+        android:id="@+id/signing_in_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Signing in..."
+        android:textColor="#FBC8FF"
+        android:textStyle="bold"
+        android:layout_below="@id/progress_bar_sign_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"/>
+
 
 
 </RelativeLayout>

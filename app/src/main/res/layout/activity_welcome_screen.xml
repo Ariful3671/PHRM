@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen_background_gradient"
+    android:background="@drawable/background"
     tools:context="com.troubleshooters.diu.phrm.WelcomeScreenActivity">
 
     <ImageView
-        android:id="@+id/app_logo_welcome_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/app_logo"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
         android:src="@drawable/app_logo"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerInParent="true"/>
+
     <TextView
-        android:id="@+id/textview_welcome_screen"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:gravity="center"
-        android:text="welcome"
-        android:textSize="30sp"
-        android:textColor="#d9a7c7"
+        android:layout_height="50dp"
+        android:text="WELCOME"
         android:textStyle="bold"
-        android:layout_below="@+id/app_logo_welcome_screen"
+        android:textSize="23dp"
+        android:textColor="#F5B6E2"
+        android:layout_below="@+id/app_logo"
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

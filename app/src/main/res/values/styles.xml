@@ -6,5 +6,36 @@
         <item name="colorPrimary">@color/actionBarColor</item>
         <item name="colorPrimaryDark">@color/statusBarColor</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">#FBC8FF</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+        <item name="android:textAppearanceLargePopupMenu">@style/myPopupMenuTextAppearanceLarge</item>
+        <item name="android:textAppearanceSmallPopupMenu">@style/myPopupMenuTextAppearanceSmall</item>
+
+    </style>
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:windowDisablePreview">true</item>
+        <item name="overlapAnchor">false</item>
+        <item name="android:popupBackground">@color/statusBarColor</item>
+        <item name="android:dropDownVerticalOffset">5.0dp</item>
+    </style>
+
+
+    <style name="myPopupMenuTextAppearanceSmall" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+    <style name="myPopupMenuTextAppearanceLarge" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
+        <item name="android:textColor">#FFF</item>
+    </style>
+
+
+
+    <!--Style for alert dialog-->
+    <style name="CustomDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">#734b6d</item>
+        <item name="android:textColor">#FBC8FF</item>
+        <item name="android:textColorPrimary">#FBC8FF</item>
+        <item name="colorAccent">#FBC8FF</item>
     </style>
 </resources>

@@ -1,6 +1,8 @@
 package com.troubleshooters.diu.phrm;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -17,10 +19,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 import android.widget.ViewFlipper;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.troubleshooters.diu.phrm.Adapter.TestRecordGridAdapter;
+
+import java.util.Calendar;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -55,6 +65,145 @@ public class HomeActivity extends AppCompatActivity {
         flipper.setOutAnimation(fade_out);
         flipper.setFlipInterval(20000);
         flipper.startFlipping();
+
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        SharedPreferences sharedPreferences=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+
+        String user=sharedPreferences.getString("userid","");
+        DatabaseReference ref = database.getReference("users").child(user);
+        ref.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        String name,phone,birthday,height,weight,gender,activity;
+
+                        if(dataSnapshot.hasChild("name"))
+                        {
+
+                            name=dataSnapshot.child("name").getValue().toString();
+                            editor.putString("name",name);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            name="";
+                            editor.putString("name",name);
+                            editor.commit();
+                        }
+
+                        if(dataSnapshot.hasChild("phone"))
+                        {
+
+                            phone=dataSnapshot.child("phone").getValue().toString();
+                            editor.putString("phone",phone);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            phone="";
+                            editor.putString("phone",phone);
+                            editor.commit();
+                        }
+
+                        if(dataSnapshot.hasChild("byear"))
+                        {
+
+                            String bYear=dataSnapshot.child("byear").getValue().toString();
+                            String bMonth=dataSnapshot.child("bmonth").getValue().toString();
+                            String bDay=dataSnapshot.child("bday").getValue().toString();
+                            editor.putString("birthday",bDay+":"+bMonth+":"+bYear);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            phone="";
+                            editor.putString("name",phone);
+                            editor.commit();
+                        }
+
+
+                        if(dataSnapshot.hasChild("byear"))
+                        {
+                            int currentYear= Calendar.getInstance().get(Calendar.YEAR);
+                            int currentMonth= Calendar.getInstance().get(Calendar.MONTH)+1;
+                            int currentDay= Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+                            int bYear=Integer.parseInt(dataSnapshot.child("byear").getValue().toString());
+                            int bMonth=Integer.parseInt(dataSnapshot.child("bmonth").getValue().toString());
+                            int bDay=Integer.parseInt(dataSnapshot.child("bday").getValue().toString());
+
+                            int age=currentYear-bYear;
+                            if(currentMonth-bMonth<0)
+                            {
+                                age--;
+                            }
+                            if(currentMonth-bMonth==0)
+                            {
+                                if(currentDay-bDay<0)
+                                {
+                                    age--;
+                                }
+                            }
+                            editor.putString("age",String.valueOf(age));
+                            editor.commit();
+                        }
+                        else
+                        {
+                            String age="";
+                            editor.putString("age",age);
+                            editor.commit();
+                        }
+
+                        if(dataSnapshot.hasChild("height"))
+                        {
+                            height=dataSnapshot.child("height").getValue().toString();
+                            editor.putString("height",height);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            height="";
+                            editor.putString("height",height);
+                            editor.commit();
+                        }
+
+                        if(dataSnapshot.hasChild("weight"))
+                        {
+                            weight=dataSnapshot.child("weight").getValue().toString();
+                            editor.putString("weight",weight);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            weight="";
+                            editor.putString("weight",weight);
+                            editor.commit();
+                        }
+
+                        if(dataSnapshot.hasChild("gender"))
+                        {
+                            gender=dataSnapshot.child("gender").getValue().toString();
+                            editor.putString("gender",gender);
+                            editor.commit();
+                        }
+                        else
+                        {
+                            gender="";
+                            editor.putString("gender",gender);
+                            editor.commit();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                }
+        );
+
 
 
 
@@ -160,6 +309,51 @@ public class HomeActivity extends AppCompatActivity {
         {
             Intent intent=new Intent(HomeActivity.this,ProfileActivity.class);
             startActivity(intent);
+            return true;
+        }
+        if(id==R.id.item_log_out)
+        {
+
+            SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=sharedPreferences.edit();
+            if(sharedPreferences.getString("save password status","").equals("yes"))
+            {
+                String userid=sharedPreferences.getString("userid","");
+                String password=sharedPreferences.getString("password","");
+                sharedPreferences.edit().clear().commit();
+                editor.putString("userid",userid);
+                editor.putString("password",password);
+                editor.putString("save password status", "yes");
+                editor.putString("save password dialog status", "no");
+                editor.putString("logout status", "yes");
+                editor.commit();
+            }
+            else if(sharedPreferences.getString("save password status","").equals("no")&&sharedPreferences.getString("save password dialog status","").equals("no"))
+            {
+                String userid=sharedPreferences.getString("userid","");
+                String password=sharedPreferences.getString("password","");
+                sharedPreferences.edit().clear().commit();
+                editor.putString("userid",userid);
+                editor.putString("password",password);
+                editor.putString("save password status", "no");
+                editor.putString("save password dialog status", "no");
+                editor.putString("logout status", "yes");
+                editor.commit();
+            }
+            else{
+                String userid=sharedPreferences.getString("userid","");
+                String password=sharedPreferences.getString("password","");
+                sharedPreferences.edit().clear().commit();
+                editor.putString("userid",userid);
+                editor.putString("password",password);
+                editor.putString("save password status", "no");
+                editor.putString("save password dialog status", "yes");
+                editor.putString("logout status", "yes");
+                editor.commit();
+            }
+            Intent intent=new Intent(HomeActivity.this,LogInActivity.class);
+            startActivity(intent);
+            finish();
             return true;
         }
         return true;

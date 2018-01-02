@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#734b6d">
+
+    <RadioGroup
+        android:id="@+id/RG_activity"
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/edittext_rectangle_round_corner">
+        <RadioButton
+            android:id="@+id/RB_little"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Little to no exercise"/>
+        <RadioButton
+            android:id="@+id/RB_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Light exercise (1–3 days per week)"/>
+        <RadioButton
+            android:id="@+id/RB_moderate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Moderate exercise (3–5 days per week)"/>
+        <RadioButton
+            android:id="@+id/RB_heavy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Heavy exercise (6–7 days per week)"/>
+        <RadioButton
+            android:id="@+id/RB_very_heavy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Very heavy exercise (twice per day, extra heavy workouts)"/>
+    </RadioGroup>
+
+</RelativeLayout>
