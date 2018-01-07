@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/nutrition_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Calories:"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_centerVertical="true"/>
+    <RelativeLayout
+        android:id="@+id/nutrition_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp">
+
+        <TextView
+            android:id="@+id/gained_nutrition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textStyle="bold"
+            android:textSize="28sp"/>
+        <TextView
+            android:id="@+id/devider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:layout_toRightOf="@id/gained_nutrition"
+            android:textStyle="bold"
+            android:textSize="28sp"/>
+        <TextView
+            android:id="@+id/necessary_nutrition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/devider"
+            android:textStyle="bold"
+            android:textSize="28sp"/>
+        <TextView
+            android:id="@+id/nutrition_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cal"
+            android:layout_toRightOf="@id/necessary_nutrition"
+            android:layout_centerVertical="true"
+            android:textStyle="bold"
+            android:textSize="28sp"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

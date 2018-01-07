@@ -1,4 +1,4 @@
-package com.troubleshooters.diu.phrm;
+package com.troubleshooters.diu.phrm.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.troubleshooters.diu.phrm.R;
 
 /**
  * Created by Arif on 13-11-17.

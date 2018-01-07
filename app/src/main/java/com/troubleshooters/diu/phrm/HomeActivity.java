@@ -3,11 +3,8 @@ package com.troubleshooters.diu.phrm;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,10 +14,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 import android.widget.ViewFlipper;
 
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.troubleshooters.diu.phrm.Adapter.HealthPlanGridAdapter;
 import com.troubleshooters.diu.phrm.Adapter.TestRecordGridAdapter;
 
 import java.util.Calendar;
@@ -86,12 +82,14 @@ public class HomeActivity extends AppCompatActivity {
                             name=dataSnapshot.child("name").getValue().toString();
                             editor.putString("name",name);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "name:"+name, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             name="";
                             editor.putString("name",name);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "name:", Toast.LENGTH_SHORT).show();
                         }
 
                         if(dataSnapshot.hasChild("phone"))
@@ -100,12 +98,14 @@ public class HomeActivity extends AppCompatActivity {
                             phone=dataSnapshot.child("phone").getValue().toString();
                             editor.putString("phone",phone);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "phone:"+phone, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             phone="";
                             editor.putString("phone",phone);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "phone:", Toast.LENGTH_SHORT).show();
                         }
 
                         if(dataSnapshot.hasChild("byear"))
@@ -116,12 +116,14 @@ public class HomeActivity extends AppCompatActivity {
                             String bDay=dataSnapshot.child("bday").getValue().toString();
                             editor.putString("birthday",bDay+":"+bMonth+":"+bYear);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "birthday: exist", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
-                            phone="";
-                            editor.putString("name",phone);
+                            birthday="";
+                            editor.putString("birthday",birthday);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "birthday:", Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -148,12 +150,14 @@ public class HomeActivity extends AppCompatActivity {
                             }
                             editor.putString("age",String.valueOf(age));
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "age:"+age, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             String age="";
                             editor.putString("age",age);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "age:", Toast.LENGTH_SHORT).show();
                         }
 
                         if(dataSnapshot.hasChild("height"))
@@ -161,12 +165,14 @@ public class HomeActivity extends AppCompatActivity {
                             height=dataSnapshot.child("height").getValue().toString();
                             editor.putString("height",height);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "height:"+height, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             height="";
                             editor.putString("height",height);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "height:", Toast.LENGTH_SHORT).show();
                         }
 
                         if(dataSnapshot.hasChild("weight"))
@@ -174,12 +180,14 @@ public class HomeActivity extends AppCompatActivity {
                             weight=dataSnapshot.child("weight").getValue().toString();
                             editor.putString("weight",weight);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "weight:"+weight, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             weight="";
                             editor.putString("weight",weight);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "weight:", Toast.LENGTH_SHORT).show();
                         }
 
                         if(dataSnapshot.hasChild("gender"))
@@ -187,12 +195,28 @@ public class HomeActivity extends AppCompatActivity {
                             gender=dataSnapshot.child("gender").getValue().toString();
                             editor.putString("gender",gender);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "gender:"+gender, Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
                             gender="";
                             editor.putString("gender",gender);
                             editor.commit();
+                            //Toast.makeText(HomeActivity.this, "gender:", Toast.LENGTH_SHORT).show();
+                        }
+                        if(dataSnapshot.hasChild("activity"))
+                        {
+                            activity=dataSnapshot.child("activity").getValue().toString();
+                            editor.putString("activity",activity);
+                            editor.commit();
+                            //Toast.makeText(HomeActivity.this, "activity:"+activity, Toast.LENGTH_SHORT).show();
+                        }
+                        else
+                        {
+                            activity="";
+                            editor.putString("activity",activity);
+                            editor.commit();
+                            //Toast.makeText(HomeActivity.this, "activity:", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -203,6 +227,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
         );
+
 
 
 
@@ -315,12 +340,16 @@ public class HomeActivity extends AppCompatActivity {
         {
 
             SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences_nutrition=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences_time=getSharedPreferences("time", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor=sharedPreferences.edit();
             if(sharedPreferences.getString("save password status","").equals("yes"))
             {
                 String userid=sharedPreferences.getString("userid","");
                 String password=sharedPreferences.getString("password","");
                 sharedPreferences.edit().clear().commit();
+                sharedPreferences_nutrition.edit().clear().commit();
+                sharedPreferences_time.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "yes");
@@ -333,6 +362,8 @@ public class HomeActivity extends AppCompatActivity {
                 String userid=sharedPreferences.getString("userid","");
                 String password=sharedPreferences.getString("password","");
                 sharedPreferences.edit().clear().commit();
+                sharedPreferences_nutrition.edit().clear().commit();
+                sharedPreferences_time.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");
@@ -344,6 +375,8 @@ public class HomeActivity extends AppCompatActivity {
                 String userid=sharedPreferences.getString("userid","");
                 String password=sharedPreferences.getString("password","");
                 sharedPreferences.edit().clear().commit();
+                sharedPreferences_nutrition.edit().clear().commit();
+                sharedPreferences_time.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");

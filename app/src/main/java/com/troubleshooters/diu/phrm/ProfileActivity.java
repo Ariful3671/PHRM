@@ -1,5 +1,7 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -35,11 +38,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
     LoginButton login_button;
     CallbackManager callbackManager;
@@ -131,6 +135,9 @@ public class ProfileActivity extends AppCompatActivity {
                                         }).show();
                                 break;
                             case 2:
+
+                                DialogFragment datePicker=new DatePickerFragment();
+                                datePicker.show(getFragmentManager(),"date picker");
                                 break;
                             case 3:
                                 Toast.makeText(ProfileActivity.this, "Please enter your birthday to change your age!", Toast.LENGTH_SHORT).show();
@@ -293,6 +300,49 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+        Calendar c=Calendar.getInstance();
+        c.set(c.YEAR,year);
+        c.set(c.MONTH,month);
+        c.set(c.DAY_OF_MONTH,dayOfMonth);
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        SharedPreferences sharedPreferences=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor=sharedPreferences.edit();
+        final String user=sharedPreferences.getString("userid","");
+        final DatabaseReference ref=database.getReference("users").child(user);
+
+        ref.child("bday").setValue(String.valueOf(dayOfMonth));
+        ref.child("bmonth").setValue(String.valueOf(month+1));
+        ref.child("byear").setValue(String.valueOf(year));
+
+
+        int currentYear= Calendar.getInstance().get(Calendar.YEAR);
+        int currentMonth= Calendar.getInstance().get(Calendar.MONTH)+1;
+        int currentDay= Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+
+        int age=currentYear-year;
+        if((currentMonth-(month+1))<0)
+        {
+            age--;
+        }
+        if(currentMonth-(month+1)==0)
+        {
+            if(currentDay-dayOfMonth<0)
+            {
+                age--;
+            }
+        }
+        editor.putString("birthday",String.valueOf(dayOfMonth)+":"+String.valueOf(month+1)+":"+String.valueOf(year));
+        editor.putString("age",String.valueOf(age));
+        editor.commit();
+        final ProfileAdapter adapter=new ProfileAdapter(options,value,icon,right_arrow,ProfileActivity.this);
+        list_view_profile.setAdapter(adapter);
+
+
+
     }
 
 }

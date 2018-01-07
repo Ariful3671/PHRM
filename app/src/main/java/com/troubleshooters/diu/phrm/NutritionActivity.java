@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -13,12 +14,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.troubleshooters.diu.phrm.Adapter.NutritionCountAdapter;
 
@@ -26,21 +30,23 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class NutritionActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
 
-    GridView gridView;
+    ListView listView;
     LinearLayout linearLayout;
     Switch switch_reminder;
     TextView add_meal;
-    TextView gained_cal;
     TextView breakfast,lunch,snake,dinner;
+    int id;
 
-    Double necessary_calorie=0.0;
     int hour,munite;
-    String nutrition_name[]={"Carbohydrate","Fat","Protein"};
-    String gain_nutrition[]={"0","0","0","0"};
-    String necessary_nutrition[]={"0","0","0","0"};
+    Double necessary_calorie;
+    String nutrition_name[]={"Calorie","Carbohydrate","Fat","Protein"};
+    String gain_nutrition[]={"0","0","0","0","0"};
+    String necessary_nutrition[]={"0","0","0","0","0"};
+    String nutrition_unit[]={"cal","gm","gm","gm"};
 
 
     @Override
@@ -49,18 +55,78 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         setContentView(R.layout.activity_nutrition);
         setTitle("Nutrition plan");
 
-        gridView=(GridView)findViewById(R.id.grid_view_home);
+        listView=(ListView) findViewById(R.id.list_view_nutrition);
         switch_reminder=(Switch)findViewById(R.id.switch_reminder);
         linearLayout=(LinearLayout)findViewById(R.id.reminder_item_linear_layout);
         add_meal=(TextView)findViewById(R.id.text_view_add_meal);
-        gained_cal=(TextView)findViewById(R.id.gained_cal);
         breakfast=(TextView)findViewById(R.id.breakfast);
         lunch=(TextView)findViewById(R.id.lunch);
         snake=(TextView)findViewById(R.id.snake);
         dinner=(TextView)findViewById(R.id.dinner);
-        //NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,NutritionActivity.this);
-        //gridView.setAdapter(adapter);
-        switch_reminder.setChecked(true);
+        /*SharedPreferences sharedPreferences_checker=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
+        Toast.makeText(this,sharedPreferences_checker.getString("birthday","")+
+                "  "+sharedPreferences_checker.getString("activity","")+
+                "  "+sharedPreferences_checker.getString("height","")+
+                "  "+sharedPreferences_checker.getString("weight","")+
+                "  "+sharedPreferences_checker.getString("gender",""), Toast.LENGTH_SHORT).show();*/
+
+        SharedPreferences sharedPreferences_checker=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
+        if(sharedPreferences_checker.getString("birthday","").equals("")
+                ||sharedPreferences_checker.getString("activity","").equals("")
+                ||sharedPreferences_checker.getString("height","").equals("")
+                ||sharedPreferences_checker.getString("weight","").equals("")
+                ||sharedPreferences_checker.getString("gender","").equals(""))
+        {
+
+            android.support.v7.app.AlertDialog.Builder builder;
+            builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
+            //View mview = getLayoutInflater().inflate(R.layout.save_password_dialog, null);
+            //builder.setView(mview);
+            builder.setMessage("Please update your profile first!")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Intent intent=new Intent(NutritionActivity.this,HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    }).show();
+        }
+        else{
+            setCalorie();
+            setFat();
+            setCarbohydrate();
+            setProtein();
+        }
+
+        Calendar calendar=Calendar.getInstance();
+        //String hour=String.valueOf(calendar.get(Calendar.HOUR_OF_DAY));
+        //String munite=String.valueOf(calendar.get(Calendar.MINUTE));
+
+        calendar.set(Calendar.HOUR_OF_DAY ,11);
+        calendar.set(Calendar.MINUTE,34);
+        Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+        id=Notificaion_ID.getID();
+
+
+        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
+        NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,nutrition_unit,NutritionActivity.this);
+        listView.setAdapter(adapter);
+
+        add_meal.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(NutritionActivity.this,AddMealActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+
+        /*switch_reminder.setChecked(true);
         switch_reminder.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -76,21 +142,10 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                         }
                     }
                 }
-        );
-        /*setCalorie();
-        setFat();
-        setCarbohydrate();
-        setProtein();
-        update();*/
-        /*add_meal.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(NutritionActivity.this,AddMealActivity.class);
-                        startActivity(intent);
-                    }
-                }
         );*/
+
+
+
         String hour_s;
         String minute_s;
         SharedPreferences sharedPreferences=getSharedPreferences("time", Context.MODE_PRIVATE);
@@ -98,6 +153,15 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         minute_s=sharedPreferences.getString("breakfast_minute","");
         if(!hour_s.equals("")&&!minute_s.equals(""))
         {
+            if(Integer.valueOf(hour_s)>12)
+            {
+                Integer value=Integer.parseInt(hour_s)-12;
+                hour_s=value.toString();
+            }
+            if(Integer.valueOf(minute_s)<0)
+            {
+                minute_s="0"+minute_s;
+            }
             breakfast.setText(hour_s+":"+minute_s);
         }
         hour_s="";
@@ -106,6 +170,15 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         minute_s=sharedPreferences.getString("lunch_minute","");
         if(!hour_s.equals("")&&!minute_s.equals(""))
         {
+            if(Integer.valueOf(hour_s)>12)
+            {
+                Integer value=Integer.parseInt(hour_s)-12;
+                hour_s=value.toString();
+            }
+            if(Integer.valueOf(minute_s)<0)
+            {
+                minute_s="0"+minute_s;
+            }
             lunch.setText(hour_s+":"+minute_s);
         }
         hour_s="";
@@ -114,6 +187,15 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         minute_s=sharedPreferences.getString("snake_minute","");
         if(!hour_s.equals("")&&!minute_s.equals(""))
         {
+            if(Integer.valueOf(hour_s)>12)
+            {
+                Integer value=Integer.parseInt(hour_s)-12;
+                hour_s=value.toString();
+            }
+            if(Integer.valueOf(minute_s)<0)
+            {
+                minute_s="0"+minute_s;
+            }
             snake.setText(hour_s+":"+minute_s);
         }
         hour_s="";
@@ -122,18 +204,18 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         minute_s=sharedPreferences.getString("dinner_minute","");
         if(!hour_s.equals("")&&!minute_s.equals(""))
         {
+            if(Integer.valueOf(hour_s)>12)
+            {
+                Integer value=Integer.parseInt(hour_s)-12;
+                hour_s=value.toString();
+            }
+            if(Integer.valueOf(minute_s)<10)
+            {
+                minute_s="0"+minute_s;
+            }
             dinner.setText(hour_s+":"+minute_s);
         }
-        hour_s="";
-        minute_s="";
 
-        /*Calendar calendar=Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY ,3);
-        calendar.set(Calendar.MINUTE,41);
-        Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);*/
 
 
 
@@ -197,6 +279,8 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
 
 
+
+
     TimePickerDialog.OnTimeSetListener t_breakfast=new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -246,41 +330,20 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         }
     };
 
-    public void update()
-    {
-        SharedPreferences sharedPreferences=getSharedPreferences("Nutrition",Context.MODE_PRIVATE);
-        String gained_calorie=sharedPreferences.getString("gained_calorie","");
-        String gained_fat=sharedPreferences.getString("gained_fat","");
-        String gained_carbohydrate=sharedPreferences.getString("gained_carbohydrate","");
-        String gained_protein=sharedPreferences.getString("gained_protein","");
 
-        if(!gained_calorie.equals("")||!gained_carbohydrate.equals("")||!gained_fat.equals("")||gained_protein.equals(""))
-        {
-            if(gained_calorie=="")
-            {
-                gained_cal=(TextView)findViewById(R.id.gained_cal);
-                gained_cal.setText("0");
-            }
-            else
-            {
-                gained_cal=(TextView)findViewById(R.id.gained_cal);
-                gained_cal.setText(gained_calorie);
-            }
-
-            NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,NutritionActivity.this);
-            adapter.notifyDataSetChanged();
-            gridView.setAdapter(adapter);
-        }
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
     }
+
     public void setCalorie()
     {
-        SharedPreferences sharedPreferences=getSharedPreferences("ProfileData", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
         String age=sharedPreferences.getString("age","");
         String height=sharedPreferences.getString("height","");
         String weight=sharedPreferences.getString("weight","");
         String gender=sharedPreferences.getString("gender","");
-        String activity=sharedPreferences.getString("activity level","");
+        String activity=sharedPreferences.getString("activity","");
         if(gender.equals("Male"))
         {
             necessary_calorie=(10*Double.parseDouble(weight))+(6.25*Double.parseDouble(height))-(5*Double.parseDouble(age))+5;
@@ -310,96 +373,44 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         {
             necessary_calorie=necessary_calorie*1.9;
         }
-        SharedPreferences sharedPreferences1=getSharedPreferences("Nutrition", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences1=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences1.edit();
-        TextView TV_ness_cal=(TextView)findViewById(R.id.necessary_cal);
-        String value=new DecimalFormat("##.##").format(necessary_calorie);
+        String value=new DecimalFormat("##.#").format(necessary_calorie);
         editor.putString("necessary_calorie",value);
         editor.commit();
-        TV_ness_cal.setText("of "+necessary_calorie.toString()+"Kcal");
-
     }
     public void setCarbohydrate()
     {
         Double value=(necessary_calorie*(65.0/100.0))/4.0;
-        SharedPreferences sharedPreferences=getSharedPreferences("Nutrition",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=getSharedPreferences("nutrition",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
-        String necessary_carbohydrate=new DecimalFormat("##.##").format(value);
+        String necessary_carbohydrate=new DecimalFormat("##.#").format(value);
         editor.putString("necessary_carbohydrate",necessary_carbohydrate.toString());
         editor.commit();
-        NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,NutritionActivity.this);
-        adapter.notifyDataSetChanged();
-        gridView.setAdapter(adapter);
     }
     public void setFat()
     {
         Double value=(necessary_calorie*(30.0/100.0))/9.0;
-        SharedPreferences sharedPreferences=getSharedPreferences("Nutrition",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences=getSharedPreferences("nutrition",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
-        String necessary_fat=new DecimalFormat("##.##").format(value);
+        String necessary_fat=new DecimalFormat("##.#").format(value);
         editor.putString("necessary_fat",necessary_fat.toString());
         editor.commit();
-        NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,NutritionActivity.this);
-        adapter.notifyDataSetChanged();
-        gridView.setAdapter(adapter);
     }
-
     public void setProtein()
     {
         if(necessary_calorie!=0)
         {
             Double value;
-            SharedPreferences sharedPreferences=getSharedPreferences("ProfileData",Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
             String weight=sharedPreferences.getString("weight","");
             value=Double.parseDouble(weight)*1.5;
-            String necessary_protein=new DecimalFormat("##.##").format(value);
-            SharedPreferences sharedPreferences1=getSharedPreferences("Nutrition",Context.MODE_PRIVATE);
+            String necessary_protein=new DecimalFormat("##.#").format(value);
+            SharedPreferences sharedPreferences1=getSharedPreferences("nutrition",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor=sharedPreferences1.edit();
             editor.putString("necessary_protein",necessary_protein);
             editor.commit();
         }
-
-        NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,NutritionActivity.this);
-        adapter.notifyDataSetChanged();
-        gridView.setAdapter(adapter);
-    }
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.nutrition_activity_menu,menu);
-        return true;
-
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id=item.getItemId();
-        if(id==R.id.item_profile)
-        {
-            Intent intent=new Intent(NutritionActivity.this,ProfileActivity.class);
-            startActivity(intent);
-            return true;
-        }
-        if(id==R.id.item_refresh)
-        {
-            Intent intent=new Intent(NutritionActivity.this,HomeActivity.class);
-            finish();
-            startActivity(intent);
-            return true;
-        }
-        return true;
-    }
-
-
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
     }
 }
 

@@ -73,22 +73,23 @@ public class AddMealActivity extends AppCompatActivity {
     {
         final FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference ref=database.getReference("nutrition");
-        ref.addValueEventListener(
+        ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
                         for(DataSnapshot snap:dataSnapshot.getChildren())
                         {
+
                             if(snap.getKey().equals(name.toLowerCase()))
                             {
+
                                 String calorie=snap.child("calorie").getValue().toString();
                                 String fat=snap.child("fat").getValue().toString();
                                 String protein=snap.child("protein").getValue().toString();
                                 String carbohydrate=snap.child("carbohydrate").getValue().toString();
 
 
-                                SharedPreferences sharedPreferences=getSharedPreferences("Nutrition", Context.MODE_PRIVATE);
+                                SharedPreferences sharedPreferences=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor=sharedPreferences.edit();
                                 String gained_calorie=sharedPreferences.getString("gained_calorie","");
                                 String gained_fat=sharedPreferences.getString("gained_fat","");
@@ -99,7 +100,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 if(gained_calorie.equals(""))
                                 {
                                     value=Double.parseDouble(calorie);
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_calorie",s);
                                     editor.commit();
                                     value=0.0;
@@ -107,7 +108,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 else
                                 {
                                     value=(Double.parseDouble(gained_calorie)+Double.parseDouble(calorie));
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_calorie",value.toString());
                                     editor.commit();
                                     value=0.0;
@@ -116,7 +117,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 if(gained_fat.equals(""))
                                 {
                                     value=Double.parseDouble(fat);
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_fat",s);
                                     value=0.0;
                                     editor.commit();
@@ -124,7 +125,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 else
                                 {
                                     value=(Double.parseDouble(gained_fat)+Double.parseDouble(fat));
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_fat",s);
                                     value=0.0;
                                     editor.commit();
@@ -132,7 +133,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 if(gained_carbohydrate.equals(""))
                                 {
                                     value=Double.parseDouble(carbohydrate);
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_carbohydrate",s);
                                     value=0.0;
                                     editor.commit();
@@ -140,7 +141,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 else
                                 {
                                     value=Double.parseDouble(gained_carbohydrate)+Double.parseDouble(carbohydrate);
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_carbohydrate",s);
                                     value=0.0;
                                     editor.commit();
@@ -148,7 +149,7 @@ public class AddMealActivity extends AppCompatActivity {
                                 if (gained_protein.equals(""))
                                 {
                                     value=Double.parseDouble(protein);
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_protein",s);
                                     value=0.0;
                                     editor.commit();
@@ -156,18 +157,19 @@ public class AddMealActivity extends AppCompatActivity {
                                 else
                                 {
                                     value=(Double.parseDouble(gained_protein)+Double.parseDouble(protein));
-                                    String s=new DecimalFormat("##.##").format(value);
+                                    String s=new DecimalFormat("##.#").format(value);
                                     editor.putString("gained_protein",s);
                                     value=0.0;
                                     editor.commit();
                                 }
-                                Intent intent=new Intent(AddMealActivity.this,HomeActivity.class);
+                                Intent intent=new Intent(AddMealActivity.this,NutritionActivity.class);
                                 startActivity(intent);
                                 finish();
                             }
+                        }
+
 
                         }
-                    }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

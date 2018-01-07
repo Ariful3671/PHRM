@@ -2,16 +2,15 @@ package com.troubleshooters.diu.phrm.Adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.troubleshooters.diu.phrm.R;
-
-import java.util.zip.Inflater;
 
 /**
  * Created by Arif on 08-12-17.
@@ -21,15 +20,16 @@ public class NutritionCountAdapter extends BaseAdapter {
     String text[];
     String gained_nutrition[];
     String necessary_nutrition[];
+    String units[];
     Context context;
     LayoutInflater inflater;
 
-    public NutritionCountAdapter(String text[], String gained_nutrition[], String necessary_Nutrition[], Context context)
-    {
-        this.text=text;
-        this.gained_nutrition=gained_nutrition;
-        this.necessary_nutrition=necessary_Nutrition;
-        this.context=context;
+    public NutritionCountAdapter(String text[], String gained_nutrition[], String necessary_Nutrition[], String units[], Context context) {
+        this.text = text;
+        this.gained_nutrition = gained_nutrition;
+        this.necessary_nutrition = necessary_Nutrition;
+        this.units = units;
+        this.context = context;
     }
 
     @Override
@@ -52,58 +52,95 @@ public class NutritionCountAdapter extends BaseAdapter {
         View gridView = view;
         if (view == null) {
             inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            gridView = inflater.inflate(R.layout.custom_grid_view, null);
-            TextView gain = (TextView) gridView.findViewById(R.id.text_view1_custom_grid);
-            TextView necessary = (TextView) gridView.findViewById(R.id.text_view2_custom_grid);
-            TextView name = (TextView) gridView.findViewById(R.id.text_view3_custom_grid);
-            SharedPreferences sharedPreferences=context.getSharedPreferences("Nutrition",Context.MODE_PRIVATE);
+            gridView = inflater.inflate(R.layout.list_view_nutrition, null);
+            TextView heading = (TextView) gridView.findViewById(R.id.nutrition_heading);
+            TextView gained = (TextView) gridView.findViewById(R.id.gained_nutrition);
+            TextView necessary = (TextView) gridView.findViewById(R.id.necessary_nutrition);
+            TextView unit = (TextView) gridView.findViewById(R.id.nutrition_unit);
+
+            SharedPreferences sharedPreferences=context.getSharedPreferences("nutrition",Context.MODE_PRIVATE);
+            String necessary_calorie=sharedPreferences.getString("necessary_calorie","");
             String necessary_carbohydrate=sharedPreferences.getString("necessary_carbohydrate","");
             String necessary_fat=sharedPreferences.getString("necessary_fat","");
             String necessary_protein=sharedPreferences.getString("necessary_protein","");
+
             String gained_calorie=sharedPreferences.getString("gained_calorie","");
             String gained_fat=sharedPreferences.getString("gained_fat","");
             String gained_carbohydrate=sharedPreferences.getString("gained_carbohydrate","");
             String gained_protein=sharedPreferences.getString("gained_protein","");
-            if(position==0&&!necessary_carbohydrate.equals(""))
+
+
+
+
+            if(position==0&&!necessary_calorie.equals(""))
             {
-                necessary.setText("of "+necessary_carbohydrate+"gm");
+                necessary.setText(necessary_calorie);
             }
-            else if(position==1&&!necessary_fat.equals(""))
+            else if(position==1&&!necessary_carbohydrate.equals(""))
             {
-                necessary.setText("of "+necessary_fat+"gm");
+                necessary.setText(necessary_carbohydrate);
             }
-            else if(position==2&&!necessary_protein.equals(""))
+            else if(position==2&&!necessary_fat.equals(""))
             {
-                necessary.setText("of "+necessary_protein+"gm");
+                necessary.setText(necessary_fat);
+            }
+            else if(position==3&&!necessary_protein.equals(""))
+            {
+                necessary.setText(necessary_protein);
             }
             else
             {
-                necessary.setText("of "+necessary_nutrition[position]+"gm");
+                necessary.setText(necessary_nutrition[position]);
+
+            }
+
+            if(position==0)
+            {
+                gridView.setBackgroundResource(R.drawable.list_view_calorie_background);
+            }
+            else {
+                gridView.setBackgroundResource(R.drawable.list_view_cal_car_pro_background);
             }
 
 
 
-            if(position==0&&!gained_carbohydrate.equals(""))
+
+            if(position==0&&!gained_calorie.equals(""))
             {
-                gain.setText(gained_carbohydrate);
+                gained.setText(gained_calorie);
             }
-            else if(position==1&&!gained_fat.equals(""))
+            else if(position==1&&!gained_carbohydrate.equals(""))
             {
-                gain.setText(gained_fat);
+                gained.setText(gained_carbohydrate);
             }
-            else if(position==2&&!gained_protein.equals(""))
+            else if(position==2&&!gained_fat.equals(""))
             {
-                gain.setText(gained_protein);
+                gained.setText(gained_fat);
+            }
+            else if(position==3&&!gained_protein.equals(""))
+            {
+                gained.setText(gained_protein);
             }
             else
             {
-                gain.setText(gained_nutrition[position]);
+                gained.setText("0");
             }
-            gridView.setBackgroundResource(R.drawable.edittext_rectangle_round_corner);
 
-            name.setText(text[position]);
+            if(position==0)
+            {
+                gridView.setBackgroundResource(R.drawable.list_view_calorie_background);
+            }
+            else {
+                gridView.setBackgroundResource(R.drawable.list_view_cal_car_pro_background);
+            }
+
+
+            heading.setText(text[position]);
+            unit.setText(units[position]);
+
+
         }
+
         return gridView;
     }
-
 }
