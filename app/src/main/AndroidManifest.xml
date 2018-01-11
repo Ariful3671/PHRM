@@ -46,6 +46,7 @@
 
         <receiver android:name=".NotificationReceiver" />
         <receiver android:name=".MedicationAlarm" />
+        <receiver android:name=".ResetApp"/>
 
         <activity android:name=".EditMedication"></activity>
     </application>
