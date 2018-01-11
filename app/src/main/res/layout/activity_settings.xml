@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.troubleshooters.diu.phrm.SettingsActivity">
 
+    <ListView
+        android:id="@+id/list_sittings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
+
 </android.support.constraint.ConstraintLayout>

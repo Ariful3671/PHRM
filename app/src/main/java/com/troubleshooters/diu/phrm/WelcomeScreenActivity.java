@@ -36,7 +36,7 @@ public class WelcomeScreenActivity extends AppCompatActivity {
 
         }
         SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
-        if(sharedPreferences.getString("logout status","").equals("yes"))
+        if(sharedPreferences.getString("logout status","").equals("yes")||sharedPreferences.getString("logout status","").equals(""))
         {
             //Exit welcome screen after 4 seconds
             new Handler().postDelayed(new Runnable() {

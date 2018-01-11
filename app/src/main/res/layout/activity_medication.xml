@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.troubleshooters.diu.phrm.MedicationActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_medication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
     <TextView
         android:id="@+id/text_view_medication_layout"
         android:layout_width="wrap_content"
@@ -13,6 +18,7 @@
         android:text="No medicaton plan created"
         android:layout_centerHorizontal="true"
         android:padding="5dp"
+        android:visibility="gone"
         android:layout_marginTop="10dp"/>
 
     <Button

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.troubleshooters.diu.phrm">
+
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -41,8 +42,12 @@
         <activity android:name=".ManageItemActivity" />
         <activity android:name=".BloodPressureActivity" />
         <activity android:name=".GlucoseActivity" />
-        <activity android:name=".AddMealActivity"></activity>
-        <receiver android:name=".NotificationReceiver"/>
+        <activity android:name=".AddMealActivity" />
+
+        <receiver android:name=".NotificationReceiver" />
+        <receiver android:name=".MedicationAlarm" />
+
+        <activity android:name=".EditMedication"></activity>
     </application>
 
 </manifest>

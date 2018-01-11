@@ -5,7 +5,7 @@
     <color name="colorAccent">#734b6d</color>
 
 
-    <!--//Used in screen_background_gradient.xml-->
+    <!--Used in screen_background_gradient.xml-->
     <color name="startColorScreenBackgroundGradient">#A95591</color>
     <color name="endColorScreenBackgroundGradient">#360F2A</color>
 

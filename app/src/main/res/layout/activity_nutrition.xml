@@ -9,7 +9,7 @@
     <ListView
         android:id="@+id/list_view_nutrition"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:layout_marginTop="2dp"></ListView>
@@ -97,6 +97,8 @@
                 android:weightSum="4">
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_breakfast"
+                    android:longClickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
@@ -124,10 +126,12 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Time" />
+                        android:text="Set time" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_lunch"
+                    android:longClickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
@@ -154,10 +158,12 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Time" />
+                        android:text="Set time" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_snack"
+                    android:longClickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
@@ -184,10 +190,12 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Time" />
+                        android:text="Set time" />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/relative_layout_dinner"
+                    android:longClickable="true"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1">
@@ -214,7 +222,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Time" />
+                        android:text="Set time" />
 
                 </RelativeLayout>
             </LinearLayout>

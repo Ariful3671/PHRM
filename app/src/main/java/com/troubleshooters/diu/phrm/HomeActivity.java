@@ -33,11 +33,11 @@ public class HomeActivity extends AppCompatActivity {
 
 
     String grid_daily_routin_text[]={"Nutrition","Exercise","Medication"};
-    String grid_test_record_text[]={"Blood Pressure","Glucose","Manage Items"};
+    String grid_test_record_text[]={"Blood Pressure","Blood Volume","BMI"};
     int grid_test_record_icon[]={R.drawable.blood_pressure_icon,R.drawable.glucose_test_icon,R.drawable.add};
     int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.exercise_icon,R.drawable.medication_icon};
     String grid_daily_routin_button_status[]={"CREATE","UPDATE"};
-    String grid_record_test_button_status[]={"RECORD","UPDATE","ADD"};
+    String grid_record_test_button_status[]={"Measure","Measure","Measure"};
 
     ViewFlipper flipper;
     GridView grid_daily_routin;
@@ -241,7 +241,7 @@ public class HomeActivity extends AppCompatActivity {
                             case R.id.bottom_navigation_home:
 
                                 break;
-                            case R.id.bottom_navigation_notification:
+                            /*case R.id.bottom_navigation_notification:
 
                                 intent=new Intent(HomeActivity.this,NotificationActivity.class);
                                 startActivity(intent);
@@ -250,7 +250,7 @@ public class HomeActivity extends AppCompatActivity {
                             case R.id.bottom_navigation_report:
                                 intent=new Intent(HomeActivity.this,ReportActivity.class);
                                 startActivity(intent);
-                                break;
+                                break;*/
                         }
                         return false;
                     }

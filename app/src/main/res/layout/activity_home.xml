@@ -95,7 +95,7 @@
                         android:id="@+id/text_view_test_record"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:text="Test Records"
+                        android:text="Health Calculators"
                         android:textColor="#FFF"
                         android:layout_margin="2dp"
                         android:padding="4dp"
