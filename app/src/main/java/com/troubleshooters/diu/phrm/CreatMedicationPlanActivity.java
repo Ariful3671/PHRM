@@ -95,7 +95,7 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
         final SharedPreferences.Editor editor=sharedPreferences.edit();
         if(sharedPreferences.getInt("NID",0)==0)
         {
-            editor.putInt("NID",100);
+            editor.putInt("NID",110);
             editor.commit();
         }
 
@@ -211,6 +211,8 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
                                 calendar.set(Calendar.HOUR_OF_DAY ,s_hour);
                                 calendar.set(Calendar.MINUTE,s_minute);
                                 Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                intent.putExtra("NID",initialValue);
+                                intent.putExtra("text",medicinesName);
                                 PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),initialValue,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                 alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
@@ -251,17 +253,22 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
                                 {
                                     if(days[i]=="1")
                                     {
-                                        initialValue=sharedPreferences.getInt("NID",0)+1;
-                                        editor.putInt("NID",initialValue);
-                                        editor.commit();
                                         Calendar calendar=Calendar.getInstance();
                                         calendar.set(Calendar.DAY_OF_WEEK,i+1);
+                                        if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
+                                            calendar.add(Calendar.DAY_OF_YEAR, 7);
+                                        }
                                         calendar.set(Calendar.HOUR_OF_DAY ,s_hour);
                                         calendar.set(Calendar.MINUTE,s_minute);
                                         Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                        intent.putExtra("NID",initialValue);
+                                        intent.putExtra("text",medicinesName);
                                         PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),initialValue,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                         AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY*7,pendingIntent);
+                                        initialValue=sharedPreferences.getInt("NID",0)+1;
+                                        editor.putInt("NID",initialValue);
+                                        editor.commit();
                                     }
                                 }
 
@@ -347,10 +354,10 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
             else{
                 days[6]="1";
             }
-            Toast.makeText(this, "checked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "checked", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show();
             days[0]="0";
             days[1]="0";
             days[2]="0";
@@ -381,7 +388,7 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
             days[4]="1";
             days[5]="1";
             days[6]="1";
-            Toast.makeText(this, "checked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "checked", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -392,7 +399,7 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
             days[4]="0";
             days[5]="0";
             days[6]="0";
-            Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Unchecked", Toast.LENGTH_SHORT).show();
         }
 
     }

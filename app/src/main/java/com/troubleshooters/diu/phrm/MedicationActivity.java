@@ -1,5 +1,7 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +26,7 @@ import com.troubleshooters.diu.phrm.Adapter.Model_medicin_details;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,17 +57,12 @@ public class MedicationActivity extends AppCompatActivity {
 
 
 
-        /*Gson gson = new Gson();
 
-        f(!sharedPreferences1.getString("MyObject", "").equals(""))
-        {
-            String json = sharedPreferences1.getString("MyObject", "");
-            Type type = new TypeToken<List<Model_medicin_details>>(){}.getType();
-            medicin_details= gson.fromJson(json, type);
-        }*/
 
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
+
+
 
 
         ref.addValueEventListener(
@@ -73,7 +71,6 @@ public class MedicationActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot:dataSnapshot.getChildren())
                         {
-
                             String name=snapshot.child("medicinesname").getValue().toString();
                             String hour=snapshot.child("hour").getValue().toString();
                             String minute=snapshot.child("minute").getValue().toString();
@@ -85,6 +82,7 @@ public class MedicationActivity extends AppCompatActivity {
                             String AMorPM=snapshot.child("AMorPM").getValue().toString();
                             String type=snapshot.child("alarmtype").getValue().toString();
                             String numberofalarm=snapshot.child("numberofalarm").getValue().toString();
+
 
 
                             MedicationReminder adapter;

@@ -14,19 +14,24 @@ import android.widget.Toast;
 
 public class MedicationAlarm extends BroadcastReceiver {
 
+    int NID;
+    String text;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationManager notificationManager=(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NID=intent.getIntExtra("NID",0);
+        text=intent.getStringExtra("text");
         Intent reaptingIntent=new Intent(context,HomeActivity.class);
         reaptingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent=PendingIntent.getActivity(context,101,reaptingIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent=PendingIntent.getActivity(context,NID,reaptingIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.breakfast_icon)
                 .setVibrate(new long[]{1000,1000,1000,1000,1000})
                 .setContentTitle("PHRM")
-                .setContentText("Time to take medicines!!!")
+                .setContentText(text)
                 .setAutoCancel(true);
-        notificationManager.notify(101,builder.build());
+        notificationManager.notify(NID,builder.build());
     }
 }

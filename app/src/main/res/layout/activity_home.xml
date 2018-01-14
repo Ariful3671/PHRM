@@ -73,7 +73,7 @@
                         android:layout_below="@+id/text_view_health_plan"
                         android:columnWidth="100dp"
                         android:gravity="center"
-                        android:numColumns="3"
+                        android:numColumns="2"
                         android:horizontalSpacing="2dp"
                         android:stretchMode="columnWidth"></GridView>
 

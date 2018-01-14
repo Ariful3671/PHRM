@@ -1,5 +1,7 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.troubleshooters.diu.phrm.Adapter.HealthPlanGridAdapter;
+import com.troubleshooters.diu.phrm.Adapter.MedicationReminder;
+import com.troubleshooters.diu.phrm.Adapter.Model_medicin_details;
 import com.troubleshooters.diu.phrm.Adapter.TestRecordGridAdapter;
 
 import java.util.Calendar;
@@ -32,10 +36,10 @@ import java.util.Calendar;
 public class HomeActivity extends AppCompatActivity {
 
 
-    String grid_daily_routin_text[]={"Nutrition","Exercise","Medication"};
+    String grid_daily_routin_text[]={"Nutrition","Medication"};
     String grid_test_record_text[]={"Blood Pressure","Blood Volume","BMI"};
     int grid_test_record_icon[]={R.drawable.blood_pressure_icon,R.drawable.glucose_test_icon,R.drawable.add};
-    int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.exercise_icon,R.drawable.medication_icon};
+    int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.medication_icon};
     String grid_daily_routin_button_status[]={"CREATE","UPDATE"};
     String grid_record_test_button_status[]={"Measure","Measure","Measure"};
 
@@ -274,14 +278,14 @@ public class HomeActivity extends AppCompatActivity {
                         }
                         if(position==1)
                         {
-                            intent=new Intent(HomeActivity.this,ExerciseActivity.class);
-                            startActivity(intent);
-                        }
-                        if(position==2)
-                        {
                             intent=new Intent(HomeActivity.this,MedicationActivity.class);
                             startActivity(intent);
                         }
+                        /*if(position==2)
+                        {
+                            intent=new Intent(HomeActivity.this,MedicationActivity.class);
+                            startActivity(intent);
+                        }*/
                     }
                 }
         );
@@ -345,6 +349,67 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences.Editor editor=sharedPreferences.edit();
             if(sharedPreferences.getString("save password status","").equals("yes"))
             {
+                AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+
+
+
+
+                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
+
+
+
+
+                ref.addValueEventListener(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                                {
+
+                                    int NID=Integer.parseInt(snapshot.child("nid").getValue().toString());
+                                    int numberofalarm=Integer.parseInt(snapshot.child("numberofalarm").getValue().toString());
+                                    if(numberofalarm==1)
+                                    {
+                                        Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                        alarmManager.cancel(pendingIntent);
+                                    }
+                                    if(numberofalarm>1)
+                                    {
+                                        for(int i=0;i<numberofalarm;i++)
+                                        {
+                                            Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            NID=NID+1;
+                                        }
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        }
+                );
+
+
+
                 String userid=sharedPreferences.getString("userid","");
                 String password=sharedPreferences.getString("password","");
                 sharedPreferences.edit().clear().commit();
@@ -359,6 +424,73 @@ public class HomeActivity extends AppCompatActivity {
             }
             else if(sharedPreferences.getString("save password status","").equals("no")&&sharedPreferences.getString("save password dialog status","").equals("no"))
             {
+                AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+
+
+
+
+
+
+                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
+
+
+
+
+                ref.addValueEventListener(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                                {
+
+                                    int NID=Integer.parseInt(snapshot.child("nid").getValue().toString());
+                                    int numberofalarm=Integer.parseInt(snapshot.child("numberofalarm").getValue().toString());
+                                    if(numberofalarm==1)
+                                    {
+                                        Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                        alarmManager.cancel(pendingIntent);
+                                    }
+                                    if(numberofalarm>1)
+                                    {
+                                        for(int i=0;i<numberofalarm;i++)
+                                        {
+                                            Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            NID=NID+1;
+                                        }
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        }
+                );
+
+
+
+
+
+
+
                 String userid=sharedPreferences.getString("userid","");
                 String password=sharedPreferences.getString("password","");
                 sharedPreferences.edit().clear().commit();
@@ -372,6 +504,72 @@ public class HomeActivity extends AppCompatActivity {
                 editor.commit();
             }
             else{
+                AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+
+
+
+
+
+
+                FirebaseDatabase database=FirebaseDatabase.getInstance();
+                DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
+
+
+
+
+                ref.addValueEventListener(
+                        new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                for(DataSnapshot snapshot:dataSnapshot.getChildren())
+                                {
+
+                                    int NID=Integer.parseInt(snapshot.child("nid").getValue().toString());
+                                    int numberofalarm=Integer.parseInt(snapshot.child("numberofalarm").getValue().toString());
+                                    if(numberofalarm==1)
+                                    {
+                                        Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                        alarmManager.cancel(pendingIntent);
+                                    }
+                                    if(numberofalarm>1)
+                                    {
+                                        for(int i=0;i<numberofalarm;i++)
+                                        {
+                                            Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            NID=NID+1;
+                                        }
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        }
+                );
+
+
+
+
+
+
                 String userid=sharedPreferences.getString("userid","");
                 String password=sharedPreferences.getString("password","");
                 sharedPreferences.edit().clear().commit();

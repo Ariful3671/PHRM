@@ -89,6 +89,7 @@ public class MedicationReminder extends RecyclerView.Adapter<MedicationReminder.
             Intent in=new Intent(this.context, EditMedication.class);
             in.putExtra("medInfo",object.getMedicines());
             in.putExtra("NID",object.getNID());
+            in.putExtra("numberofalarm",object.getNumberofalarm());
             this.context.startActivity(in);
         }
     }
