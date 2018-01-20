@@ -109,7 +109,6 @@ public class MedicationActivity extends AppCompatActivity {
                             {
                                 if(updateNID.getInt("NID",0)==0)
                                 {
-                                    Toast.makeText(MedicationActivity.this, "nid 0", Toast.LENGTH_SHORT).show();
                                     update.putInt("NID",110);
                                     update.commit();
                                 }
@@ -193,41 +192,65 @@ public class MedicationActivity extends AppCompatActivity {
                                             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
                                         }
-                                        /*if(alarmType.equals("custom or today"))
+                                        if(alarmType.equals("custom or today"))
                                         {
+
                                             String[] split=nameOfDays.split("\\s+");
                                             for(int i=0;i<numberOfAlarm;i++)
                                             {
+                                                Date date=new Date();
+                                                Calendar calendar=Calendar.getInstance();
+                                                calendar.setTimeInMillis(System.currentTimeMillis());
+                                                Calendar currentTime=Calendar.getInstance();
+                                                calendar.setTime(date);
+                                                currentTime.setTime(date);
                                                 if(split[i].equals("Sun"))
                                                 {
-                                                    //calendar.set(Calendar.DAY_OF_WEEK,i+1);
+                                                    calendar.set(Calendar.DAY_OF_WEEK,1);
                                                 }
+                                                if(split[i].equals("Mon"))
+                                                {
+                                                    calendar.set(Calendar.DAY_OF_WEEK,2);
+                                                }
+                                                if(split[i].equals("Tue"))
+                                                {
+                                                    calendar.set(Calendar.DAY_OF_WEEK,3);
+                                                }
+                                                if(split[i].equals("Wed"))
+                                                {
+                                                    calendar.set(Calendar.DAY_OF_WEEK,4);
+                                                }
+                                                if(split[i].equals("Thu"))
+                                                {
+                                                    calendar.set(Calendar.DAY_OF_WEEK,5);
+                                                }
+                                                if(split[i].equals("Fri"))
+                                                {
+                                                    calendar.set(Calendar.DAY_OF_WEEK,6);
+                                                }
+                                                if(split[i].equals("Sat"))
+                                                {
+                                                    calendar.set(Calendar.DAY_OF_WEEK,7);
+                                                }
+                                                calendar.set(Calendar.HOUR_OF_DAY ,hour);
+                                                calendar.set(Calendar.MINUTE,minute);
+                                                if(calendar.before(currentTime))
+                                                {
+                                                    calendar.add(Calendar.DATE,1);
+                                                }
+                                                Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
+                                                intent.putExtra("NID",NID);
+                                                intent.putExtra("text",medicinesName);
+                                                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                                AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY*7,pendingIntent);
                                             }
-                                            Date date=new Date();
-                                            Calendar calendar=Calendar.getInstance();
-                                            calendar.setTimeInMillis(System.currentTimeMillis());
-                                            Calendar currentTime=Calendar.getInstance();
-                                            calendar.setTime(date);
-                                            currentTime.setTime(date);
-                                            calendar.set(Calendar.HOUR_OF_DAY ,hour);
-                                            calendar.set(Calendar.MINUTE,minute);
-                                            if(calendar.before(currentTime))
-                                            {
-                                                calendar.add(Calendar.DATE,1);
-                                            }
-                                            Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
-                                            intent.putExtra("NID",NID);
-                                            intent.putExtra("text",medicinesName);
-                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-                                            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY*7,pendingIntent);
-
-                                        }*/
+                                        }
 
                                     }
                                 }
                                 else{
-                                    Toast.makeText(MedicationActivity.this, "alarm is al", Toast.LENGTH_SHORT).show();
+                                    //Nothing
                                 }
                             }
 
