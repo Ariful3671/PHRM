@@ -6,10 +6,25 @@
     android:layout_height="match_parent"
     tools:context="com.troubleshooters.diu.phrm.MedicationActivity">
 
+    <ProgressBar
+        android:id="@+id/progressbar_medication"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:id="@+id/loading_medication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressbar_medication"
+        android:layout_centerHorizontal="true"
+        android:text="Loading...." />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_medication"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"
+        android:visibility="gone"></android.support.v7.widget.RecyclerView>
 
     <TextView
         android:id="@+id/text_view_medication_layout"
@@ -19,7 +34,8 @@
         android:layout_centerHorizontal="true"
         android:padding="5dp"
         android:visibility="gone"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        />
 
     <Button
         android:id="@+id/addPlan"
@@ -33,6 +49,7 @@
         android:textColor="#FFF"
         android:textSize="25sp"
         android:gravity="center"
+        android:visibility="gone"
         >
 
     </Button>

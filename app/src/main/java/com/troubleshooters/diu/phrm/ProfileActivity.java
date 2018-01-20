@@ -45,8 +45,6 @@ import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
 
-    LoginButton login_button;
-    CallbackManager callbackManager;
     ListView list_view_profile;
 
 
@@ -61,8 +59,25 @@ public class ProfileActivity extends AppCompatActivity implements DatePickerDial
         setContentView(R.layout.activity_profile);
         setTitle("Profile");
         list_view_profile=(ListView)findViewById(R.id.list_view_profile);
+
+
+
+        //setting adapter for profile
         final ProfileAdapter adapter=new ProfileAdapter(options,value,icon,right_arrow,ProfileActivity.this);
         list_view_profile.setAdapter(adapter);
+
+
+
+
+
+
+
+
+
+
+
+
+        //setting profile information(on click for profile listview)
         list_view_profile.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -302,6 +317,16 @@ public class ProfileActivity extends AppCompatActivity implements DatePickerDial
         );
     }
 
+
+
+
+
+
+
+
+
+
+    //date picker for birthday in profile
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
         Calendar c=Calendar.getInstance();

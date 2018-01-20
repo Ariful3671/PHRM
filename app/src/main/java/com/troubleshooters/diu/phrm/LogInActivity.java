@@ -34,13 +34,11 @@ public class LogInActivity extends AppCompatActivity {
     ProgressBar progressBar;
     TextView logginngin,forgetPassword;
     CheckBox c;
-
-
     String user,pass;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
-    NetworkChecker networkChecker;
+    NetworkChecker networkChecker;//check box for save password dialog
 
 
     @Override
@@ -55,16 +53,37 @@ public class LogInActivity extends AppCompatActivity {
         progressBar=(ProgressBar)findViewById(R.id.progress_bar_log_in);
         logginngin=(TextView)findViewById(R.id.text_view_logging_in);
         forgetPassword=(TextView)findViewById(R.id.textview_forget_password);
-        c=(CheckBox)findViewById(R.id.checkbox_save_password);
-        networkChecker=new NetworkChecker(this);
+        c=(CheckBox)findViewById(R.id.checkbox_save_password);//check box for save password dialog
+        networkChecker=new NetworkChecker(this);//For checking network connection
+
+
+
+
+
+
+
         final SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor=sharedPreferences.edit();
+
+
+
+
+
+
+
+        //Checking password is saved or not
         if(sharedPreferences.getString("save password status","").equals("yes"))
         {
             userid.setText(sharedPreferences.getString("userid",""));
             password.setText(sharedPreferences.getString("password",""));
         }
 
+
+
+
+
+
+        //Go to signup activity
         buttoSignUp.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -77,16 +96,23 @@ public class LogInActivity extends AppCompatActivity {
         );
 
 
+
+
+
+
+        //Log in on click listener
         buttonLogIn.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(final View view) {
 
+
+                        //if network connection is on
                         if(networkChecker.isConnected())
                         {
                             buttonLogIn.setVisibility(View.GONE);
                             forgetPassword.setVisibility(View.GONE);
-                            progressBar.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.VISIBLE);//loading bar
                             logginngin.setVisibility(View.VISIBLE);
 
                             user = userid.getText().toString().trim().toLowerCase();
@@ -127,6 +153,8 @@ public class LogInActivity extends AppCompatActivity {
 
 
 
+
+                                //Checking username and password validation
                                 DatabaseReference ref = database.getReference("users");
                                 ref.addListenerForSingleValueEvent(
                                         new ValueEventListener() {
@@ -234,6 +262,14 @@ public class LogInActivity extends AppCompatActivity {
         );
     }
 
+
+
+
+
+
+
+
+    //Function for checkbox
     public void getStatus(View v){
         SharedPreferences sharedPreferences = getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

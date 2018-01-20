@@ -57,7 +57,7 @@ public class TestRecordGridAdapter extends BaseAdapter {
             TextView status=(TextView) gridView.findViewById(R.id.button_custom_grid);
 
 
-                gridView.setBackgroundResource(R.drawable.grid_item_round_corner_nutrition);
+            gridView.setBackgroundResource(R.drawable.grid_item_round_corner_nutrition);
 
 
             imageView.setImageResource(icon[position]);

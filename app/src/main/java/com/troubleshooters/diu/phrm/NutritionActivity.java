@@ -30,6 +30,7 @@ import com.troubleshooters.diu.phrm.Adapter.NutritionCountAdapter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -43,12 +44,18 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     RelativeLayout Rbreakfast,Rlunch,Rsnack,Rdinner;
     int id;
 
+
+
+
     int hour,munite;
     Double necessary_calorie;
     String nutrition_name[]={"Calorie","Carbohydrate","Fat","Protein"};
     String gain_nutrition[]={"0","0","0","0","0"};
     String necessary_nutrition[]={"0","0","0","0","0"};
     String nutrition_unit[]={"cal","gm","gm","gm"};
+
+
+
 
 
     @Override
@@ -70,13 +77,12 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         Rlunch=(RelativeLayout)findViewById(R.id.relative_layout_lunch);
         Rsnack=(RelativeLayout)findViewById(R.id.relative_layout_snack);
         Rdinner=(RelativeLayout)findViewById(R.id.relative_layout_dinner);
-        /*SharedPreferences sharedPreferences_checker=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
-        Toast.makeText(this,sharedPreferences_checker.getString("birthday","")+
-                "  "+sharedPreferences_checker.getString("activity","")+
-                "  "+sharedPreferences_checker.getString("height","")+
-                "  "+sharedPreferences_checker.getString("weight","")+
-                "  "+sharedPreferences_checker.getString("gender",""), Toast.LENGTH_SHORT).show();*/
 
+
+
+
+
+        //Check profile id fully updated
         SharedPreferences sharedPreferences_checker=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
         if(sharedPreferences_checker.getString("birthday","").equals("")
                 ||sharedPreferences_checker.getString("activity","").equals("")
@@ -87,8 +93,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
             android.support.v7.app.AlertDialog.Builder builder;
             builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
-            //View mview = getLayoutInflater().inflate(R.layout.save_password_dialog, null);
-            //builder.setView(mview);
             builder.setMessage("Please update your profile first!")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
@@ -101,6 +105,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                     }).show();
         }
         else{
+            //Update profile
             setCalorie();
             setFat();
             setCarbohydrate();
@@ -110,6 +115,8 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
 
 
+
+        //Reset gain value 12:00
         Calendar calendar=Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY ,24);
         calendar.set(Calendar.MINUTE,0);
@@ -120,6 +127,11 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,nutrition_unit,NutritionActivity.this);
         listView.setAdapter(adapter);
 
+
+
+
+
+        //Move to add meal activity
         add_meal.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -131,6 +143,12 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         );
 
 
+
+
+
+
+
+        //on off reminder layout visiblity
         final SharedPreferences reminder_status=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
         SharedPreferences reminder_time=getSharedPreferences("time",Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor=reminder_status.edit();
@@ -144,7 +162,13 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             switch_reminder.setChecked(true);
         }
 
-            //switch_reminder.setChecked(true);
+
+
+
+
+
+
+        //switch_reminder.setChecked(true);
         switch_reminder.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -169,10 +193,10 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                             dinner.setText("Set time");
                             AlarmManager aManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                            PendingIntent pendingIntent1=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                            PendingIntent pendingIntent2=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                            PendingIntent pendingIntent3=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                            PendingIntent pendingIntent4=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent pendingIntent1=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent pendingIntent2=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent pendingIntent3=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                            PendingIntent pendingIntent4=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                             aManager.cancel(pendingIntent1);
                             aManager.cancel(pendingIntent2);
                             aManager.cancel(pendingIntent3);
@@ -185,9 +209,11 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
 
 
+        //updating meal  alarm time in display every time appear in nutrition activity
         String hour_s;
         String minute_s;
-        SharedPreferences sharedPreferences=getSharedPreferences("time", Context.MODE_PRIVATE);
+        final SharedPreferences sharedPreferences=getSharedPreferences("time", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor meal_reminder_editor=sharedPreferences.edit();
         hour_s=sharedPreferences.getString("breakfast_hour","");
         minute_s=sharedPreferences.getString("breakfast_minute","");
         if(!hour_s.equals("")&&!minute_s.equals(""))
@@ -199,7 +225,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 hour_s=value.toString();
                 AMorPM="PM";
             }
-            if(Integer.valueOf(minute_s)<0)
+            if(Integer.valueOf(minute_s)<10)
             {
                 minute_s="0"+minute_s;
             }
@@ -218,7 +244,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 hour_s=value.toString();
                 AMorPM="PM";
             }
-            if(Integer.valueOf(minute_s)<0)
+            if(Integer.valueOf(minute_s)<10)
             {
                 minute_s="0"+minute_s;
             }
@@ -237,7 +263,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 hour_s=value.toString();
                 AMorPM="PM";
             }
-            if(Integer.valueOf(minute_s)<0)
+            if(Integer.valueOf(minute_s)<10)
             {
                 minute_s="0"+minute_s;
             }
@@ -266,33 +292,40 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
 
 
+
+
+
+
+        //canceling meal reminder
         Rbreakfast.setOnLongClickListener(
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
 
-                        android.support.v7.app.AlertDialog.Builder builder;
-                        builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
-                        builder.setMessage("Cancel your reminder for breakfast!")
-                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
+                        if(!sharedPreferences.getString("breakfast_hour","").equals(""))
+                        {
+                            android.support.v7.app.AlertDialog.Builder builder;
+                            builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
+                            builder.setMessage("Cancel your reminder for breakfast!")
+                                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            breakfast.setText("Set time");
+                                            meal_reminder_editor.putString("breakfast_hour","");
+                                            meal_reminder_editor.putString("breakfast_minute","");
+                                            meal_reminder_editor.commit();
+                                        }
+                                    })
+                                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
 
+                                        }
+                                    }).show();
 
-                                        Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-                                        alarmManager.cancel(pendingIntent);
-                                        breakfast.setText("Set time");
-
-
-                                    }
-                                })
-                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                }).show();
-
+                        }
                         return true;
                     }
                 }
@@ -301,28 +334,29 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
+                        if(!sharedPreferences.getString("lunch_hour","").equals(""))
+                        {
+                            android.support.v7.app.AlertDialog.Builder builder;
+                            builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
+                            builder.setMessage("Cancel your reminder for lunch!")
+                                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            lunch.setText("Set time");
+                                            meal_reminder_editor.putString("lunch_hour","");
+                                            meal_reminder_editor.putString("lunch_minute","");
+                                            meal_reminder_editor.commit();
+                                        }
+                                    })
+                                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
 
-                        android.support.v7.app.AlertDialog.Builder builder;
-                        builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
-                        builder.setMessage("Cancel your reminder for lunch!")
-                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-
-                                        Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-                                        alarmManager.cancel(pendingIntent);
-                                        lunch.setText("Set time");
-
-                                    }
-                                })
-                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                }).show();
-
+                                        }
+                                    }).show();
+                        }
                         return true;
                     }
                 }
@@ -331,28 +365,29 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
+                        if(!sharedPreferences.getString("snack_hour","").equals(""))
+                        {
+                            android.support.v7.app.AlertDialog.Builder builder;
+                            builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
+                            builder.setMessage("Cancel your reminder for snack!")
+                                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            snake.setText("Set time");
+                                            meal_reminder_editor.putString("snack_hour","");
+                                            meal_reminder_editor.putString("snack_minute","");
+                                            meal_reminder_editor.commit();
+                                        }
+                                    })
+                                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
 
-                        android.support.v7.app.AlertDialog.Builder builder;
-                        builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
-                        builder.setMessage("Cancel your reminder for snack!")
-                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-
-                                        Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-                                        alarmManager.cancel(pendingIntent);
-                                        snake.setText("Set time");
-
-                                    }
-                                })
-                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                }).show();
-
+                                        }
+                                    }).show();
+                        }
                         return true;
                     }
                 }
@@ -361,34 +396,43 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
+                        if(!sharedPreferences.getString("dinner_hour","").equals(""))
+                        {
+                            android.support.v7.app.AlertDialog.Builder builder;
+                            builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
+                            builder.setMessage("Do you really want to cancel your reminder for dinner!")
+                                    .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                                            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                                            AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
+                                            alarmManager.cancel(pendingIntent);
+                                            dinner.setText("Set time");
+                                            meal_reminder_editor.putString("dinner_hour","");
+                                            meal_reminder_editor.putString("dinner_minute","");
+                                            meal_reminder_editor.commit();
+                                        }
+                                    })
+                                    .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
 
-                        android.support.v7.app.AlertDialog.Builder builder;
-                        builder = new android.support.v7.app.AlertDialog.Builder(NutritionActivity.this, R.style.CustomDialogTheme);
-                        builder.setMessage("Do you really want to cancel your reminder for dinner!")
-                                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-
-                                        Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                                        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                                        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-                                        alarmManager.cancel(pendingIntent);
-                                        dinner.setText("Set time");
-
-                                    }
-                                })
-                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                }).show();
-
+                                        }
+                                    }).show();
+                        }
                         return true;
                     }
                 }
         );
 
 
+
+
+
+
+
+
+
+        //Setting up alarm
         breakfast.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -450,6 +494,9 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
 
 
+
+
+    //generate time picker saving reminder time in sharedpreference and settinng time in text view
     TimePickerDialog.OnTimeSetListener t_breakfast=new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -457,7 +504,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             if(!sharedPreferences.getString("snake_hour","").equals(""))
             {
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 alarmManager.cancel(pendingIntent);
             }
@@ -468,11 +515,23 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             editor.putString("breakfast_minute", String.valueOf(minute));
             editor.commit();
 
+            Date date=new Date();
             Calendar calendar=Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            Calendar currentTime=Calendar.getInstance();
+            calendar.setTime(date);
+            currentTime.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY ,hourOfDay);
+            Toast.makeText(NutritionActivity.this, String.valueOf(hourOfDay), Toast.LENGTH_SHORT).show();
             calendar.set(Calendar.MINUTE,minute);
+            if(calendar.before(currentTime))
+            {
+                calendar.add(Calendar.DATE,1);
+            }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            intent.putExtra("NID",101);
+            intent.putExtra("text","Time to Breakfast");
+            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
 
@@ -485,7 +544,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 AMorPM="PM";
 
             }
-            if(minute<0)
+            if(minute<10)
             {
                 minuteS="0"+String.valueOf(minute);
             }
@@ -502,7 +561,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             if(!sharedPreferences.getString("snake_hour","").equals(""))
             {
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 alarmManager.cancel(pendingIntent);
             }
@@ -511,11 +570,22 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             editor.putString("lunch_minute", String.valueOf(minute));
             editor.commit();
 
+            Date date=new Date();
             Calendar calendar=Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            Calendar currentTime=Calendar.getInstance();
+            calendar.setTime(date);
+            currentTime.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY ,hourOfDay);
             calendar.set(Calendar.MINUTE,minute);
+            if(calendar.before(currentTime))
+            {
+                calendar.add(Calendar.DATE,1);
+            }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            intent.putExtra("NID",102);
+            intent.putExtra("text","Time for Lunch");
+            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
 
@@ -528,7 +598,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 hourOfDay=value;
                 AMorPM="PM";
             }
-            if(minute<0)
+            if(minute<10)
             {
                 minuteS="0"+String.valueOf(minute);
             }
@@ -543,7 +613,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             if(!sharedPreferences.getString("snake_hour","").equals(""))
             {
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 alarmManager.cancel(pendingIntent);
             }
@@ -552,11 +622,22 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             editor.putString("snake_minute", String.valueOf(minute));
             editor.commit();
 
+            Date date=new Date();
             Calendar calendar=Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            Calendar currentTime=Calendar.getInstance();
+            calendar.setTime(date);
+            currentTime.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY ,hourOfDay);
             calendar.set(Calendar.MINUTE,minute);
+            if(calendar.before(currentTime))
+            {
+                calendar.add(Calendar.DATE,1);
+            }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            intent.putExtra("NID",103);
+            intent.putExtra("text","Time for Snack");
+            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
 
@@ -569,7 +650,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 hourOfDay=value;
                 AMorPM="PM";
             }
-            if(minute<0)
+            if(minute<10)
             {
                 minuteS="0"+String.valueOf(minute);
             }
@@ -584,7 +665,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             if(!sharedPreferences.getString("dinner_hour","").equals(""))
             {
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 alarmManager.cancel(pendingIntent);
             }
@@ -593,11 +674,22 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             editor.putString("dinner_minute", String.valueOf(minute));
             editor.commit();
 
+            Date date=new Date();
             Calendar calendar=Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            Calendar currentTime=Calendar.getInstance();
+            calendar.setTime(date);
+            currentTime.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY ,hourOfDay);
             calendar.set(Calendar.MINUTE,minute);
+            if(calendar.before(currentTime))
+            {
+                calendar.add(Calendar.DATE,1);
+            }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+            intent.putExtra("NID",104);
+            intent.putExtra("text","Time to Dinner");
+            PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
 
@@ -610,7 +702,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 hourOfDay=value;
                 AMorPM="PM";
             }
-            if(minute<0)
+            if(minute<10)
             {
                 minuteS="0"+String.valueOf(minute);
             }
@@ -619,11 +711,32 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     };
 
 
+
+
+
+
+    //default time picker dialog
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //updating necessaty Nutrition and saving it in shared preference
     public void setCalorie()
     {
         SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);

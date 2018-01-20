@@ -72,12 +72,12 @@ public class HealthPlanGridAdapter extends BaseAdapter{
             }
             if(position==1)
             {
-                gridView.setBackgroundResource(R.drawable.grid_item_round_corner_medication);
+                gridView.setBackgroundResource(R.drawable.grid_item_round_corner_exercise);
             }
-            /*if(position==2)
+            if(position==2)
             {
                 gridView.setBackgroundResource(R.drawable.grid_item_round_corner_medication);
-            }*/
+            }
             imageView.setImageResource(icon[position]);
             lebel.setText(text[position]);
             status.setText(button_status[0]);

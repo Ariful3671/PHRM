@@ -30,6 +30,7 @@ import com.troubleshooters.diu.phrm.Adapter.Model_medicin_details;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -206,16 +207,33 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
 
 
                                 //Setting alarm for everyday
+                                Date date=new Date();
                                 Calendar calendar=Calendar.getInstance();
                                 calendar.setTimeInMillis(System.currentTimeMillis());
+                                Calendar currentTime=Calendar.getInstance();
+                                calendar.setTime(date);
+                                currentTime.setTime(date);
                                 calendar.set(Calendar.HOUR_OF_DAY ,s_hour);
                                 calendar.set(Calendar.MINUTE,s_minute);
+                                if(calendar.before(currentTime))
+                                {
+                                    calendar.add(Calendar.DATE,1);
+                                }
                                 Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
                                 intent.putExtra("NID",initialValue);
                                 intent.putExtra("text",medicinesName);
                                 PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),initialValue,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                 alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
+
+
+
+                                //medication status off status
+                                SharedPreferences profileinfo=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
+                                SharedPreferences.Editor status=profileinfo.edit();
+                                status.putString("medication reminder status","yes");
+                                status.commit();
+
 
 
                                 //Changing activity after setting alarm
@@ -253,13 +271,19 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
                                 {
                                     if(days[i]=="1")
                                     {
+                                        Date date=new Date();
                                         Calendar calendar=Calendar.getInstance();
+                                        calendar.setTimeInMillis(System.currentTimeMillis());
+                                        Calendar currentTime=Calendar.getInstance();
+                                        calendar.setTime(date);
+                                        currentTime.setTime(date);
                                         calendar.set(Calendar.DAY_OF_WEEK,i+1);
-                                        if(calendar.getTimeInMillis() < System.currentTimeMillis()) {
-                                            calendar.add(Calendar.DAY_OF_YEAR, 7);
-                                        }
                                         calendar.set(Calendar.HOUR_OF_DAY ,s_hour);
                                         calendar.set(Calendar.MINUTE,s_minute);
+                                        if(calendar.before(currentTime))
+                                        {
+                                            calendar.add(Calendar.DATE,1);
+                                        }
                                         Intent intent=new Intent(getApplicationContext(),MedicationAlarm.class);
                                         intent.putExtra("NID",initialValue);
                                         intent.putExtra("text",medicinesName);
@@ -271,6 +295,15 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
                                         editor.commit();
                                     }
                                 }
+
+
+
+                                //medication reminder on status
+                                SharedPreferences profileinfo=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
+                                SharedPreferences.Editor status=profileinfo.edit();
+                                status.putString("medication reminder status","yes");
+                                status.commit();
+
 
 
 

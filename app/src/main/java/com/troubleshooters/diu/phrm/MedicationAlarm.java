@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
@@ -28,7 +29,8 @@ public class MedicationAlarm extends BroadcastReceiver {
         NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"")
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.drawable.breakfast_icon)
-                .setVibrate(new long[]{1000,1000,1000,1000,1000})
+                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+                .setVibrate(new long[]{1000,1000,1000,1000})
                 .setContentTitle("PHRM")
                 .setContentText(text)
                 .setAutoCancel(true);

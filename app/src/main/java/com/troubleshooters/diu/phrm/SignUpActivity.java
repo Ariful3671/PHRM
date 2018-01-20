@@ -52,6 +52,11 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
     String userBMonth;
     String userByear;
 
+
+    NetworkChecker networkChecker;//To check inter net connection
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +71,12 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
         signup=(Button)findViewById(R.id.button_create_profile_sign_up_screen);
         signingin=(TextView)findViewById(R.id.signing_in_text_view);
         progressBar=(ProgressBar)findViewById(R.id.progress_bar_sign_up);
+        networkChecker=new NetworkChecker(SignUpActivity.this);
+
+
+
+
+
 
 
         //Create a date picker
@@ -79,6 +90,12 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
                     }
                 }
         );
+
+
+
+
+
+
         //Select gender from dialog
         gender.setOnClickListener(
                 new View.OnClickListener() {
@@ -115,97 +132,117 @@ public class SignUpActivity extends AppCompatActivity implements DatePickerDialo
 
 
 
+
+
+
+       //Listener for signup button
         signup.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        signup.setVisibility(View.GONE);
-                        progressBar.setVisibility(View.VISIBLE);
-                        signingin.setVisibility(View.VISIBLE);
+                        if(networkChecker.isConnected())
+                        {
+                            signup.setVisibility(View.GONE);
+                            progressBar.setVisibility(View.VISIBLE);
+                            signingin.setVisibility(View.VISIBLE);
 
-                        if(name.getText().toString().trim().equals(""))
-                        {
-                            name.setError("Please set a username");
-                            signup.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            signingin.setVisibility(View.GONE);
-                        }
-                        if(phone.getText().toString().trim().equals(""))
-                        {
-                            phone.setError("Please enter your phone number");
-                            signup.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            signingin.setVisibility(View.GONE);
-                        }
-                        if(password.getText().toString().trim().equals(""))
-                        {
-                            password.setError("Please set a password");
-                            signup.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            signingin.setVisibility(View.GONE);
-                        }
-                        if(DOB.getText().toString().trim().equals(""))
-                        {
-                            DOB.setError("Please set your birth date");
-                            signup.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            signingin.setVisibility(View.GONE);
-                        }
-                        if(gender.getText().toString().trim().equals(""))
-                        {
-                            gender.setError("Please select your gender");
-                            signup.setVisibility(View.VISIBLE);
-                            progressBar.setVisibility(View.GONE);
-                            signingin.setVisibility(View.GONE);
-                        }
-                        if(!name.getText().toString().trim().equals("")&&!phone.getText().toString().trim().equals("")&&!password.getText().toString().trim().equals("")&&!DOB.getText().toString().trim().equals("")&&!gender.getText().toString().trim().equals("")) {
-                            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference ref = database.getReference("users");
-                            final String user_name = name.getText().toString().toLowerCase().trim();
-                            final String user_phone = phone.getText().toString().trim();
-                            final String user_gender = gender.getText().toString();
-                            final String user_password = password.getText().toString().trim();
-                            boolean status = false;
-                            ref.addListenerForSingleValueEvent(
-                                    new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            if(dataSnapshot.hasChild(user_name))
-                                            {
-                                                name.setError("Username already exist");
-                                                Toast.makeText(SignUpActivity.this, "Username already exist", Toast.LENGTH_SHORT).show();
-                                                //name.setTextColor(Color.parseColor("#C80000"));
-                                                signup.setVisibility(View.VISIBLE);
-                                                progressBar.setVisibility(View.GONE);
-                                                signingin.setVisibility(View.GONE);
+                            if(name.getText().toString().trim().equals(""))
+                            {
+                                name.setError("Please set a username");
+                                signup.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                signingin.setVisibility(View.GONE);
+                            }
+                            if(phone.getText().toString().trim().equals(""))
+                            {
+                                phone.setError("Please enter your phone number");
+                                signup.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                signingin.setVisibility(View.GONE);
+                            }
+                            if(password.getText().toString().trim().equals(""))
+                            {
+                                password.setError("Please set a password");
+                                signup.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                signingin.setVisibility(View.GONE);
+                            }
+                            if(DOB.getText().toString().trim().equals(""))
+                            {
+                                DOB.setError("Please set your birth date");
+                                signup.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                signingin.setVisibility(View.GONE);
+                            }
+                            if(gender.getText().toString().trim().equals(""))
+                            {
+                                gender.setError("Please select your gender");
+                                signup.setVisibility(View.VISIBLE);
+                                progressBar.setVisibility(View.GONE);
+                                signingin.setVisibility(View.GONE);
+                            }
+                            if(!name.getText().toString().trim().equals("")&&!phone.getText().toString().trim().equals("")&&!password.getText().toString().trim().equals("")&&!DOB.getText().toString().trim().equals("")&&!gender.getText().toString().trim().equals("")) {
+                                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference ref = database.getReference("users");
+                                final String user_name = name.getText().toString().toLowerCase().trim();
+                                final String user_phone = phone.getText().toString().trim();
+                                final String user_gender = gender.getText().toString();
+                                final String user_password = password.getText().toString().trim();
+                                boolean status = false;
+                                ref.addListenerForSingleValueEvent(
+                                        new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                if(dataSnapshot.hasChild(user_name))
+                                                {
+                                                    name.setError("Username already exist");
+                                                    Toast.makeText(SignUpActivity.this, "Username already exist", Toast.LENGTH_SHORT).show();
+                                                    //name.setTextColor(Color.parseColor("#C80000"));
+                                                    signup.setVisibility(View.VISIBLE);
+                                                    progressBar.setVisibility(View.GONE);
+                                                    signingin.setVisibility(View.GONE);
+                                                }
+                                                else
+                                                {
+                                                    Toast.makeText(SignUpActivity.this, "Profile created successfully", Toast.LENGTH_SHORT).show();
+                                                    Map<String, String> userData = new HashMap<String, String>();
+                                                    userData.put("phone",user_phone);
+                                                    userData.put("password", user_password);
+                                                    userData.put("bday", userBDay);
+                                                    userData.put("bmonth", userBMonth);
+                                                    userData.put("byear", userByear);
+                                                    userData.put("gender", user_gender);
+                                                    DatabaseReference userRef = database.getReference("users").child(user_name);
+                                                    userRef.setValue(userData);
+                                                    Intent intent=new Intent(SignUpActivity.this,LogInActivity.class);
+                                                    startActivity(intent);
+                                                }
                                             }
-                                            else
-                                            {
-                                                Toast.makeText(SignUpActivity.this, "Profile created successfully", Toast.LENGTH_SHORT).show();
-                                                Map<String, String> userData = new HashMap<String, String>();
-                                                userData.put("phone",user_phone);
-                                                userData.put("password", user_password);
-                                                userData.put("bday", userBDay);
-                                                userData.put("bmonth", userBMonth);
-                                                userData.put("byear", userByear);
-                                                userData.put("gender", user_gender);
-                                                DatabaseReference userRef = database.getReference("users").child(user_name);
-                                                userRef.setValue(userData);
-                                                Intent intent=new Intent(SignUpActivity.this,LogInActivity.class);
-                                                startActivity(intent);
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
                                             }
                                         }
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-                                        }
-                                    }
-                            );
+                                );
+                            }
                         }
+                        else {
+                            Toast.makeText(SignUpActivity.this, "Please check your internet connection!!", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 }
         );
 
     }
+
+
+
+
+
+
+
+
+
     //Select date and show it to textview
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

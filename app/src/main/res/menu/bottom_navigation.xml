@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_stat_home">
     </item>
 
-    <!--<item
+    <item
         android:title="Notification"
         android:id="@+id/bottom_navigation_notification"
         android:icon="@drawable/ic_stat_notification">
@@ -17,7 +17,7 @@
         android:title="Reports"
         android:id="@+id/bottom_navigation_report"
         android:icon="@drawable/ic_stat_reports">
-    </item>-->
+    </item>
 
 
 

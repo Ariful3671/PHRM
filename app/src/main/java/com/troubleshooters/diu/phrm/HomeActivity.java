@@ -36,12 +36,18 @@ import java.util.Calendar;
 public class HomeActivity extends AppCompatActivity {
 
 
-    String grid_daily_routin_text[]={"Nutrition","Medication"};
-    String grid_test_record_text[]={"Blood Pressure","Blood Volume","BMI"};
+
+
+    //Initialization for Test record and health plan adapter
+    String grid_daily_routin_text[]={"Nutrition","Exercise","Medication"};
+    String grid_test_record_text[]={"Blood Pressure","Glucose","BMI"};
     int grid_test_record_icon[]={R.drawable.blood_pressure_icon,R.drawable.glucose_test_icon,R.drawable.add};
-    int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.medication_icon};
+    int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.exercise_icon,R.drawable.medication_icon};
     String grid_daily_routin_button_status[]={"CREATE","UPDATE"};
-    String grid_record_test_button_status[]={"Measure","Measure","Measure"};
+    String grid_record_test_button_status[]={"Update","Update","Update"};
+
+
+
 
     ViewFlipper flipper;
     GridView grid_daily_routin;
@@ -49,15 +55,22 @@ public class HomeActivity extends AppCompatActivity {
     Animation fade_in,fade_out;
     BottomNavigationView bottomNavigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setTitle("Home");
+        setTitle("Home");//Changing activity name.
         flipper=(ViewFlipper)findViewById(R.id.flipper);
         grid_daily_routin=(GridView)findViewById(R.id.grid_daily_routin);
         grid_test_records=(GridView)findViewById(R.id.grid_test_record);
         bottomNavigationView=(BottomNavigationView)findViewById(R.id.bottom_navigation);
+
+
+
+
+
+        //Animating view flipper
         fade_in= AnimationUtils.loadAnimation(this,R.anim.fade_in);
         fade_out= AnimationUtils.loadAnimation(this,R.anim.fade_out);
         flipper.setAutoStart(true);
@@ -68,12 +81,19 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+        //Creating firebase and sharedpreference for updating profileinfo sharedpreference
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         SharedPreferences sharedPreferences=getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor=sharedPreferences.edit();
-
         String user=sharedPreferences.getString("userid","");
         DatabaseReference ref = database.getReference("users").child(user);
+
+
+
+
+
+        //Getting profile data from fire base to sharedpreference
         ref.addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -82,7 +102,6 @@ public class HomeActivity extends AppCompatActivity {
 
                         if(dataSnapshot.hasChild("name"))
                         {
-
                             name=dataSnapshot.child("name").getValue().toString();
                             editor.putString("name",name);
                             editor.commit();
@@ -98,7 +117,6 @@ public class HomeActivity extends AppCompatActivity {
 
                         if(dataSnapshot.hasChild("phone"))
                         {
-
                             phone=dataSnapshot.child("phone").getValue().toString();
                             editor.putString("phone",phone);
                             editor.commit();
@@ -111,10 +129,8 @@ public class HomeActivity extends AppCompatActivity {
                             editor.commit();
                             //Toast.makeText(HomeActivity.this, "phone:", Toast.LENGTH_SHORT).show();
                         }
-
                         if(dataSnapshot.hasChild("byear"))
                         {
-
                             String bYear=dataSnapshot.child("byear").getValue().toString();
                             String bMonth=dataSnapshot.child("bmonth").getValue().toString();
                             String bDay=dataSnapshot.child("bday").getValue().toString();
@@ -129,8 +145,6 @@ public class HomeActivity extends AppCompatActivity {
                             editor.commit();
                             //Toast.makeText(HomeActivity.this, "birthday:", Toast.LENGTH_SHORT).show();
                         }
-
-
                         if(dataSnapshot.hasChild("byear"))
                         {
                             int currentYear= Calendar.getInstance().get(Calendar.YEAR);
@@ -163,7 +177,6 @@ public class HomeActivity extends AppCompatActivity {
                             editor.commit();
                             //Toast.makeText(HomeActivity.this, "age:", Toast.LENGTH_SHORT).show();
                         }
-
                         if(dataSnapshot.hasChild("height"))
                         {
                             height=dataSnapshot.child("height").getValue().toString();
@@ -236,6 +249,8 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
+
+        //Setting activity for bottom navigation menu
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -243,10 +258,9 @@ public class HomeActivity extends AppCompatActivity {
                         Intent intent;
                         switch (item.getItemId()) {
                             case R.id.bottom_navigation_home:
-
                                 break;
-                            /*case R.id.bottom_navigation_notification:
 
+                                case R.id.bottom_navigation_notification:
                                 intent=new Intent(HomeActivity.this,NotificationActivity.class);
                                 startActivity(intent);
                                 break;
@@ -254,18 +268,27 @@ public class HomeActivity extends AppCompatActivity {
                             case R.id.bottom_navigation_report:
                                 intent=new Intent(HomeActivity.this,ReportActivity.class);
                                 startActivity(intent);
-                                break;*/
+                                break;
                         }
                         return false;
                     }
 
                 }
         );
+
+
+
+
+        //Setting adapter for grid views
         HealthPlanGridAdapter adapter=new HealthPlanGridAdapter(grid_daily_routin_text,grid_daily_routin_icon,grid_daily_routin_button_status,HomeActivity.this);
         grid_daily_routin.setAdapter(adapter);
-
         TestRecordGridAdapter adapter_test_record=new TestRecordGridAdapter(grid_test_record_text,grid_test_record_icon,grid_record_test_button_status,HomeActivity.this);
         grid_test_records.setAdapter(adapter_test_record);
+
+
+
+
+        //setting activity for grid view health plan
         grid_daily_routin.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -278,17 +301,25 @@ public class HomeActivity extends AppCompatActivity {
                         }
                         if(position==1)
                         {
-                            intent=new Intent(HomeActivity.this,MedicationActivity.class);
+                            intent=new Intent(HomeActivity.this,ExerciseActivity.class);
                             startActivity(intent);
                         }
-                        /*if(position==2)
+                        if(position==2)
                         {
                             intent=new Intent(HomeActivity.this,MedicationActivity.class);
                             startActivity(intent);
-                        }*/
+                        }
                     }
                 }
         );
+
+
+
+
+
+
+
+        //setting activity for grid view test record
         grid_test_records.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -314,6 +345,14 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
+
+
+
+
+
+
+
+    //Actionbar menu setting
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -346,15 +385,20 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_nutrition=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_time=getSharedPreferences("time", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences_medicine=getSharedPreferences("medication",Context.MODE_PRIVATE);
             SharedPreferences.Editor editor=sharedPreferences.edit();
+
+
+
+
+            //Save password and dont show dialog
             if(sharedPreferences.getString("save password status","").equals("yes"))
             {
+
+                //Canceling meal reminder
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.cancel(pendingIntent);
-                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -362,10 +406,13 @@ public class HomeActivity extends AppCompatActivity {
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
 
 
 
-
+                //Canceling alarm of medication activity
                 FirebaseDatabase database=FirebaseDatabase.getInstance();
                 DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
 
@@ -415,6 +462,7 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
+                sharedPreferences_medicine.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "yes");
@@ -422,14 +470,27 @@ public class HomeActivity extends AppCompatActivity {
                 editor.putString("logout status", "yes");
                 editor.commit();
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //Dont save password and dont show dialog
             else if(sharedPreferences.getString("save password status","").equals("no")&&sharedPreferences.getString("save password dialog status","").equals("no"))
             {
+                //Canceling meal reminder
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.cancel(pendingIntent);
-                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -437,12 +498,15 @@ public class HomeActivity extends AppCompatActivity {
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
 
 
 
 
 
-
+                //Canceling alarm of medication activity
                 FirebaseDatabase database=FirebaseDatabase.getInstance();
                 DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
 
@@ -496,6 +560,7 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
+                sharedPreferences_medicine.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");
@@ -503,13 +568,21 @@ public class HomeActivity extends AppCompatActivity {
                 editor.putString("logout status", "yes");
                 editor.commit();
             }
+
+
+
+
+
+
+
+
+
+            //dont save password and show dialog
             else{
+                //Canceling meal reminder
                 AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                 Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),100,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.cancel(pendingIntent);
-                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
-                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -517,12 +590,15 @@ public class HomeActivity extends AppCompatActivity {
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
 
 
 
 
 
-
+                //Canceling alarm of medication activity
                 FirebaseDatabase database=FirebaseDatabase.getInstance();
                 DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid",""));
 
@@ -575,6 +651,7 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
+                sharedPreferences_medicine.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");
