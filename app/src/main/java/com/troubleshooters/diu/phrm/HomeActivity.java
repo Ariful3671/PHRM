@@ -39,20 +39,6 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity {
 
-
-
-
-    //Initialization for Test record and health plan adapter
-    String grid_daily_routin_text[]={"Nutrition","Exercise","Medication"};
-    String grid_test_record_text[]={"Blood Pressure","Glucose","BMI"};
-    int grid_test_record_icon[]={R.drawable.blood_pressure_icon,R.drawable.glucose_test_icon,R.drawable.add};
-    int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.exercise_icon,R.drawable.medication_icon};
-    String grid_daily_routin_button_status[]={"CREATE","UPDATE"};
-    String grid_record_test_button_status[]={"Update","Update","Update"};
-
-
-
-
     ViewFlipper flipper;
     GridView grid_daily_routin;
     GridView grid_test_records;
@@ -69,6 +55,14 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //Initialization for Test record and health plan adapter
+        String grid_daily_routin_text[]=getResources().getStringArray(R.array.grid_daily_routine);
+        String grid_test_record_text[]=getResources().getStringArray(R.array.grid_test_record);
+        int grid_test_record_icon[]={R.drawable.blood_pressure_icon,R.drawable.glucose_test_icon,R.drawable.add};
+        int grid_daily_routin_icon[]={R.drawable.nutrition_icon,R.drawable.exercise_icon,R.drawable.medication_icon};
+        String grid_daily_routin_button_status[]=getResources().getStringArray(R.array.grid_daily_routine_button);
+        String grid_record_test_button_status[]=getResources().getStringArray(R.array.grid_test_record_button);
 
         //Setting language
         Paper.init(this);
@@ -493,17 +487,6 @@ public class HomeActivity extends AppCompatActivity {
                 editor.putString("logout status", "yes");
                 editor.commit();
             }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

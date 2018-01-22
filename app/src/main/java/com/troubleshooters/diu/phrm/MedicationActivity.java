@@ -51,7 +51,7 @@ public class MedicationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication);
-        setTitle("Medication plan");
+        setTitle(getString(R.string.medication_plan_title));
         medicin_details=new ArrayList<>();
 
 

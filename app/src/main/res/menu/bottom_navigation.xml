@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Home"
+        android:title="@string/bottom_nev_home"
         android:id="@+id/bottom_navigation_home"
         android:icon="@drawable/ic_stat_home">
     </item>
 
     <item
-        android:title="Notification"
+        android:title="@string/bottom_nev_notification"
         android:id="@+id/bottom_navigation_notification"
         android:icon="@drawable/ic_stat_notification">
     </item>
 
     <item
-        android:title="Reports"
+        android:title="@string/bottom_nev_reports"
         android:id="@+id/bottom_navigation_report"
         android:icon="@drawable/ic_stat_reports">
     </item>

@@ -30,7 +30,7 @@
         android:id="@+id/text_view_medication_layout"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:text="No medicaton plan created"
+        android:text="@string/no_medication_plan_created"
         android:layout_centerHorizontal="true"
         android:padding="5dp"
         android:visibility="gone"

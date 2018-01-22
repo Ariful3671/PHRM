@@ -28,8 +28,7 @@ import io.paperdb.Paper;
 public class SettingsActivity extends AppCompatActivity {
 
     ListView list_settings;
-    String setting_items[]={"Password", "Language"};
-    ArrayAdapter<String> adapter;
+
 
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
@@ -50,7 +49,9 @@ public class SettingsActivity extends AppCompatActivity {
         updateView((String)Paper.book().read("language"));
 
         list_settings=(ListView)findViewById(R.id.list_sittings);
-        adapter=new ArrayAdapter<String>(SettingsActivity.this,android.R.layout.simple_list_item_1,setting_items);
+        String[] settingItems = getResources().getStringArray(R.array.settings_item);
+        ArrayAdapter<String> adapter;
+        adapter=new ArrayAdapter<String>(SettingsActivity.this,android.R.layout.simple_list_item_1,settingItems);
         list_settings.setAdapter(adapter);
 
 

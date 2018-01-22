@@ -44,25 +44,23 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     RelativeLayout Rbreakfast,Rlunch,Rsnack,Rdinner;
     int id;
 
-
+    String[] nutrition_name;
+    String[] gain_nutrition={"0","0","0","0","0"};
+    String[] necessary_nutrition={"0","0","0","0","0"};
+    String[] nutrition_unit={"cal","gm","gm","gm"};
 
 
     int hour,munite;
     Double necessary_calorie;
-    String nutrition_name[]={"Calorie","Carbohydrate","Fat","Protein"};
-    String gain_nutrition[]={"0","0","0","0","0"};
-    String necessary_nutrition[]={"0","0","0","0","0"};
-    String nutrition_unit[]={"cal","gm","gm","gm"};
-
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition);
-        setTitle("Nutrition plan");
+        setTitle(getString(R.string.nutration_plan_title));
+
+        nutrition_name=getResources().getStringArray(R.array.nutrition_items);
 
         listView=(ListView) findViewById(R.id.list_view_nutrition);
         switch_reminder=(Switch)findViewById(R.id.switch_reminder);

@@ -63,7 +63,7 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creat_medication_plan);
-        setTitle("Set Medication Plan");
+        setTitle(getString(R.string.create_medication_plan_title));
 
         custom=(CheckBox)findViewById(R.id.custom_checkbox);
         everyday=(CheckBox)findViewById(R.id.repeat_everyday_checkbox);

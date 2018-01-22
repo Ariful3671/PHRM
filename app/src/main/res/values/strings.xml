@@ -10,12 +10,72 @@
     <string name="change_password">Change password</string>
     <string name="settings_title">Settings</string>
     <string name="home_title">Home</string>
+    <string name="health_plan">Health Plan</string>
+    <string name="test_record">Test Record</string>
+    <string name="bottom_nev_home">Home</string>
+    <string name="bottom_nev_notification">Notification</string>
+    <string name="bottom_nev_reports">Reports</string>
+    <string name="menu_log_out">Log Out</string>
+    <string name="nutration_plan_title">Nutrition plan</string>
+    <string name="add_meal_button">Add Meal</string>
+    <string name="meal_reminder">Meal Reminder</string>
+    <string name="reminders_to_have_your_meal">Reminders to have your meal</string>
+    <string name="breakfast">Breakfast</string>
+    <string name="lunch">Lunch</string>
+    <string name="snack">Snacks</string>
+    <string name="dinner">Dinner</string>
+    <string name="_meal_reminder">Set time</string>
+    <string name="create_medication_plan_title">Set Medication Plan</string>
+    <string name="creat_plan_medication">Add to Medication Plan</string>
+    <string name="click_icon_to_set_time_medication">Click icon to set time</string>
+    <string name="medicines_information">Medicines information:</string>
+    <string name="medicines_information_here">Medicines information here</string>
+    <string name="repeat_medication_alerm">Repeat:</string>
+    <string name="today_medication_alerm">Today</string>
+    <string name="everyday_medication_alerm">Everyday</string>
+    <string name="custom_medication_alerm">Custom</string>
+    <string name="no_medication_plan_created">No medication plan created</string>
+    <string name="medication_plan_title">Medication plan</string>
     <!--Used in activity_welcome_screen.xml textview-->
 
     <string-array name="settings_item">
         <item>Change Password</item>
         <item>Language</item>
     </string-array>
+
+    <string-array name="grid_daily_routine">
+        <item>Nutrition</item>
+        <item>Exercise</item>
+        <item>Medication</item>
+    </string-array>
+    
+    <string-array name="grid_test_record">
+        <item>Blood Pressure</item>
+        <item>Glucose</item>
+        <item>BMI</item>
+    </string-array>
+
+    <string-array name="grid_daily_routine_button">
+        <item>Create</item>
+        <item>Update</item>
+    </string-array>
+
+    <string-array name="grid_test_record_button">
+        <item>Update</item>
+        <item>Update</item>
+        <item>Update</item>
+    </string-array>
+
+    //nutrition
+    <string-array name="nutrition_items">
+        <item>Calorie</item>
+        <item>Carbohydrate</item>
+        <item>Fat</item>
+        <item>Protein</item>
+    </string-array>
+
+
+
 
     <string-array name="food_search">
         <item>Rice</item>

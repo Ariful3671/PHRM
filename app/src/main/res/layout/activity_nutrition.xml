@@ -47,7 +47,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/icon_nutrition_plan"
                         android:gravity="center"
-                        android:text="Meal Reminder"
+                        android:text="@string/meal_reminder"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -74,7 +74,7 @@
                         android:layout_height="30dp"
                         android:layout_marginLeft="65dp"
                         android:gravity="center"
-                        android:text="Reminders to have your meal" />
+                        android:text="@string/reminders_to_have_your_meal" />
                 </RelativeLayout>
 
 
@@ -112,7 +112,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/image_breakfast"
                         android:gravity="center"
-                        android:text="Breakfast" />
+                        android:text="@string/breakfast" />
 
                     <TextView
                         android:id="@+id/breakfast"
@@ -121,7 +121,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Set time" />
+                        android:text="@string/_meal_reminder" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -144,7 +144,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/image_lunch"
                         android:gravity="center"
-                        android:text="Lunch" />
+                        android:text="@string/lunch" />
 
                     <TextView
                         android:id="@+id/lunch"
@@ -153,7 +153,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Set time" />
+                        android:text="@string/_meal_reminder" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -176,7 +176,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/image_Snake"
                         android:gravity="center"
-                        android:text="Snake" />
+                        android:text="@string/snack" />
 
                     <TextView
                         android:id="@+id/snake"
@@ -185,7 +185,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Set time" />
+                        android:text="@string/_meal_reminder" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -208,7 +208,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/image_dinner"
                         android:gravity="center"
-                        android:text="Dinner" />
+                        android:text="@string/dinner" />
 
                     <TextView
                         android:id="@+id/dinner"
@@ -217,7 +217,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="10dp"
                         android:gravity="center"
-                        android:text="Set time" />
+                        android:text="@string/_meal_reminder" />
 
                 </RelativeLayout>
             </LinearLayout>
@@ -229,7 +229,7 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:layout_marginTop="2dp"
-                android:text="Add Meal"
+                android:text="@string/add_meal_button"
                 android:textColor="#FFC7C7"
                 android:padding="15dp"
                 android:textSize="15dp"
