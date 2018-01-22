@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -91,76 +92,70 @@ public class AddMealActivity extends AppCompatActivity {
 
                                 SharedPreferences sharedPreferences=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor=sharedPreferences.edit();
-                                String gained_calorie=sharedPreferences.getString("gained_calorie","");
-                                String gained_fat=sharedPreferences.getString("gained_fat","");
-                                String gained_carbohydrate=sharedPreferences.getString("gained_carbohydrate","");
-                                String gained_protein=sharedPreferences.getString("gained_protein","");
+                                float gained_calorie=sharedPreferences.getFloat("gained_calorie",0.0f);
+                                float gained_fat=sharedPreferences.getFloat("gained_fat",0.0f);
+                                float gained_carbohydrate=sharedPreferences.getFloat("gained_carbohydrate",0.0f);
+                                float gained_protein=sharedPreferences.getFloat("gained_protein",0.0f);
 
-                                Double value=0.0;
-                                if(gained_calorie.equals(""))
+                                //Double value=0.0;
+                                float value=0.0f;
+                                if(gained_calorie==0)
                                 {
-                                    value=Double.parseDouble(calorie);
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_calorie",s);
+                                    value=Float.parseFloat(calorie);
+                                    editor.putFloat("gained_calorie",value);
                                     editor.commit();
-                                    value=0.0;
+                                    value=0.0f;
                                 }
                                 else
                                 {
-                                    value=(Double.parseDouble(gained_calorie)+Double.parseDouble(calorie));
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_calorie",value.toString());
+                                    value=(gained_calorie+Float.parseFloat(calorie));
+                                    editor.putFloat("gained_calorie",value);
                                     editor.commit();
-                                    value=0.0;
+                                    value=0.0f;
                                 }
 
-                                if(gained_fat.equals(""))
+                                if(gained_fat==0)
                                 {
-                                    value=Double.parseDouble(fat);
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_fat",s);
-                                    value=0.0;
+                                    value=Float.parseFloat(fat);
+                                    editor.putFloat("gained_fat",value);
                                     editor.commit();
+                                    value=0.0f;
                                 }
                                 else
                                 {
-                                    value=(Double.parseDouble(gained_fat)+Double.parseDouble(fat));
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_fat",s);
-                                    value=0.0;
+                                    value=(gained_fat+Float.parseFloat(fat));
+                                    editor.putFloat("gained_fat",value);
                                     editor.commit();
+                                    value=0.0f;
                                 }
-                                if(gained_carbohydrate.equals(""))
+                                if(gained_carbohydrate==0)
                                 {
-                                    value=Double.parseDouble(carbohydrate);
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_carbohydrate",s);
-                                    value=0.0;
+                                    value=Float.parseFloat(carbohydrate);
+                                    editor.putFloat("gained_carbohydrate",value);
                                     editor.commit();
+                                    value=0.0f;
                                 }
                                 else
                                 {
-                                    value=Double.parseDouble(gained_carbohydrate)+Double.parseDouble(carbohydrate);
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_carbohydrate",s);
-                                    value=0.0;
+                                    value=(gained_carbohydrate+Float.parseFloat(carbohydrate));
+                                    editor.putFloat("gained_carbohydrate",value);
                                     editor.commit();
+                                    value=0.0f;
                                 }
-                                if (gained_protein.equals(""))
+                                if (gained_protein==0)
                                 {
-                                    value=Double.parseDouble(protein);
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_protein",s);
-                                    value=0.0;
+                                    value=Float.parseFloat(protein);
+                                    editor.putFloat("gained_protein",value);
                                     editor.commit();
+                                    value=0.0f;
                                 }
                                 else
                                 {
-                                    value=(Double.parseDouble(gained_protein)+Double.parseDouble(protein));
-                                    String s=new DecimalFormat("##.#").format(value);
-                                    editor.putString("gained_protein",s);
-                                    value=0.0;
+                                    //String s=new DecimalFormat("##.#").format(value);
+                                    value=(gained_protein+Float.parseFloat(protein));
+                                    editor.putFloat("gained_protein",value);
                                     editor.commit();
+                                    value=0.0f;
                                 }
                                 Intent intent=new Intent(AddMealActivity.this,NutritionActivity.class);
                                 startActivity(intent);

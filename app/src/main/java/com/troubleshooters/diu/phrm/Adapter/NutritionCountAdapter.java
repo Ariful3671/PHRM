@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.troubleshooters.diu.phrm.R;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Arif on 08-12-17.
  */
@@ -64,10 +66,11 @@ public class NutritionCountAdapter extends BaseAdapter {
             String necessary_fat=sharedPreferences.getString("necessary_fat","");
             String necessary_protein=sharedPreferences.getString("necessary_protein","");
 
-            String gained_calorie=sharedPreferences.getString("gained_calorie","");
-            String gained_fat=sharedPreferences.getString("gained_fat","");
-            String gained_carbohydrate=sharedPreferences.getString("gained_carbohydrate","");
-            String gained_protein=sharedPreferences.getString("gained_protein","");
+
+            String gained_calorie=new DecimalFormat("##.#").format(sharedPreferences.getFloat("gained_calorie",0.0f));
+            String gained_fat=new DecimalFormat("##.#").format(sharedPreferences.getFloat("gained_fat",0.0f));
+            String gained_carbohydrate=new DecimalFormat("##.#").format(sharedPreferences.getFloat("gained_carbohydrate",0.0f));
+            String gained_protein=new DecimalFormat("##.#").format(sharedPreferences.getFloat("gained_protein",0.0f));
 
 
 
