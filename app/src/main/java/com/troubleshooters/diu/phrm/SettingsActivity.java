@@ -43,9 +43,6 @@ public class SettingsActivity extends AppCompatActivity {
         //code by Tanin
         Paper.init(this);
 
-        String language = Paper.book().read("language");
-        if(language == null)
-            Paper.book().write("language", "en");
         updateView((String)Paper.book().read("language"));
 
         list_settings=(ListView)findViewById(R.id.list_sittings);

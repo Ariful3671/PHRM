@@ -70,10 +70,6 @@ public class HomeActivity extends AppCompatActivity {
         String language = Paper.book().read("language");
         if(language == null)
             Paper.book().write("language", "en");
-        else if(language == "en")
-            Paper.book().write("language", "en");
-        else if(language == "bn")
-            Paper.book().write("language", "bn");
         updateView((String)Paper.book().read("language"));
 
         setTitle(getString(R.string.home_title));//Changing activity name.
