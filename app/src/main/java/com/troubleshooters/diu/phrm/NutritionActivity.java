@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.troubleshooters.diu.phrm.Adapter.NutritionCountAdapter;
+import com.troubleshooters.diu.phrm.Helper.LocaleHelper;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -33,6 +35,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import io.paperdb.Paper;
 
 public class NutritionActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
 
@@ -44,14 +48,16 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     RelativeLayout Rbreakfast,Rlunch,Rsnack,Rdinner;
     int id;
 
-    String[] nutrition_name;
-    String[] gain_nutrition={"0","0","0","0","0"};
-    String[] necessary_nutrition={"0","0","0","0","0"};
-    String[] nutrition_unit={"cal","gm","gm","gm"};
+
 
 
     int hour,munite;
     Double necessary_calorie;
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
+    }
 
 
     @Override
@@ -60,7 +66,14 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         setContentView(R.layout.activity_nutrition);
         setTitle(getString(R.string.nutration_plan_title));
 
-        nutrition_name=getResources().getStringArray(R.array.nutrition_items);
+        String[] nutrition_name=getResources().getStringArray(R.array.nutrition_items);
+        String[] gain_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
+        String[] necessary_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
+        String[] nutrition_unit={"cal","gm","gm","gm"};
+
+        Paper.init(this);
+
+        updateView((String)Paper.book().read("language"));
 
         listView=(ListView) findViewById(R.id.list_view_nutrition);
         switch_reminder=(Switch)findViewById(R.id.switch_reminder);
@@ -489,7 +502,12 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     }
 
 
+    //Updating language change
+    private void updateView(String lang) {
+        Context context = LocaleHelper.setLocale(this, lang);
+        Resources resources = context.getResources();
 
+    }
 
 
 

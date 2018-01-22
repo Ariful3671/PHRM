@@ -74,7 +74,45 @@
         <item>Protein</item>
     </string-array>
 
+    <string-array name="gained_and_necessary_nutrition">
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+        <item>0</item>
+    </string-array>
 
+    <string-array name="food_search">
+        <item>Rice</item>
+        <item>Mango</item>
+        <item>Banana</item>
+        <item>Apple</item>
+        <item>Grapes</item>
+        <item>Jackfruit</item>
+        <item>Litchi</item>
+        <item>Pineapple</item>
+        <item>Guava</item>
+        <item>Watermelon</item>
+        <item>Beans</item>
+        <item>Tomato</item>
+        <item>Beet</item>
+        <item>Radish</item>
+        <item>Cauliflower</item>
+        <item>Cabbage</item>
+        <item>Gourd</item>
+        <item>Grass Carp</item>
+        <item>Hilsha shad</item>
+        <item>Salmon</item>
+        <item>catfish</item>
+        <item>Tilapia</item>
+        <item>Chicken</item>
+        <item>Beef</item>
+        <item>Duck</item>
+        <item>Goat</item>
+        <item>milk</item>
+        <item>Egg</item>
+
+    </string-array>
 
 
 </resources>
