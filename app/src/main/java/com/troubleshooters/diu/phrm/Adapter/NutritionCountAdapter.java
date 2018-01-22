@@ -14,6 +14,8 @@ import com.troubleshooters.diu.phrm.R;
 
 import java.text.DecimalFormat;
 
+import io.paperdb.Paper;
+
 /**
  * Created by Arif on 08-12-17.
  */
@@ -137,9 +139,9 @@ public class NutritionCountAdapter extends BaseAdapter {
                 gridView.setBackgroundResource(R.drawable.list_view_cal_car_pro_background);
             }
 
-
-            heading.setText(text[position]);
             unit.setText(units[position]);
+            heading.setText(text[position]);
+
 
 
         }

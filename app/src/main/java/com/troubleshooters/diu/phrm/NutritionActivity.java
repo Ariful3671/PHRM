@@ -329,7 +329,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                                             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                             alarmManager.cancel(pendingIntent);
-                                            breakfast.setText("Set time");
+                                            breakfast.setText(R.string.click_icon_to_set_time_medication);
                                             meal_reminder_editor.putString("breakfast_hour","");
                                             meal_reminder_editor.putString("breakfast_minute","");
                                             meal_reminder_editor.commit();
@@ -361,7 +361,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                                             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),102,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                             alarmManager.cancel(pendingIntent);
-                                            lunch.setText("Set time");
+                                            lunch.setText(R.string.click_icon_to_set_time_medication);
                                             meal_reminder_editor.putString("lunch_hour","");
                                             meal_reminder_editor.putString("lunch_minute","");
                                             meal_reminder_editor.commit();
@@ -392,7 +392,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                                             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),103,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                             alarmManager.cancel(pendingIntent);
-                                            snake.setText("Set time");
+                                            snake.setText(R.string.click_icon_to_set_time_medication);
                                             meal_reminder_editor.putString("snack_hour","");
                                             meal_reminder_editor.putString("snack_minute","");
                                             meal_reminder_editor.commit();
@@ -423,7 +423,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                                             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                             alarmManager.cancel(pendingIntent);
-                                            dinner.setText("Set time");
+                                            dinner.setText(R.string.click_icon_to_set_time_medication);
                                             meal_reminder_editor.putString("dinner_hour","");
                                             meal_reminder_editor.putString("dinner_minute","");
                                             meal_reminder_editor.commit();
@@ -498,6 +498,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                         Calendar c=Calendar.getInstance();
                         hour=c.get(Calendar.HOUR_OF_DAY);
                         munite=c.get(Calendar.MINUTE);
+                        Toast.makeText(NutritionActivity.this, hour, Toast.LENGTH_SHORT).show();
                         TimePickerDialog timePickerDialog=new TimePickerDialog(NutritionActivity.this,t_dinner,hour,munite,true);
                         timePickerDialog.show();
 
