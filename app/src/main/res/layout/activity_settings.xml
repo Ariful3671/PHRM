@@ -9,6 +9,7 @@
     <ListView
         android:id="@+id/list_sittings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content">
+    </ListView>
 
 </android.support.constraint.ConstraintLayout>

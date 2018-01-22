@@ -70,7 +70,7 @@ public class EditMedication extends AppCompatActivity {
                                                 if(snapshot.child("nid").getValue().equals(getIntent().getStringExtra("NID")))
                                                 {
                                                     DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid","")).child(snapshot.getKey());
-                                                    ref.child("medicines").setValue(newText);
+                                                    ref.child("medicinesname").setValue(newText);
                                                     Intent intent=new Intent(EditMedication.this,MedicationActivity.class);
                                                     startActivity(intent);
                                                     finish();

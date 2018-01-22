@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -29,8 +30,11 @@ import com.troubleshooters.diu.phrm.Adapter.HealthPlanGridAdapter;
 import com.troubleshooters.diu.phrm.Adapter.MedicationReminder;
 import com.troubleshooters.diu.phrm.Adapter.Model_medicin_details;
 import com.troubleshooters.diu.phrm.Adapter.TestRecordGridAdapter;
+import com.troubleshooters.diu.phrm.Helper.LocaleHelper;
 
 import java.util.Calendar;
+
+import io.paperdb.Paper;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -57,10 +61,28 @@ public class HomeActivity extends AppCompatActivity {
 
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setTitle("Home");//Changing activity name.
+
+        //Setting language
+        Paper.init(this);
+
+        String language = Paper.book().read("language");
+        if(language == null)
+            Paper.book().write("language", "en");
+        else if(language == "en")
+            Paper.book().write("language", "en");
+        else if(language == "bn")
+            Paper.book().write("language", "bn");
+        updateView((String)Paper.book().read("language"));
+
+        setTitle(getString(R.string.home_title));//Changing activity name.
         flipper=(ViewFlipper)findViewById(R.id.flipper);
         grid_daily_routin=(GridView)findViewById(R.id.grid_daily_routin);
         grid_test_records=(GridView)findViewById(R.id.grid_test_record);
@@ -345,11 +367,12 @@ public class HomeActivity extends AppCompatActivity {
         );
     }
 
+    //Updating language change
+    private void updateView(String lang) {
+        Context context = LocaleHelper.setLocale(this, lang);
+        Resources resources = context.getResources();
 
-
-
-
-
+    }
 
 
     //Actionbar menu setting

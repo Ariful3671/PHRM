@@ -105,13 +105,13 @@
         android:gravity="center"
         android:background="@drawable/meal_reminder_background"
         android:orientation="horizontal"
-        android:weightSum="8">
+        android:weightSum="7.5">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Repet:"
+            android:layout_weight="1.5"
+            android:text="Repeat:"
             android:textStyle="bold"
             android:textSize="15sp"
             android:gravity="center"

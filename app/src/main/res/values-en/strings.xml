@@ -1,15 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">PHRM</string>
     <string name="facebook_app_id">384558705309331</string>
     <string name="fb_login_protocol_scheme">fb384558705309331</string>
-
 
     <string name="language_settings">Language</string>
     <string name="welcome_text">welcome</string>
     <string name="nutrition_plan" />
     <string name="change_password">Change password</string>
     <string name="settings_title">Settings</string>
-    <string name="home_title">Home</string>
     <!--Used in activity_welcome_screen.xml textview-->
 
     <string-array name="settings_item">

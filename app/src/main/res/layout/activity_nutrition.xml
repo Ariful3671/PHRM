@@ -15,11 +15,6 @@
         android:layout_marginTop="2dp"></ListView>
 
 
-
-
-
-
-
             <LinearLayout
                 android:id="@+id/reminder_heading_linear_layout"
                 android:layout_width="match_parent"
