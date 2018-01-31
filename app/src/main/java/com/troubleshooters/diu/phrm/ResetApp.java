@@ -19,11 +19,17 @@ public class ResetApp extends BroadcastReceiver{
         SharedPreferences sharedPreferences=context.getSharedPreferences("nutrition",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor=sharedPreferences.edit();
 
+        SharedPreferences sPExercise = context.getSharedPreferences("exercise",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = sPExercise.edit();
+
         editor.putString("gained_calorie","");
         editor.putString("gained_fat","");
         editor.putString("gained_protein","");
         editor.putString("gained_carbohydrate","");
         editor.commit();
+
+        editor1.putString("burnedCalorie","");
+        editor1.commit();
 
 
         /*NotificationManager notificationManager=(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);

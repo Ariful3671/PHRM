@@ -54,10 +54,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     int hour,munite;
     Double necessary_calorie;
 
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
-    }
 
 
     @Override
@@ -71,9 +67,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         String[] necessary_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
         String[] nutrition_unit={"cal","gm","gm","gm"};
 
-        Paper.init(this);
-
-        updateView((String)Paper.book().read("language"));
 
         listView=(ListView) findViewById(R.id.list_view_nutrition);
         switch_reminder=(Switch)findViewById(R.id.switch_reminder);
@@ -149,13 +142,13 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
         //Move to add meal activity
         add_meal.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(NutritionActivity.this,AddMealActivity.class);
-                        startActivity(intent);
-                    }
+            new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                Intent intent=new Intent(NutritionActivity.this,AddMealActivity.class);
+                startActivity(intent);
                 }
+            }
         );
 
 
@@ -306,12 +299,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         }
 
 
-
-
-
-
-
-
         //canceling meal reminder
         Rbreakfast.setOnLongClickListener(
                 new View.OnLongClickListener() {
@@ -441,13 +428,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         );
 
 
-
-
-
-
-
-
-
         //Setting up alarm
         breakfast.setOnClickListener(
                 new View.OnClickListener() {
@@ -505,14 +485,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                     }
                 }
         );
-    }
-
-
-    //Updating language change
-    private void updateView(String lang) {
-        Context context = LocaleHelper.setLocale(this, lang);
-        Resources resources = context.getResources();
-
     }
 
 
@@ -733,30 +705,11 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
     };
 
 
-
-
-
-
     //default time picker dialog
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     //updating necessaty Nutrition and saving it in shared preference
     public void setCalorie()

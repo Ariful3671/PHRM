@@ -116,4 +116,36 @@
 
     </string-array>
 
+    <string-array name="bn_food_search">
+        <item>ভাত</item>
+        <item>আম</item>
+        <item>কলা</item>
+        <item>আপেল</item>
+        <item>আঙ্গুর</item>
+        <item>কাঁঠাল</item>
+        <item>লিচু</item>
+        <item>আনারস</item>
+        <item>পেয়ারা</item>
+        <item>তরমুজ</item>
+        <item>মটরশুঁটি</item>
+        <item>টমেটো</item>
+        <item>বীট</item>
+        <item>মূলা</item>
+        <item>ফুলকপি</item>
+        <item>বাঁধাকপি</item>
+        <item>লাউ</item>
+        <item>গ্রাস কার্প মাছ</item>
+        <item>ইলিশ মাছ</item>
+        <item>স্যালমন মাছ</item>
+        <item>মাগুর মাছ</item>
+        <item>তেলাপিয়া মাছ</item>
+        <item>মুরগী মাংস</item>
+        <item>গরু মাংস</item>
+        <item>হাঁসের মাংস</item>
+        <item>ছাগলের মাংস</item>
+        <item>দুধ</item>
+        <item>ডিম</item>
+
+    </string-array>
+
 </resources>

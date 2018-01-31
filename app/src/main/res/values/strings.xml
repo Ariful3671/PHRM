@@ -48,7 +48,7 @@
         <item>Exercise</item>
         <item>Medication</item>
     </string-array>
-    
+
     <string-array name="grid_test_record">
         <item>Blood Pressure</item>
         <item>Glucose</item>
@@ -82,7 +82,37 @@
         <item>0</item>
     </string-array>
 
+    <string-array name="bn_food_search">
+        <item>Rice</item>
+        <item>Mango</item>
+        <item>Banana</item>
+        <item>Apple</item>
+        <item>Grapes</item>
+        <item>Jackfruit</item>
+        <item>Litchi</item>
+        <item>Pineapple</item>
+        <item>Guava</item>
+        <item>Watermelon</item>
+        <item>Beans</item>
+        <item>Tomato</item>
+        <item>Beet</item>
+        <item>Radish</item>
+        <item>Cauliflower</item>
+        <item>Cabbage</item>
+        <item>Gourd</item>
+        <item>Grass Carp</item>
+        <item>Hilsha shad</item>
+        <item>Salmon</item>
+        <item>catfish</item>
+        <item>Tilapia</item>
+        <item>Chicken</item>
+        <item>Beef</item>
+        <item>Duck</item>
+        <item>Goat</item>
+        <item>milk</item>
+        <item>Egg</item>
 
+    </string-array>
 
 
     <string-array name="food_search">
@@ -115,5 +145,68 @@
         <item>milk</item>
         <item>Egg</item>
 
+    </string-array>
+
+    <string-array name="exercise_list">
+        <item>Walking(Slow 2.5mph)</item>
+        <item>Walking(Medium 3mph)</item>
+        <item>Walking(Fast 3.5-4mph)</item>
+        <item>Jogging(General)</item>
+        <item>Jogging(In Place)</item>
+        <item>Running(Slow)</item>
+        <item>Running(Medium)</item>
+        <item>Running(Medium Fast)</item>
+        <item>Running(Fast)</item>
+        <item>Bicycling(Slow)</item>
+        <item>Bicycling(Medium Fast)</item>
+        <item>Bicycling(Fast)</item>
+        <item>Swimming(Backstroke, general)</item>
+        <item>Swimming(Breaststroke, general)</item>
+        <item>Swimming(Butterfly, general)</item>
+        <item>Rope jumping(Slow pace)</item>
+        <item>Rope jumping(Moderate pace)</item>
+        <item>Rope jumping(Fast pace)</item>
+        <item>push ups/sit ups/pull-ups(Moderate)</item>
+        <item>push ups/sit ups/pull-ups(Vigorous)</item>
+        <item>yoga, Hatha</item>
+        <item>yoga, Power</item>
+        <item>yoga, Nadisodhana</item>
+    </string-array>
+
+    <string-array name="exercise_met">
+        <item>3.0</item>
+        <item>3.5</item>
+        <item>4.0</item>
+        <item>7.0</item>
+        <item>8.0</item>
+        <item>8.5</item>
+        <item>11.0</item>
+        <item>13.0</item>
+        <item>14.0</item>
+        <item>6.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>11.0</item>
+        <item>8.8</item>
+        <item>11.8</item>
+        <item>12.3</item>
+        <item>3.8</item>
+        <item>8.0</item>
+        <item>2.5</item>
+        <item>4.0</item>
+        <item>2.0</item>
+
+    </string-array>
+
+    <string-array name="days_of_weak">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
     </string-array>
 </resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#734b6d">
+
+    <RadioGroup
+        android:id="@+id/RG_exercise_target_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/edittext_rectangle_round_corner">
+        <RadioButton
+            android:id="@+id/RB_daily_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Daily Target" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editTextDailyExerciseTarget"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="8dp"
+            android:background="@color/Transparent"
+            android:textSize="18sp"
+            android:maxLength="4"
+            android:hint="Max 2000cal"
+            android:inputType="number"
+            />
+
+        <RadioButton
+            android:id="@+id/RB_weakly_target"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Weakly Target"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/editTextWeaklyExerciseTarget"
+            android:layout_marginRight="80dp"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="8dp"
+            android:background="@color/Transparent"
+            android:textSize="18sp"
+            android:maxLength="3"
+            android:hint="Max 1kg"
+            android:inputType="numberDecimal"
+            />
+    </RadioGroup>
+
+</RelativeLayout>

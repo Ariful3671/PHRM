@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context="com.troubleshooters.diu.phrm.AddMealActivity">
+
+    <TextView
+        android:id="@+id/textView_select_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d4f5f5"
+        android:paddingLeft="8dp"
+        android:textSize="20dp"
+        android:hint="Select Exercise"></TextView>
+
+    <ListView
+        android:id="@+id/list_view_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+    </ListView>
+
+    <EditText
+        android:id="@+id/editText_exercise_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#d4f5f5"
+        android:cursorVisible="false"
+        android:paddingLeft="8dp"
+        android:inputType="number"
+        android:maxLength="3"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:hint="Enter Duration(Max 120 minute)"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="2"
+        >
+        <Button
+            android:id="@+id/start_exercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:text="Start Exercise"
+            android:background="@drawable/edittext_rectangle_round_corner"
+            />
+
+        <Button
+            android:id="@+id/done_exercise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:text="Done Already"
+            android:background="@drawable/edittext_rectangle_round_corner"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
