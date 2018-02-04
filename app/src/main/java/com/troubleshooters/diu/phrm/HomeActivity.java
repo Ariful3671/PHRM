@@ -399,6 +399,7 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences_nutrition=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_time=getSharedPreferences("time", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_medicine=getSharedPreferences("medication",Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferencesExercise=getSharedPreferences("exercise", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor=sharedPreferences.edit();
 
 
@@ -476,6 +477,7 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
                 sharedPreferences_medicine.edit().clear().commit();
+                sharedPreferencesExercise.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "yes");
