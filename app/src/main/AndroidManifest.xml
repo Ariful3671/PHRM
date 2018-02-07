@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -89,7 +88,8 @@
             android:name=".AddExerciseActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".Pedometer" />
-        <activity android:name=".StartExerciseActivity"></activity>
+        <activity android:name=".StartExerciseActivity" />
+        <activity android:name=".BloodGlucoseTest"></activity>
     </application>
 
 </manifest>

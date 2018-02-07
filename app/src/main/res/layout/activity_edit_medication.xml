@@ -61,7 +61,7 @@
         android:layout_marginRight="2dp"
         android:layout_marginBottom="3dp"
         android:padding="5dp"
-        android:text="Delet reminder"
+        android:text="Delete reminder"
         android:textColor="#FFF"
         android:layout_below="@+id/ok_button_edit"
         android:background="@drawable/medication_creat_plan_button"/>
