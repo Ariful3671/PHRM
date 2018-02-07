@@ -52,10 +52,15 @@ public class ExerciseActivity extends AppCompatActivity {
     SharedPreferences sharedPreferencesExercise;
     SharedPreferences.Editor sPExerciseEditor;
 
-    String burnableCalorieVal, burnedCalorieVal;
+    String burnableCalorieVal;
+    Float burnedCalorieVal;
 
     BarDataSet barDataSetEntries;
     String[] daysOfWeak;
+
+    SimpleDateFormat sdf;
+    Date d;
+    String dayOfTheWeek;
 
 
     @Override
@@ -83,7 +88,9 @@ public class ExerciseActivity extends AppCompatActivity {
         sharedPreferencesExercise=getSharedPreferences("exercise", Context.MODE_PRIVATE);
         sPExerciseEditor = sharedPreferencesExercise.edit();
 
-
+        sdf = new SimpleDateFormat("EEE");
+        d = new Date();
+        dayOfTheWeek = sdf.format(d);
 
         //Reset gain value 12:00
         Calendar calendar=Calendar.getInstance();
@@ -167,11 +174,11 @@ public class ExerciseActivity extends AppCompatActivity {
                                 Toast.makeText(ExerciseActivity.this, "You did not select any target option!", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Double weaklyarget = Double.parseDouble(exerciseTarget);
-                                if (weaklyarget > 1.0) {
+                                Double weaklyTarget = Double.parseDouble(exerciseTarget);
+                                if (weaklyTarget > 1.0) {
                                     Toast.makeText(ExerciseActivity.this, "Invalid Target!", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Double dailyTarget = (weaklyarget * (3500.0 * 2.2)) / 7.0;
+                                    Double dailyTarget = (weaklyTarget * (3500.0 * 2.2)) / 7.0;
                                     String value = new DecimalFormat("##.#").format(dailyTarget);
                                     sPExerciseEditor.putString("target", value);
                                     sPExerciseEditor.commit();
@@ -222,18 +229,8 @@ public class ExerciseActivity extends AppCompatActivity {
 
 
     private void setBarChart() {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEE");
-        Date d = new Date();
-        String dayOfTheWeek = sdf.format(d);
-        String todaysBurnedCalorie = sharedPreferencesExercise.getString("burnedCalorie", "");
-        Float todaysBurnedCalorieVal;
-        if(todaysBurnedCalorie==""){
-            todaysBurnedCalorieVal=0.0f;
-        }
-        else{
-            todaysBurnedCalorieVal = Float.parseFloat(todaysBurnedCalorie);
-        }
-        sPExerciseEditor.putFloat(dayOfTheWeek, todaysBurnedCalorieVal);
+        Float todaysBurnedCalorie = sharedPreferencesExercise.getFloat("burnedCalorie", 0.0f);
+        sPExerciseEditor.putFloat(dayOfTheWeek, todaysBurnedCalorie);
         sPExerciseEditor.commit();
 
         ArrayList<BarEntry> barEntries=new ArrayList<BarEntry>();
@@ -285,19 +282,19 @@ public class ExerciseActivity extends AppCompatActivity {
         Double burnableCal, burnedCal, burnedPrcnt;
         int progress;
         burnableCalorieVal = sharedPreferencesExercise.getString("target", "");
-        burnedCalorieVal = sharedPreferencesExercise.getString("burnedCalorie", "");
+        burnedCalorieVal = sharedPreferencesExercise.getFloat("burnedCalorie", 0.0f);
         if(burnableCalorieVal=="") {
             burnableCalorie.setText("0");
         } else {
             burnableCalorie.setText(burnableCalorieVal);
-            if(burnedCalorieVal==""){
+            if(burnedCalorieVal==0.0){
                 burnedCalorie.setText("0");
                 calorieBurnProgressbar.setProgress(0);
             }
             else {
-                burnedCalorie.setText(burnedCalorieVal);
+                burnedCalorie.setText(burnedCalorieVal.toString());
                 burnableCal = Double.parseDouble(burnableCalorieVal);
-                burnedCal = Double.parseDouble(burnedCalorieVal);
+                burnedCal = Double.parseDouble(burnedCalorieVal.toString());
                 burnedPrcnt = (burnedCal/burnableCal)*100.0;
                 progress = Integer.valueOf(burnedPrcnt.intValue());
                 //if(progress>100)

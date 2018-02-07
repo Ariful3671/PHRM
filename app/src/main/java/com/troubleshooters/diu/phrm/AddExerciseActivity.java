@@ -1,6 +1,7 @@
 package com.troubleshooters.diu.phrm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +23,13 @@ import io.paperdb.Paper;
 
 public class AddExerciseActivity extends AppCompatActivity {
 
-    TextView selectExercise;
-    ListView exerciseList;
-    EditText exerciseDuration;
-    Button startExercise, doneExercise;
+    TextView selectExercise, exerciseDuration;
+    ListView exerciseList, exerciseDurList;
+    Button startExercise, doneExercise, pedometerBtn;
     ArrayAdapter<String> adapter;
     String[] exerciseMets;
-    int metPosition;
+    int metPosition, exDurPosition;
+
 
     SharedPreferences sharedPreferencesExercise;
     SharedPreferences.Editor sPExerciseEditor;
@@ -40,9 +42,11 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         selectExercise=(TextView)findViewById(R.id.textView_select_exercise);
         exerciseList=(ListView)findViewById(R.id.list_view_exercise);
-        exerciseDuration=(EditText) findViewById(R.id.editText_exercise_time);
+        exerciseDurList=(ListView)findViewById(R.id.list_view_exercise_duration);
+        exerciseDuration=(TextView) findViewById(R.id.editText_exercise_time);
         startExercise=(Button)findViewById(R.id.start_exercise);
         doneExercise=(Button)findViewById(R.id.done_exercise);
+        pedometerBtn=(Button)findViewById(R.id.pedometer_btn);
         exerciseMets = getResources().getStringArray(R.array.exercise_met);
 
         sharedPreferencesExercise = getSharedPreferences("exercise", Context.MODE_PRIVATE);
@@ -72,38 +76,95 @@ public class AddExerciseActivity extends AppCompatActivity {
             }
         });
 
+        final int[] durationArray = {5,10,15,20,25,30,40,45,50,60,75,90};
+        ArrayList<String> exerciseDurationList=new ArrayList<>();
+        exerciseDurationList.addAll(Arrays.asList(getResources().getStringArray(R.array.exercise_duration)));
+        adapter=new ArrayAdapter<String>(AddExerciseActivity.this,android.R.layout.simple_list_item_1,exerciseDurationList);
+        exerciseDurList.setAdapter(adapter);
+
+        exerciseDuration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exerciseDurList.setVisibility(View.VISIBLE);
+                exerciseDurList.setOnItemClickListener(
+                        new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                exerciseDuration.setText(exerciseDurList.getItemAtPosition(position).toString());
+                                exerciseDurList.setVisibility(View.GONE);
+                                exDurPosition=position;
+                            }
+                        }
+                );
+            }
+        });
+
+        startExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String exerciseName = selectExercise.getText().toString();
+                String exerciseDurn = exerciseDuration.getText().toString();
+                if(exerciseName==""||exerciseDurn==""){
+                    Toast.makeText(AddExerciseActivity.this, "Missing Exercise or Exercise Duration", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    try{
+                        sPExerciseEditor.putInt("exercise_duration", durationArray[exDurPosition]);
+                        sPExerciseEditor.commit();
+                        Intent intent=new Intent(AddExerciseActivity.this,StartExerciseActivity.class);
+                        intent.putExtra("weight", sharedPreferencesPI.getString("weight", ""));
+                        intent.putExtra("met", exerciseMets[metPosition]);
+                        startActivity(intent);
+                    }catch (Exception e){
+                        Toast.makeText(AddExerciseActivity.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
+
+        pedometerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(AddExerciseActivity.this,Pedometer.class);
+                startActivity(intent);
+            }
+        });
+
         doneExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String exerciseDurn = exerciseDuration.getText().toString();
-                if(exerciseDurn==""){
-                    Toast.makeText(AddExerciseActivity.this, "Please enter Exercise Duration", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Double exerciseDurnVal = Double.parseDouble(exerciseDurn);
-                    if(exerciseDurnVal>120){
-                        Toast.makeText(AddExerciseActivity.this, "Exercise duration must be less than or equal 120", Toast.LENGTH_SHORT).show();
+                try{
+                    String exerciseName = selectExercise.getText().toString();
+                    String exerciseDurn = exerciseDuration.getText().toString();
+                    if(exerciseName==""||exerciseDurn==""){
+                        Toast.makeText(AddExerciseActivity.this, "Missing Exercise or Exercise Duration", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        String previouslyBurnedCalorie = sharedPreferencesExercise.getString("burnedCalorie", "");
+                        Double exerciseDurnVal = Double.valueOf(durationArray[exDurPosition]);
+                        Float previouslyBurnedCalorie = sharedPreferencesExercise.getFloat("burnedCalorie", 0.0f);
                         String weight = sharedPreferencesPI.getString("weight", "");
                         Double weightVal = Double.parseDouble(weight);
                         Double met = Double.parseDouble(exerciseMets[metPosition]);
-                        String duration = exerciseDuration.getText().toString();
-                        Double durationVal = Double.parseDouble(duration);
-                        Double burnedCalorie = 0.0175*met*weightVal*durationVal;
+
+                        Double durationVal = Double.valueOf(durationArray[exDurPosition]);
+                        Double burnedCalorie = 0.0175*met*weightVal*durationVal-(0.0175*weightVal*durationVal);
                         String value=new DecimalFormat("##.#").format(burnedCalorie);
                         Toast.makeText(AddExerciseActivity.this, "You burned "+value+" calories", Toast.LENGTH_LONG).show();
 
-                        if(previouslyBurnedCalorie!=""){
-                            Double pBurnedCalorie = Double.parseDouble(previouslyBurnedCalorie);
+                        if(previouslyBurnedCalorie!=0.0){
+                            Double pBurnedCalorie = new Double(previouslyBurnedCalorie);
                             burnedCalorie += pBurnedCalorie;
                         }
 
-                        String value1=new DecimalFormat("##.#").format(burnedCalorie);
-                        sPExerciseEditor.putString("burnedCalorie", value1);
+                        Float value1=new Float(burnedCalorie);
+                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+                        Float formatedVal = Float.valueOf(decimalFormat.format(value1));
+                        sPExerciseEditor.putFloat("burnedCalorie", formatedVal);
                         sPExerciseEditor.commit();
                     }
+                }catch (Exception e){
+                    Toast.makeText(AddExerciseActivity.this, e.toString(), Toast.LENGTH_LONG).show();
                 }
                 finish();
             }

@@ -196,10 +196,12 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                             editor.commit();
                             SharedPreferences reminder_time=getSharedPreferences("time",Context.MODE_PRIVATE);
                             reminder_time.edit().clear().commit();
-                            breakfast.setText("Set time");
-                            lunch.setText("Set time");
-                            snake.setText("Set time");
-                            dinner.setText("Set time");
+
+                            breakfast.setText(R.string._meal_reminder);
+                            lunch.setText(R.string._meal_reminder);
+                            snake.setText(R.string._meal_reminder);
+                            dinner.setText(R.string._meal_reminder);
+
                             AlarmManager aManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                             PendingIntent pendingIntent1=PendingIntent.getBroadcast(getApplicationContext(),101,intent,PendingIntent.FLAG_UPDATE_CURRENT);

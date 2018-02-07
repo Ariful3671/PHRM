@@ -36,6 +36,7 @@
     <string name="custom_medication_alerm">Custom</string>
     <string name="no_medication_plan_created">No medication plan created</string>
     <string name="medication_plan_title">Medication plan</string>
+
     <!--Used in activity_welcome_screen.xml textview-->
 
     <string-array name="settings_item">
@@ -56,7 +57,7 @@
     </string-array>
 
     <string-array name="grid_daily_routine_button">
-        <item>Create</item>
+        <item>Manage</item>
         <item>Update</item>
     </string-array>
 
@@ -208,5 +209,21 @@
         <item>Thu</item>
         <item>Fri</item>
         <item>Sat</item>
+    </string-array>
+
+    <string-array name="exercise_duration">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+        <item>40 minutes</item>
+        <item>45 minutes</item>
+        <item>50 minutes</item>
+        <item>60 minutes</item>
+        <item>75 minutes</item>
+        <item>90 minutes</item>
+
     </string-array>
 </resources>

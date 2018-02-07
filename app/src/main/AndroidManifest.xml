@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
@@ -14,13 +16,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".MedicationActivity" />
-        <activity android:name=".NutritionActivity" />
-        <activity android:name=".ExerciseActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".LogInActivity" />
+        <activity
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MedicationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NutritionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ExerciseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LogInActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -37,22 +53,43 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".ReportActivity" />
-        <activity android:name=".CreatMedicationPlanActivity" />
-        <activity android:name=".ManageItemActivity" />
-        <activity android:name=".BloodPressureActivity" />
-        <activity android:name=".GlucoseActivity" />
-        <activity android:name=".AddMealActivity" />
+        <activity
+            android:name=".SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreatMedicationPlanActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ManageItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BloodPressureActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GlucoseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddMealActivity"
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".NotificationReceiver" />
         <receiver android:name=".MedicationAlarm" />
         <receiver android:name=".ResetApp" />
 
-        <activity android:name=".EditMedication" />
-        <activity android:name=".add_exercise_activity" />
-        <activity android:name=".AddExerciseActivity" />
+        <activity
+            android:name=".EditMedication"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddExerciseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Pedometer" />
+        <activity android:name=".StartExerciseActivity"></activity>
     </application>
 
 </manifest>
