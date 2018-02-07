@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/reminder_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reminder Details:"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/date_reminder_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#E16F6F"
+                android:layout_below="@id/reminder_details"
+                android:text="Date:"/>
+            <TextView
+                android:id="@+id/time_reminder_recycler"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@id/reminder_details"
+                android:layout_marginTop="20dp"
+                android:textColor="#E16F6F"
+                android:layout_marginLeft="40dp"
+                android:layout_toRightOf="@+id/date_reminder_recycler"
+                android:text="Time:"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

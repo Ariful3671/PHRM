@@ -11,9 +11,9 @@
     <string name="change_password">Change password</string>
     <string name="settings_title">Settings</string>
     <string name="health_plan">Health Plan</string>
-    <string name="test_record">Test Record</string>
+    <string name="test_record">Record and Calculate</string>
     <string name="bottom_nev_home">Home</string>
-    <string name="bottom_nev_notification">Notification</string>
+    <string name="bottom_nev_notification">Reminders</string>
     <string name="bottom_nev_reports">Reports</string>
     <string name="menu_log_out">Log Out</string>
     <string name="nutration_plan_title">Nutrition plan</string>
@@ -52,7 +52,7 @@
     <string-array name="grid_test_record">
         <item>Blood Pressure</item>
         <item>Glucose</item>
-        <item>BMI</item>
+        <item>More Items</item>
     </string-array>
 
     <string-array name="grid_daily_routine_button">
@@ -63,7 +63,7 @@
     <string-array name="grid_test_record_button">
         <item>Update</item>
         <item>Update</item>
-        <item>Update</item>
+        <item>More</item>
     </string-array>
 
     //nutrition

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/hospitalName"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginBottom="20dp"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#5B2C6F"
+        android:text="Hospital:"/>
+    <TextView
+        android:id="@+id/receivedDate"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/hospitalName"
+        android:text="Received date:"
+        android:textColor="#ABABAB"
+        android:textSize="13sp"
+        android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/appointmentDate"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_below="@+id/hospitalName"
+        android:text="Appointment date:"
+        android:layout_marginTop="15dp"
+        android:textSize="13sp"
+        android:textColor="#ABABAB"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
+

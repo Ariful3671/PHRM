@@ -22,10 +22,10 @@ public class ResetApp extends BroadcastReceiver{
         SharedPreferences sPExercise = context.getSharedPreferences("exercise",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor1 = sPExercise.edit();
 
-        editor.putString("gained_calorie","");
-        editor.putString("gained_fat","");
-        editor.putString("gained_protein","");
-        editor.putString("gained_carbohydrate","");
+        editor.putFloat("gained_calorie",0.0f);
+        editor.putFloat("gained_fat",0.0f);
+        editor.putFloat("gained_protein",0.0f);
+        editor.putFloat("gained_carbohydrate",0.0f);
         editor.commit();
 
         editor1.putString("burnedCalorie","");

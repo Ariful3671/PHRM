@@ -277,10 +277,10 @@ public class HomeActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
 
-                            case R.id.bottom_navigation_report:
+                            /*case R.id.bottom_navigation_report:
                                 intent=new Intent(HomeActivity.this,ReportActivity.class);
                                 startActivity(intent);
-                                break;
+                                break;*/
                         }
                         return false;
                     }
@@ -398,6 +398,8 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_nutrition=getSharedPreferences("nutrition", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_time=getSharedPreferences("time", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences_RID=getSharedPreferences("reminder", Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences_time_exercise=getSharedPreferences("timeExercise", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_medicine=getSharedPreferences("medication",Context.MODE_PRIVATE);
             SharedPreferences sharedPreferencesExercise=getSharedPreferences("exercise", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor=sharedPreferences.edit();
@@ -422,6 +424,15 @@ public class HomeActivity extends AppCompatActivity {
                 alarmManager.cancel(pendingIntent);
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),105,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),106,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),107,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
 
 
@@ -476,8 +487,10 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
+                sharedPreferences_time_exercise.edit().clear().commit();
                 sharedPreferences_medicine.edit().clear().commit();
                 sharedPreferencesExercise.edit().clear().commit();
+                sharedPreferences_RID.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "yes");
@@ -505,6 +518,15 @@ public class HomeActivity extends AppCompatActivity {
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),105,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),106,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),107,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
 
 
 
@@ -564,7 +586,9 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
+                sharedPreferences_time_exercise.edit().clear().commit();
                 sharedPreferences_medicine.edit().clear().commit();
+                sharedPreferences_RID.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");
@@ -597,6 +621,15 @@ public class HomeActivity extends AppCompatActivity {
                 intent=new Intent(getApplicationContext(),NotificationReceiver.class);
                 pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),104,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),105,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),106,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
+                intent=new Intent(getApplicationContext(),NotificationReceiver.class);
+                pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),107,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.cancel(pendingIntent);
 
 
 
@@ -655,7 +688,9 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences.edit().clear().commit();
                 sharedPreferences_nutrition.edit().clear().commit();
                 sharedPreferences_time.edit().clear().commit();
+                sharedPreferences_time_exercise.edit().clear().commit();
                 sharedPreferences_medicine.edit().clear().commit();
+                sharedPreferences_RID.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");

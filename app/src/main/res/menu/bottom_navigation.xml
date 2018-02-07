@@ -13,11 +13,11 @@
         android:icon="@drawable/ic_stat_notification">
     </item>
 
-    <item
+    <!--<item
         android:title="@string/bottom_nev_reports"
         android:id="@+id/bottom_navigation_report"
         android:icon="@drawable/ic_stat_reports">
-    </item>
+    </item>-->
 
 
 

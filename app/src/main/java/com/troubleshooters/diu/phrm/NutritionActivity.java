@@ -62,10 +62,10 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         setContentView(R.layout.activity_nutrition);
         setTitle(getString(R.string.nutration_plan_title));
 
-        String[] nutrition_name=getResources().getStringArray(R.array.nutrition_items);
-        String[] gain_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
-        String[] necessary_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
-        String[] nutrition_unit={"cal","gm","gm","gm"};
+        final String[] nutrition_name=getResources().getStringArray(R.array.nutrition_items);
+        final String[] gain_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
+        final String[] necessary_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
+        final String[] nutrition_unit={"cal","gm","gm","gm"};
 
 
         listView=(ListView) findViewById(R.id.list_view_nutrition);
@@ -133,8 +133,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
 
 
-        NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,nutrition_unit,NutritionActivity.this);
-        listView.setAdapter(adapter);
+
 
 
 
@@ -150,6 +149,10 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                 }
             }
         );
+
+
+        NutritionCountAdapter adapter=new NutritionCountAdapter(nutrition_name,gain_nutrition,necessary_nutrition,nutrition_unit,NutritionActivity.this);
+        listView.setAdapter(adapter);
 
 
 
@@ -478,7 +481,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
                         Calendar c=Calendar.getInstance();
                         hour=c.get(Calendar.HOUR_OF_DAY);
                         munite=c.get(Calendar.MINUTE);
-                        Toast.makeText(NutritionActivity.this, hour, Toast.LENGTH_SHORT).show();
                         TimePickerDialog timePickerDialog=new TimePickerDialog(NutritionActivity.this,t_dinner,hour,munite,true);
                         timePickerDialog.show();
 

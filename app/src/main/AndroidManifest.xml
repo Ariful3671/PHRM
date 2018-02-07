@@ -51,8 +51,8 @@
         <receiver android:name=".ResetApp" />
 
         <activity android:name=".EditMedication" />
-        <activity android:name=".add_exercise_activity" />
         <activity android:name=".AddExerciseActivity" />
+        <activity android:name=".CreatReminder"></activity>
     </application>
 
 </manifest>

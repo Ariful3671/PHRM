@@ -168,9 +168,11 @@ public class AddMealActivity extends AppCompatActivity {
                                 editor.commit();
                                 value=0.0f;
                             }
-                            Intent intent=new Intent(AddMealActivity.this,NutritionActivity.class);
-                            startActivity(intent);
+
+                            //Intent intent=new Intent(AddMealActivity.this,NutritionActivity.class);
+                            //startActivity(intent);
                             finish();
+
                         }
                     }
                 }

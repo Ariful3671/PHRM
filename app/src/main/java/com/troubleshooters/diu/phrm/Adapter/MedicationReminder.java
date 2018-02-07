@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.troubleshooters.diu.phrm.EditMedication;
 import com.troubleshooters.diu.phrm.R;
@@ -24,6 +25,7 @@ public class MedicationReminder extends RecyclerView.Adapter<MedicationReminder.
     List<Model_medicin_details> medicines;
 
     public MedicationReminder(Context context, List<Model_medicin_details> medicines) {
+        Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
         this.context = context;
         this.medicines = medicines;
 
@@ -32,6 +34,7 @@ public class MedicationReminder extends RecyclerView.Adapter<MedicationReminder.
     @Override
     public MedicationReminderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
+        //Toast.makeText(context, "ok2", Toast.LENGTH_SHORT).show();
         LayoutInflater inflater=LayoutInflater.from(context);
         View view=inflater.inflate(R.layout.medication_recycler_item,null);
         MedicationReminderViewHolder medicationReminderViewHolder=new MedicationReminderViewHolder(view,context,medicines);
@@ -43,6 +46,7 @@ public class MedicationReminder extends RecyclerView.Adapter<MedicationReminder.
 
         Model_medicin_details model_medicin_details=medicines.get(position);
         holder.medicineDetails.setText(model_medicin_details.getMedicines());
+        //Toast.makeText(context, "ok3", Toast.LENGTH_SHORT).show();
         int value=Integer.parseInt(model_medicin_details.getHour());
         if(Integer.parseInt(model_medicin_details.getHour())>12)
         {
@@ -72,10 +76,12 @@ public class MedicationReminder extends RecyclerView.Adapter<MedicationReminder.
         Context context;
         List<Model_medicin_details> list=new ArrayList<>();
         public MedicationReminderViewHolder(View itemView, Context context, List<Model_medicin_details> list ) {
+
             super(itemView);
             this.context=context;
             this.list=list;
             itemView.setOnClickListener(this);
+            //Toast.makeText(context, "ok1", Toast.LENGTH_SHORT).show();
             medicineDetails=(TextView) itemView.findViewById(R.id.card_view_medicine_details);
             time=(TextView)itemView.findViewById(R.id.card_view_time_details);
             repeat=(TextView)itemView.findViewById(R.id.card_view_repeat);

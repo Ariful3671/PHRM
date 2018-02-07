@@ -224,6 +224,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:background="#F3D9FF"
                 android:weightSum="1">
 
                 <RelativeLayout
@@ -250,7 +251,7 @@
                         android:layout_toRightOf="@id/image_exercise_reminder1"
                         android:cursorVisible="false"
                         android:background="@color/Transparent"
-                        android:hint="Exercise name"
+                        android:hint="Morning Exercise"
                         android:gravity="center"
                         android:maxLength="16"
                         android:textSize="15sp" />
@@ -288,7 +289,7 @@
                         android:maxLength="16"
                         android:textSize="15sp"
                         android:background="@color/Transparent"
-                        android:hint="Exercise name"
+                        android:hint="Evening Exercise"
                         android:cursorVisible="false"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@id/image_exercise_reminder2"
@@ -327,7 +328,7 @@
                         android:id="@+id/editText_exercise_reminder3"
                         android:layout_marginLeft="10dp"
                         android:background="@color/Transparent"
-                        android:hint="Exercise name"
+                        android:hint="Night Exercise"
                         android:maxLength="16"
                         android:textSize="15sp"
                         android:cursorVisible="false"
