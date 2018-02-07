@@ -55,7 +55,6 @@ public class MedicationActivity extends AppCompatActivity {
         medicin_details=new ArrayList<>();
 
 
-
         networkChecker=new NetworkChecker(MedicationActivity.this);
         progressBar=(ProgressBar)findViewById(R.id.progressbar_medication);
         recyclerView=(RecyclerView)findViewById(R.id.recycler_view_medication);

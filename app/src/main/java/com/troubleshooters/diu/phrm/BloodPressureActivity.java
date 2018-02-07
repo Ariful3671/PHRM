@@ -56,7 +56,7 @@ public class BloodPressureActivity extends AppCompatActivity {
                                         }
                                     }).show();
                         }
-                        else if((up_pressure>=90&&up_pressure<120)&&(down_pressure>=60&&down_pressure<90))
+                        else if((up_pressure>=90&&up_pressure<=120)&&(down_pressure>=60&&down_pressure<=80))
                         {
                             android.support.v7.app.AlertDialog.Builder builder;
                             builder = new android.support.v7.app.AlertDialog.Builder(BloodPressureActivity.this, R.style.CustomDialogTheme);
@@ -69,7 +69,7 @@ public class BloodPressureActivity extends AppCompatActivity {
                                         }
                                     }).show();
                         }
-                        else if((up_pressure>=120&&up_pressure<140)&&(down_pressure>=90&&down_pressure<120))
+                        else if((up_pressure>=121&&up_pressure<=140)&&(down_pressure>=81&&down_pressure<120))
                         {
                             android.support.v7.app.AlertDialog.Builder builder;
                             builder = new android.support.v7.app.AlertDialog.Builder(BloodPressureActivity.this, R.style.CustomDialogTheme);
@@ -82,7 +82,7 @@ public class BloodPressureActivity extends AppCompatActivity {
                                         }
                                     }).show();
                         }
-                        else if(up_pressure>=140&&down_pressure>=120)
+                        else if(up_pressure>=141&&down_pressure>=121)
                         {
                             android.support.v7.app.AlertDialog.Builder builder;
                             builder = new android.support.v7.app.AlertDialog.Builder(BloodPressureActivity.this, R.style.CustomDialogTheme);
