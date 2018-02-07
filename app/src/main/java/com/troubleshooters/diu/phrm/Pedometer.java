@@ -1,6 +1,7 @@
 package com.troubleshooters.diu.phrm;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -23,6 +24,7 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener,
     private Sensor accel;
     private CountDownTimer countDownTimer;
     private int numSteps;
+    private Button BtnStart, BtnStop, BtnReset;
     int h, m, s;
     Double burnedCal;
     Double weightVal;
@@ -31,6 +33,7 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
+        setTitle("Pedometer");
 
 
         // Get an instance of the SensorManager
@@ -42,8 +45,14 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener,
         TvSteps = (TextView) findViewById(R.id.tv_steps);
         TvTimer = (TextView)findViewById(R.id.tv_pedo_time);
         TvpedoCalorie = (TextView) findViewById(R.id.tv_pedo_calorie);
-        Button BtnStart = (Button) findViewById(R.id.btn_start);
-        Button BtnStop = (Button) findViewById(R.id.btn_stop);
+        BtnStart = (Button) findViewById(R.id.btn_start);
+        BtnStop = (Button) findViewById(R.id.btn_stop);
+        BtnReset = (Button)findViewById(R.id.btn_reset);
+
+        numSteps = 0;
+
+        BtnStart.setVisibility(View.VISIBLE);
+        BtnStop.setVisibility(View.GONE);
 
         SharedPreferences sharedPreferencesPI=getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
         String weight = sharedPreferencesPI.getString("weight", "");
@@ -57,7 +66,9 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener,
             @Override
             public void onClick(View arg0) {
 
-                numSteps = 0;
+                BtnStart.setVisibility(View.GONE);
+                BtnStop.setVisibility(View.VISIBLE);
+                BtnReset.setVisibility(View.GONE);
 
                 sensorManager.registerListener(Pedometer.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
                 countDownTimer = new CountDownTimer(5400000, 1000) {
@@ -92,10 +103,26 @@ public class Pedometer extends AppCompatActivity implements SensorEventListener,
 
             @Override
             public void onClick(View arg0) {
-
+                BtnStart.setVisibility(View.VISIBLE);
+                BtnStart.setText("Restart");
+                BtnStop.setVisibility(View.GONE);
+                BtnReset.setVisibility(View.VISIBLE);
                 sensorManager.unregisterListener(Pedometer.this);
                 countDownTimer.cancel();
 
+            }
+        });
+
+        BtnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numSteps =0;
+                burnedCal = 0.0;
+                h=0; m=0; s=0;
+                Intent intent = getIntent();
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                finish();
+                startActivity(intent);
             }
         });
 
