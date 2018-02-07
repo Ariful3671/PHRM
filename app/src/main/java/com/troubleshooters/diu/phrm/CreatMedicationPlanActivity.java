@@ -321,11 +321,6 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
 
     }
 
-
-
-
-
-
     //checking custom checkbox
     public void customCheckBoxStatus(View view) {
 
