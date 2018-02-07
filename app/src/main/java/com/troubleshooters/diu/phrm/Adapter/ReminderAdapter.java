@@ -70,7 +70,7 @@ public class ReminderAdapter extends BaseAdapter{
                     text_view_value.setText(value[position]);
                 }
                 else{
-                    Toast.makeText(context, sharedPreferences_time.getString("hour","")+"  "+sharedPreferences_time.getString("minute",""), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, sharedPreferences_time.getString("hour","")+"  "+sharedPreferences_time.getString("minute",""), Toast.LENGTH_SHORT).show();
                     String shour=sharedPreferences_time.getString("hour","");
                     String sminute=sharedPreferences_time.getString("minute","");
                     Integer hour= Integer.valueOf(shour);

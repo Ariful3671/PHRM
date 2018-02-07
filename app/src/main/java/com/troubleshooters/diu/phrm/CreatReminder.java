@@ -143,6 +143,10 @@ public class CreatReminder extends AppCompatActivity implements TimePickerDialog
                             Intent intent1=new Intent(CreatReminder.this,NotificationActivity.class);
                             startActivity(intent1);
                             finish();
+                            /*finish();
+                            overridePendingTransition( 0, 0);
+                            startActivity(getIntent());
+                            overridePendingTransition( 0, 0);*/
                         }
                         else {
                             Toast.makeText(CreatReminder.this, "Please turn on your internet connection", Toast.LENGTH_SHORT).show();

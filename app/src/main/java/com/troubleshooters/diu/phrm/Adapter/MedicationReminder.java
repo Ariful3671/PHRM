@@ -25,7 +25,7 @@ public class MedicationReminder extends RecyclerView.Adapter<MedicationReminder.
     List<Model_medicin_details> medicines;
 
     public MedicationReminder(Context context, List<Model_medicin_details> medicines) {
-        Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "ok", Toast.LENGTH_SHORT).show();
         this.context = context;
         this.medicines = medicines;
 
