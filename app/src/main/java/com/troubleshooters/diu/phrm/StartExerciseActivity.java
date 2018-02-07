@@ -3,6 +3,9 @@ package com.troubleshooters.diu.phrm;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -41,14 +44,15 @@ public class StartExerciseActivity extends AppCompatActivity {
         addBtn = (Button)findViewById(R.id.exercise_add_btn);
         weightVal = Double.parseDouble(getIntent().getStringExtra("weight"));
         metVal = Double.parseDouble(getIntent().getStringExtra("met"));
+        Toast.makeText(this, metVal.toString()+"//"+weightVal.toString(), Toast.LENGTH_LONG).show();
         progressTemp=0;
         sharedPreferencesExercise = getSharedPreferences("exercise", Context.MODE_PRIVATE);
         sPExerciseEditor = sharedPreferencesExercise.edit();
-        h=0; m=0; s=0;
+        h=0; m=0; s=1;
         final int duration = sharedPreferencesExercise.getInt("exercise_duration", 0);
 
-        durationTemp=timerDuration;
         timerDuration = duration*60;
+        durationTemp=timerDuration;
         runningExerciseProgress.setMax(timerDuration);
         timerOn=false;
 
@@ -59,12 +63,12 @@ public class StartExerciseActivity extends AppCompatActivity {
                 if(timerOn){
                     timerOn=false;
                     countDownTimer.cancel();
-                    startExerciseBtn.setText("Start");
+                    startExerciseBtn.setText("Restart");
                     addBtn.setVisibility(View.VISIBLE);
                 }
                 else {
                     try{
-                        startExerciseBtn.setText("Stop");
+                        startExerciseBtn.setText("Pause");
                         addBtn.setVisibility(View.GONE);
                         timerOn=true;
                         countDownTimer = new CountDownTimer((timerDuration*1000), 1000) {
@@ -101,8 +105,17 @@ public class StartExerciseActivity extends AppCompatActivity {
                                 timerOn=false;
                                 startExerciseBtn.setText("Start");
                                 addBtn.setVisibility(View.VISIBLE);
+                                startExerciseBtn.setVisibility(View.GONE);
                                 Vibrator vibe = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
                                 vibe.vibrate(2000);
+                                try {
+                                    Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                                    Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                                    r.play();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
                             }
                         }.start();
                     }catch (Exception e){
@@ -115,7 +128,8 @@ public class StartExerciseActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Double duration = Double.valueOf(durationTemp-timerDuration);
+                Double duration = Double.valueOf((durationTemp-timerDuration)/60.0);
+                //duration = duration/60;
                 if(duration>1){
                     Double burnedCal = 0.0175*metVal*weightVal*duration-(0.0175*weightVal*duration);
                     String value=new DecimalFormat("##.#").format(burnedCal);
@@ -130,6 +144,7 @@ public class StartExerciseActivity extends AppCompatActivity {
                     Float formatedVal = Float.valueOf(decimalFormat.format(value1));
                     sPExerciseEditor.putFloat("burnedCalorie", formatedVal);
                     sPExerciseEditor.commit();
+                    finish();
                 }
                 else{
                     Toast.makeText(StartExerciseActivity.this, "Go on! You exercised too little!", Toast.LENGTH_SHORT).show();

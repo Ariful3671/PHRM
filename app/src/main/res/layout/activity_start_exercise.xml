@@ -71,6 +71,7 @@
                 android:layout_marginLeft="40dp"
                 android:background="#c24141"
                 android:layout_marginRight="40dp"
+                android:layout_marginBottom="8dp"
                 android:textSize="24sp"
                 android:textAllCaps="false"
                 android:text="Add to exercise"
