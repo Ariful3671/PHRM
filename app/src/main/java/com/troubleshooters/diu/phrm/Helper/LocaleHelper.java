@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
+import java.text.NumberFormat;
 import java.util.Locale;
 
 /**
@@ -17,10 +18,6 @@ import java.util.Locale;
 public class LocaleHelper {
     private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
 
-    public static Context onAttach(Context context) {
-        String lang = getPersistedData(context, Locale.getDefault().getLanguage());
-        return setLocale(context, lang);
-    }
 
     public static Context onAttach(Context context, String defaultLanguage) {
         String lang = getPersistedData(context, defaultLanguage);
@@ -45,6 +42,7 @@ public class LocaleHelper {
 
         return context.createConfigurationContext(config);
     }
+
 
     @SuppressWarnings("deprecation")
     private static Context updateResourcesLegacy(Context context, String lang) {

@@ -46,7 +46,7 @@
     </string-array>
 
     <string-array name="grid_daily_routine">
-        <item>নিউট্রিশন</item>
+        <item>খাদ্য ও পুষ্টি</item>
         <item>ব্যায়াম</item>
         <item>ঔষধ</item>
     </string-array>
@@ -58,7 +58,7 @@
     </string-array>
 
     <string-array name="grid_daily_routine_button">
-        <item>তৈরি করুন</item>
+        <item>ব্যবস্থাপনা</item>
         <item>হালনাগাদ</item>
     </string-array>
 
@@ -145,6 +145,59 @@
         <item>ছাগলের মাংস</item>
         <item>দুধ</item>
         <item>ডিম</item>
+
+    </string-array>
+
+    <string-array name="exercise_met">
+        <item>3.0</item>
+        <item>3.5</item>
+        <item>4.0</item>
+        <item>7.0</item>
+        <item>8.0</item>
+        <item>8.5</item>
+        <item>11.0</item>
+        <item>13.0</item>
+        <item>14.0</item>
+        <item>6.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>11.0</item>
+        <item>8.8</item>
+        <item>11.8</item>
+        <item>12.3</item>
+        <item>3.8</item>
+        <item>8.0</item>
+        <item>2.5</item>
+        <item>4.0</item>
+        <item>2.0</item>
+
+    </string-array>
+
+    <string-array name="days_of_weak">
+        <item>রবি</item>
+        <item>সোম</item>
+        <item>মঙ্গল</item>
+        <item>বুধ</item>
+        <item>বৃহস্পতি</item>
+        <item>শুক্র</item>
+        <item>শনি</item>
+    </string-array>
+
+    <string-array name="exercise_duration">
+        <item>৫ মিনিট</item>
+        <item>১০ মিনিট</item>
+        <item>১৫ মিনিট</item>
+        <item>২০ মিনিট</item>
+        <item>২৫ মিনিট</item>
+        <item>৩০ মিনিট</item>
+        <item>৪০ মিনিট</item>
+        <item>৪৫ মিনিট</item>
+        <item>৫০ মিনিট</item>
+        <item>৬০ মিনিট</item>
+        <item>৭৫ মিনিট</item>
+        <item>৯০ মিনিট</item>
 
     </string-array>
 

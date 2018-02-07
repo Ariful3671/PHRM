@@ -242,7 +242,7 @@ public class ProfileActivity extends AppCompatActivity implements DatePickerDial
                         mview=getLayoutInflater().inflate(R.layout.dialog_activity_level,null);
                         final RadioGroup RGA=(RadioGroup)mview.findViewById(R.id.RG_activity);
                         builder.setView(mview);
-                        builder.setMessage("Select your gender")
+                        builder.setMessage("Select your activity level")
                                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int which) {
                                         int id=RGA.getCheckedRadioButtonId();

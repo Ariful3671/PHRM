@@ -56,7 +56,7 @@
     </string-array>
 
     <string-array name="grid_daily_routine_button">
-        <item>Create</item>
+        <item>Manage</item>
         <item>Update</item>
     </string-array>
 
@@ -143,6 +143,59 @@
         <item>Goat</item>
         <item>milk</item>
         <item>Egg</item>
+
+    </string-array>
+
+    <string-array name="exercise_met">
+        <item>3.0</item>
+        <item>3.5</item>
+        <item>4.0</item>
+        <item>7.0</item>
+        <item>8.0</item>
+        <item>8.5</item>
+        <item>11.0</item>
+        <item>13.0</item>
+        <item>14.0</item>
+        <item>6.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>8.0</item>
+        <item>10.0</item>
+        <item>11.0</item>
+        <item>8.8</item>
+        <item>11.8</item>
+        <item>12.3</item>
+        <item>3.8</item>
+        <item>8.0</item>
+        <item>2.5</item>
+        <item>4.0</item>
+        <item>2.0</item>
+
+    </string-array>
+
+    <string-array name="days_of_weak">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+
+    <string-array name="exercise_duration">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>20 minutes</item>
+        <item>25 minutes</item>
+        <item>30 minutes</item>
+        <item>40 minutes</item>
+        <item>45 minutes</item>
+        <item>50 minutes</item>
+        <item>60 minutes</item>
+        <item>75 minutes</item>
+        <item>90 minutes</item>
 
     </string-array>
 
