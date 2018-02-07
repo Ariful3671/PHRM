@@ -278,8 +278,8 @@ public class MedicationActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent=new Intent(MedicationActivity.this,CreatMedicationPlanActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        finish();
                         startActivity(intent);
+                        finish();
                     }
                 }
         );
