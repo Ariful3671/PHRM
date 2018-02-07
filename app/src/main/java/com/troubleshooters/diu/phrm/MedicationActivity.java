@@ -55,6 +55,7 @@ public class MedicationActivity extends AppCompatActivity {
         medicin_details=new ArrayList<>();
 
 
+
         networkChecker=new NetworkChecker(MedicationActivity.this);
         progressBar=(ProgressBar)findViewById(R.id.progressbar_medication);
         recyclerView=(RecyclerView)findViewById(R.id.recycler_view_medication);
@@ -269,15 +270,6 @@ public class MedicationActivity extends AppCompatActivity {
             );
         }
 
-
-
-
-
-
-
-
-
-
         //Move to add plan activity
         addPlan=(Button)findViewById(R.id.addPlan);
         addPlan.setOnClickListener(
@@ -285,11 +277,14 @@ public class MedicationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent=new Intent(MedicationActivity.this,CreatMedicationPlanActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
+                        finish();
                     }
                 }
         );
 
 
     }
+
 }
