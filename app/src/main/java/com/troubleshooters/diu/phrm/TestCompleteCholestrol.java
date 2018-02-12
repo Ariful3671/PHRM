@@ -112,19 +112,19 @@ public class TestCompleteCholestrol extends AppCompatActivity {
                     if(!inputTriglycerides.equals("")){
                         float triglyceridesVal = Float.parseFloat(inputTriglycerides);
                         if(triglyceridesVal>=10&&triglyceridesVal<=100){
-                            result+="triglycerides level is Normal.\n";
+                            result+="Triglycerides level is Normal.\n";
                         }
                         else if(triglyceridesVal>=101&&triglyceridesVal<=150){
-                            result+="triglycerides level is Little High.\n";
+                            result+="Triglycerides level is Little High.\n";
                         }
                         else if(triglyceridesVal<10){
-                            result+="triglycerides level is Low.\n";
+                            result+="Triglycerides level is Low.\n";
                         }
                         else if(triglyceridesVal>150){
-                            result+="triglycerides level is High.\n";
+                            result+="Triglycerides level is High.\n";
                         }
                         else{
-                            result+="Abnormal triglycerides data!\n";
+                            result+="Abnormal Triglycerides data!\n";
                         }
                     }
                     analysisResult.setText(result);
