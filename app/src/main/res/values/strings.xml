@@ -226,4 +226,67 @@
         <item>90 minutes</item>
 
     </string-array>
+
+    //test list
+    <string-array name="test_list">
+        <item>Serum Creatinine Test</item>
+        <item>Bilirubin Blood Test</item>
+        <item>Complete Cholesterol Test (Lipid Panel / Lipid Profile)</item>
+        <item>ALT / SGPT (Blood)</item>
+        <item>AST / SGOT</item>
+        <item>Uric acid test</item>
+        <item>ESR</item>
+        <item>Urine Routine Examination</item>
+        <item>CBC (Complete Blood Count)</item>
+        <item></item>
+    </string-array>
+
+    //Serum Creatinine
+    <string name="test_serum_purpose">
+        A creatinine blood test measures the level of creatinine in the blood.It helps to determine kidney diseases and provides doctor with information about how the kidneys are working.
+    </string>
+    <string name="test_serum_range">
+        i.	Male: From 0.7 to 1.3 mg/dL\nii.	Female: From 0.6 to 1.1 mg/dL
+    </string>
+    <string name="test_Serum_effect">
+        i.	A blocked urinary tract\n
+        ii.	A high-protein diet\n
+        iii.	Dehydration\n
+        iv.	Kidney problems, such as kidney damage or infection\n
+        v.	Reduced blood flow to the kidneys due to shock, congestive heart failure, or complications of diabetes
+    </string>
+
+    //Bilirubin
+    <string name="test_bilirubin_purpose">
+        Helps to determine the cause of Jaundice, also helps diagnose conditions like liver disease, hemolytic anemia, and blocked bile ducts.
+    </string>
+    <string name="test_bilirubin_range">
+        i.	Direct bilirubin: 0 to 0.4 mg/DL (milligrams per deciliter)\nii.	Total bilirubin: 0.3 to 1.0 mg/DL (milligrams per deciliter)
+
+    </string>
+    <string name="test_bilirubin_effect">
+        Causes of abnormal bilirubin level: High bilirubin level may be due to,\n
+            i.	Jaundice.\n
+            ii.	Problems with the liver.\n
+            iii.Problems with Bile ducts.\n
+            iv.	Problems with Gallbladder.
+
+    </string>
+
+    //Complete cholesterol
+    <string name="test_complete_cholesterol_purpose">
+        A complete cholesterol test helps doctor to measure the amount of “good” and “bad” cholesterol and triglycerides, a type of fat, in patient’s blood. It helps to determine possibilities of,\n
+        i.	Heart disease\n
+        ii.	Stroke\n
+        iii.	Atherosclerosis, a clogging or hardening of your arteries
+
+    </string>
+    <string name="test_complete_cholesterol_range">
+        i.	LDL (Low-density lipoprotein): 70 to 130 mg/dL (the lower the number, the better)\n
+        ii.	HDL (High-density lipoprotein): more than 40 to 60 mg/dL (the higher the number, the better)\n
+        iii.	total cholesterol: less than 200 mg/dL (the lower the number, the better)\n
+        iv.	triglycerides: 10 to 150 mg/dL (the lower the number, the better)
+    </string>
+
+
 </resources>

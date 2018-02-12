@@ -349,7 +349,7 @@ public class HomeActivity extends AppCompatActivity {
                         }
                         if(position==2)
                         {
-                            intent=new Intent(HomeActivity.this,ManageItemActivity.class);
+                            intent=new Intent(HomeActivity.this,TestAnalysisActivity.class);
                             startActivity(intent);
                         }
                     }

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.troubleshooters.diu.phrm.TestSerumCreatinine">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:text="Serum Creatinine Test"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/analyse_serum"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:background="#84be67"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:text="Analyse Test Data"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/serum_creatinine_analysis"
+            android:orientation="vertical"
+            android:padding="2dp"
+            android:layout_marginTop="6dp"
+            >
+            <RadioGroup
+                android:id="@+id/RG_gender"
+                android:layout_width="270dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:orientation="horizontal"
+                >
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/RG_image_view_male"
+                    android:src="@drawable/ic_gender_male"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"/>
+                <RadioButton
+                    android:id="@+id/RB_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"/>
+                <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/RG_image_view_female"
+                    android:src="@drawable/ic_gender_female"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"/>
+                <RadioButton
+                    android:id="@+id/RB_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"/>
+            </RadioGroup>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextSerumInput"
+                android:inputType="numberDecimal"
+                android:hint="Enter test result: (mg/dL)"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView_result"
+                android:textAlignment="center"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:textSize="16sp"
+                android:visibility="gone"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_serum_analyse"
+                android:background="#89eda7"
+                android:text="Analyze"
+                android:textSize="18dp"
+                android:padding="6dp"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Purpose:"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/test_serum_purpose"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Normal Range (Adults):"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/test_serum_range"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="Cause of  higher creatinine level:"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/test_Serum_effect"/>
+
+    </LinearLayout>
+
+</ScrollView>

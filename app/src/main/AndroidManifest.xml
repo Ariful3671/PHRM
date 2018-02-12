@@ -87,8 +87,18 @@
         <activity
             android:name=".AddExerciseActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Pedometer" />
-        <activity android:name=".StartExerciseActivity"></activity>
+        <activity
+            android:name=".Pedometer"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".StartExerciseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestAnalysisActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TestSerumCreatinine" />
+        <activity android:name=".TestBilirubin" />
+        <activity android:name=".TestCompleteCholestrol"></activity>
     </application>
 
 </manifest>

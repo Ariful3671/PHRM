@@ -44,7 +44,6 @@ public class StartExerciseActivity extends AppCompatActivity {
         addBtn = (Button)findViewById(R.id.exercise_add_btn);
         weightVal = Double.parseDouble(getIntent().getStringExtra("weight"));
         metVal = Double.parseDouble(getIntent().getStringExtra("met"));
-        Toast.makeText(this, metVal.toString()+"//"+weightVal.toString(), Toast.LENGTH_LONG).show();
         progressTemp=0;
         sharedPreferencesExercise = getSharedPreferences("exercise", Context.MODE_PRIVATE);
         sPExerciseEditor = sharedPreferencesExercise.edit();

@@ -51,8 +51,8 @@
 
     <string-array name="grid_test_record">
         <item>Blood Pressure</item>
-        <item>Blood Volume</item>
-        <item>BMI</item>
+        <item>Glucose</item>
+        <item>More Items</item>
     </string-array>
 
     <string-array name="grid_daily_routine_button">
@@ -61,9 +61,9 @@
     </string-array>
 
     <string-array name="grid_test_record_button">
-        <item>Calculate</item>
-        <item>Calculate</item>
-        <item>Calculate</item>
+        <item>Update</item>
+        <item>Update</item>
+        <item>Update</item>
     </string-array>
 
     //nutrition
