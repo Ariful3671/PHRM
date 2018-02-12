@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/list_view_calorie_background"
-        android:text="BLOOD VOLUME CALCULATOR"
+        android:text="BLOOD GLUCOSE CALCULATOR"
         android:textSize="22sp"
         android:textStyle="bold"
         android:gravity="center"

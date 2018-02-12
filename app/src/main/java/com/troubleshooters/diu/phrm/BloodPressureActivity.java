@@ -56,7 +56,7 @@ public class BloodPressureActivity extends AppCompatActivity {
                                         }
                                     }).show();
                         }
-                        else if((up_pressure>=90&&up_pressure<=120)&&(down_pressure>=60&&down_pressure<=80))
+                        else if((up_pressure>=90&&up_pressure<=120)&&(down_pressure>=60&&down_pressure<=90))
                         {
                             android.support.v7.app.AlertDialog.Builder builder;
                             builder = new android.support.v7.app.AlertDialog.Builder(BloodPressureActivity.this, R.style.CustomDialogTheme);

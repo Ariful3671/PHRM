@@ -80,6 +80,14 @@
         android:textColor="#FFF"
         android:background="@drawable/medication_creat_plan_button"/>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bplevel2"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="30dp"
+        />
+
 
 
 

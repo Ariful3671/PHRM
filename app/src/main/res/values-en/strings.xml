@@ -61,9 +61,9 @@
     </string-array>
 
     <string-array name="grid_test_record_button">
-        <item>Update</item>
-        <item>Update</item>
-        <item>Update</item>
+        <item>Measure</item>
+        <item>Measure</item>
+        <item>Measure</item>
     </string-array>
 
     //nutrition

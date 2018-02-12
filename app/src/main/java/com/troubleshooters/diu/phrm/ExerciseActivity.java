@@ -689,7 +689,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
         barEntries.add(new BarEntry(0,sharedPreferencesExercise.getFloat("Sun", 1135.0f)));
         barEntries.add(new BarEntry(1,sharedPreferencesExercise.getFloat("Mon", 745.0f)));
         barEntries.add(new BarEntry(2,sharedPreferencesExercise.getFloat("Tue", 982.0f)));
-        barEntries.add(new BarEntry(3,sharedPreferencesExercise.getFloat("Wed", 280.0f)));
+        barEntries.add(new BarEntry(3,sharedPreferencesExercise.getFloat("Wed", 0.0f)));
         barEntries.add(new BarEntry(4,sharedPreferencesExercise.getFloat("Thu", 0.0f)));
         barEntries.add(new BarEntry(5,sharedPreferencesExercise.getFloat("Fri", 0.0f)));
         barEntries.add(new BarEntry(6,sharedPreferencesExercise.getFloat("Sat", 0.0f)));
