@@ -51,6 +51,7 @@ public class EditMedication extends AppCompatActivity {
                         final String newText=medicines.getText().toString();
                         if(newText.equals(getIntent().getStringExtra("medInfo")))
                         {
+                            MedicationActivity.medication.finish();
                             Intent intent=new Intent(EditMedication.this,MedicationActivity.class);
                             startActivity(intent);
                             finish();
@@ -71,6 +72,7 @@ public class EditMedication extends AppCompatActivity {
                                                 {
                                                     DatabaseReference ref=database.getReference("medication reminder").child(sharedPreferences.getString("userid","")).child(snapshot.getKey());
                                                     ref.child("medicinesname").setValue(newText);
+                                                    MedicationActivity.medication.finish();
                                                     Intent intent=new Intent(EditMedication.this,MedicationActivity.class);
                                                     startActivity(intent);
                                                     finish();
@@ -114,6 +116,7 @@ public class EditMedication extends AppCompatActivity {
                                                     PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),NID,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                                                     AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                                                     alarmManager.cancel(pendingIntent);
+                                                    MedicationActivity.medication.finish();
                                                     Intent intent1=new Intent(EditMedication.this,MedicationActivity.class);
                                                     startActivity(intent1);
                                                     finish();
@@ -160,6 +163,7 @@ public class EditMedication extends AppCompatActivity {
                                             }
                                         }
                                 );
+                            MedicationActivity.medication.finish();
                             Intent intent1=new Intent(EditMedication.this,MedicationActivity.class);
                             startActivity(intent1);
                             finish();

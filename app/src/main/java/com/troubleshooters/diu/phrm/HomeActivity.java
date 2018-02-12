@@ -267,15 +267,13 @@ public class HomeActivity extends AppCompatActivity {
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Intent intent;
                         switch (item.getItemId()) {
                             case R.id.bottom_navigation_home:
                                 break;
-
                                 case R.id.bottom_navigation_notification:
-                                intent=new Intent(HomeActivity.this,NotificationActivity.class);
-                                startActivity(intent);
-                                break;
+                                    Intent intent=new Intent(HomeActivity.this,NotificationActivity.class);
+                                    startActivity(intent);
+                                    break;
 
                             /*case R.id.bottom_navigation_report:
                                 intent=new Intent(HomeActivity.this,ReportActivity.class);

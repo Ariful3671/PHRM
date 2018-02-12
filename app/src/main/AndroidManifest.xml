@@ -96,6 +96,9 @@
         <activity
             android:name=".TestAnalysisActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ActivityGenerateReminder"
+            android:screenOrientation="portrait" />
         <activity android:name=".TestSerumCreatinine" />
         <activity android:name=".TestBilirubin" />
         <activity android:name=".TestCompleteCholestrol"></activity>

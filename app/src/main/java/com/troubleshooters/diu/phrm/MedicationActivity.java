@@ -1,5 +1,6 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -44,6 +45,7 @@ public class MedicationActivity extends AppCompatActivity {
     List<Model_medicin_details> medicin_details;
     NetworkChecker networkChecker;
     TextView loading,empty;
+    public static Activity medication;
 
 
 
@@ -53,6 +55,7 @@ public class MedicationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medication);
         setTitle(getString(R.string.medication_plan_title));
         medicin_details=new ArrayList<>();
+        medication=this;
 
 
 
@@ -277,9 +280,7 @@ public class MedicationActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent=new Intent(MedicationActivity.this,CreatMedicationPlanActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
-                        finish();
                     }
                 }
         );

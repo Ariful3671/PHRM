@@ -1,5 +1,6 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -44,12 +45,16 @@ public class NotificationActivity extends AppCompatActivity {
     ProgressBar progressBar;
     RecyclerView recyclerView;
     List<ModelReminder> reminderList;
+    public static Activity notification;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         setTitle("Reminders");
+        notification=this;
         noreminder=(TextView)findViewById(R.id.noreminder_reminder);
         loading=(TextView)findViewById(R.id.loading_reminder);
         progressBar=(ProgressBar)findViewById(R.id.progressbar_reminder);
@@ -131,10 +136,10 @@ public class NotificationActivity extends AppCompatActivity {
         int id = item.getItemId();
         if(id==R.id.item_reminder)
         {
-            Intent intent=new Intent(this,CreatReminder.class);
-            startActivity(intent);
-            return true;
+
+            Intent intent1=new Intent(NotificationActivity.this,ActivityGenerateReminder.class);
+            startActivity(intent1);
         }
-        return true;
+        return false;
     }
 }
