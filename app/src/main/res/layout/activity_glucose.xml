@@ -22,27 +22,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:drawableLeft="@drawable/ic_weight"
-        android:hint="Weight(kg)"
+        android:hint="Glucose level (mmol/L)"
         android:padding="5dp"
         android:layout_below="@+id/heading"
         android:background="@drawable/edittext_rectangle_round_corner"/>
-    <EditText
-        android:id="@+id/height"
+    <TextView
+        android:id="@+id/fasting_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fasting Status"
+        android:layout_margin="5dp"
+        android:layout_below="@id/weight"/>
+    <Spinner
+        android:id="@+id/spinner_select_fasting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:drawableLeft="@drawable/ic_height"
-        android:hint="Height(cm)"
-        android:padding="5dp"
-        android:layout_below="@+id/weight"
-        android:background="@drawable/edittext_rectangle_round_corner"/>
+        android:layout_below="@+id/fasting_status"></Spinner>
+    <TextView
+        android:id="@+id/diabetic_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Diabatic Status"
+        android:layout_margin="5dp"
+        android:layout_below="@id/spinner_select_fasting"/>
+    <Spinner
+        android:id="@+id/spinner_select_diabatics_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_below="@+id/diabetic_status"></Spinner>
+
 
     <RadioGroup
         android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/height"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/spinner_select_diabatics_status"
         >
         <RadioButton
             android:id="@+id/m"
