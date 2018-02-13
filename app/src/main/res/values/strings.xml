@@ -237,8 +237,8 @@
         <item>Uric acid test</item>
         <item>ESR</item>
         <item>Urine Routine Examination</item>
+        <item>ECG</item>
         <item>CBC (Complete Blood Count)</item>
-        <item></item>
     </string-array>
 
     //Serum Creatinine
@@ -286,6 +286,48 @@
         ii.	HDL (High-density lipoprotein): more than 40 to 60 mg/dL (the higher the number, the better)\n
         iii.	total cholesterol: less than 200 mg/dL (the lower the number, the better)\n
         iv.	triglycerides: 10 to 150 mg/dL (the lower the number, the better)
+    </string>
+
+    //ALT or SGPT
+    <string name="test_alt_sgpt_purpose">
+        The ALT or SGPT test is usually used to determine whether the patient has liver injury or failure.
+    </string>
+    <string name="test_alt_sgpt_range">
+        Normal value of ALT test: The normal value for ALT in blood is between 7 and 55 units per liter.
+
+    </string>
+    <string name="test_alt_sgpt_effect">
+        Higher-than-normal levels of ALT can indicate liver damage. Increased levels of ALT may be a result of:\n
+        i.	hepatitis, which is an inflammatory condition of the liver\n
+        ii.	cirrhosis, which is severe scarring of the liver\n
+        iii.	death of liver tissue\n
+        iv.	a tumor or cancer in the liver\n
+        v.	a lack of blood flow to the liver\n
+        vi.	hemochromatosis, which is a disorder that causes iron to build up in the body\n
+        vii.	mononucleosis, which is an infection usually caused by the Epstein-Barr virus\n
+        viii.	pancreatitis, which is an inflammation of the pancreas
+
+
+    </string>
+
+    //AST or SGOT
+    <string name="test_ast_sgot_purpose">
+        AST test is commonly performed to check for liver diseases, such as hepatitis. It’s usually measured together with alanine aminotransferase (ALT). The AST-to-ALT ratio can help your doctor diagnose liver disease. This ratio can determine if there’s been damage to your liver as opposed to damage to your heart or muscles.
+    </string>
+    <string name="test_ast_sgot_range">
+        Typically the range for normal AST is reported between 10 to 40 units per liter.
+    </string>
+
+    //Uric Acid
+    <string name="test_uric_acid_purpose">
+        A uric acid blood test, also known as a serum uric acid measurement, determines how much uric acid is present in your blood. The test can help determine how well your body produces and removes uric acid.
+    </string>
+    <string name="test_uric_acid_range">
+        Uric acid levels can vary based on sex. Normal values for women are 2.5 to 7.5 milligrams/deciliter (mg/dL) and for men 4.0 to 8.5 mg/dL. However, the values may vary based on the lab doing the testing.
+
+    </string>
+    <string name="test_uric_acid_effect">
+        According to the American College of Rheumatology (ACR), your target level if you have gout is a blood uric acid level of less than 6.0 mg/dL. Low levels of uric acid are less common than high levels and are less of a health concern.
     </string>
 
 

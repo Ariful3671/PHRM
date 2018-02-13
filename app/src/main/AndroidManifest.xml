@@ -98,7 +98,10 @@
             android:screenOrientation="portrait" />
         <activity android:name=".TestSerumCreatinine" />
         <activity android:name=".TestBilirubin" />
-        <activity android:name=".TestCompleteCholestrol"></activity>
+        <activity android:name=".TestCompleteCholestrol" />
+        <activity android:name=".TestAltSgpt" />
+        <activity android:name=".TestAstSgot" />
+        <activity android:name=".TestUricAcid"></activity>
     </application>
 
 </manifest>
