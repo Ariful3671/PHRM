@@ -1,5 +1,6 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -44,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
     GridView grid_test_records;
     Animation fade_in,fade_out;
     BottomNavigationView bottomNavigationView;
+    public static Activity home;
 
 
     @Override
@@ -55,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        home=this;
 
         //Initialization for Test record and health plan adapter
         String grid_daily_routin_text[]=getResources().getStringArray(R.array.grid_daily_routine);
@@ -267,15 +270,13 @@ public class HomeActivity extends AppCompatActivity {
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        Intent intent;
                         switch (item.getItemId()) {
                             case R.id.bottom_navigation_home:
                                 break;
-
                                 case R.id.bottom_navigation_notification:
-                                intent=new Intent(HomeActivity.this,NotificationActivity.class);
-                                startActivity(intent);
-                                break;
+                                    Intent intent=new Intent(HomeActivity.this,NotificationActivity.class);
+                                    startActivity(intent);
+                                    break;
 
                             /*case R.id.bottom_navigation_report:
                                 intent=new Intent(HomeActivity.this,ReportActivity.class);

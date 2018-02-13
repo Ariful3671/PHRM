@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -29,32 +28,34 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreatReminder extends AppCompatActivity{
+public class ActivityGenerateReminder extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener ,DatePickerDialog.OnDateSetListener{
 
 
-    /*String[] timeanddate={"Time","Date"};
+
+    String[] timeanddate={"Time","Date"};
     String[] details={"Set time","Set date"};
     int right_arrow[]={R.drawable.ic_action_right_arrow};
     int hour,minute,day,month,year;
 
     EditText reminderInfo;
     ListView listView;
-    Button creat;*/
+    Button creat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_creat_reminder);
+        setContentView(R.layout.activity_generate_reminder);
 
 
-        /*reminderInfo=(EditText)findViewById(R.id.edit_text_redimder_info);
+
+        reminderInfo=(EditText)findViewById(R.id.edit_text_redimder_info);
         listView=(ListView)findViewById(R.id.listview_reminder);
-        creat=(Button)findViewById(R.id.button_create_reminder);*/
+        creat=(Button)findViewById(R.id.button_create_reminder);
 
 
-        /*SharedPreferences sharedPreferences_time=getSharedPreferences("remindertime",Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences_time=getSharedPreferences("remindertime", Context.MODE_PRIVATE);
         sharedPreferences_time.edit().clear().commit();
-        ReminderAdapter adapter=new ReminderAdapter(timeanddate,details,right_arrow,CreatReminder.this);
+        ReminderAdapter adapter=new ReminderAdapter(timeanddate,details,right_arrow,ActivityGenerateReminder.this);
         listView.setAdapter(adapter);
 
 
@@ -69,7 +70,7 @@ public class CreatReminder extends AppCompatActivity{
                                 Calendar c=Calendar.getInstance();
                                 hour=c.get(Calendar.HOUR_OF_DAY);
                                 minute=c.get(Calendar.MINUTE);
-                                TimePickerDialog timePickerDialog=new TimePickerDialog(CreatReminder.this,reminder_time,hour,minute,true);
+                                TimePickerDialog timePickerDialog=new TimePickerDialog(ActivityGenerateReminder.this,reminder_time,hour,minute,true);
                                 timePickerDialog.show();
                                 break;
                             case 1:
@@ -97,7 +98,7 @@ public class CreatReminder extends AppCompatActivity{
                     @Override
                     public void onClick(View v) {
 
-                        NetworkChecker networkChecker =new NetworkChecker(CreatReminder.this);
+                        NetworkChecker networkChecker =new NetworkChecker(ActivityGenerateReminder.this);
                         if(networkChecker.isConnected())
                         {
                             SharedPreferences sharedPreferences = getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
@@ -140,22 +141,25 @@ public class CreatReminder extends AppCompatActivity{
                             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
                             alarmManager.set(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),pendingIntent);
 
-                            Intent intent1=new Intent(CreatReminder.this,NotificationActivity.class);
+                            NotificationActivity.notification.finish();
+                            Intent intent1=new Intent(ActivityGenerateReminder.this,NotificationActivity.class);
                             startActivity(intent1);
                             finish();
 
                         }
                         else {
-                            Toast.makeText(CreatReminder.this, "Please turn on your internet connection", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ActivityGenerateReminder.this, "Please turn on your internet connection", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 }
-        );*/
+        );
+
+
+
     }
 
-
-    /*TimePickerDialog.OnTimeSetListener reminder_time=new TimePickerDialog.OnTimeSetListener() {
+    TimePickerDialog.OnTimeSetListener reminder_time=new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minutes) {
 
@@ -168,21 +172,12 @@ public class CreatReminder extends AppCompatActivity{
             editor_time.putString("minute",String.valueOf(minute));
             editor_time.commit();
 
-            ReminderAdapter adapter=new ReminderAdapter(timeanddate,details,right_arrow,CreatReminder.this);
+            ReminderAdapter adapter=new ReminderAdapter(timeanddate,details,right_arrow,ActivityGenerateReminder.this);
             listView.setAdapter(adapter);
         }
-    };*/
+    };
 
-
-
-
-
-
-
-
-
-    //Default method for date picker
-    /*@Override
+    @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
         SharedPreferences sharedPreferences_time=getSharedPreferences("remindertime",Context.MODE_PRIVATE);
@@ -195,7 +190,7 @@ public class CreatReminder extends AppCompatActivity{
         editor_time.putString("year",String.valueOf(year));
         editor_time.commit();
 
-        ReminderAdapter adapter=new ReminderAdapter(timeanddate,details,right_arrow,CreatReminder.this);
+        ReminderAdapter adapter=new ReminderAdapter(timeanddate,details,right_arrow,ActivityGenerateReminder.this);
         listView.setAdapter(adapter);
 
     }
@@ -203,5 +198,5 @@ public class CreatReminder extends AppCompatActivity{
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-    }*/
+    }
 }

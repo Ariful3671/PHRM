@@ -2,6 +2,7 @@ package com.troubleshooters.diu.phrm;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.support.v7.app.AlertDialog;
@@ -103,13 +104,23 @@ public class SettingsActivity extends AppCompatActivity {
                                     {
                                         Paper.book().write("language", "en");
                                         updateView((String)Paper.book().read("language"));
+                                        finish();
+                                        overridePendingTransition( 0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition( 0, 0);
+                                        HomeActivity.home.finish();
                                     }
                                     if(id==R.id.RB_Bangla)
                                     {
                                         Paper.book().write("language", "bn");
                                         updateView((String)Paper.book().read("language"));
+                                        finish();
+                                        overridePendingTransition( 0, 0);
+                                        startActivity(getIntent());
+                                        overridePendingTransition( 0, 0);
+                                        HomeActivity.home.finish();
                                     }
-                                    Toast.makeText(SettingsActivity.this, "Please restart the app!", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(SettingsActivity.this, "Please restart the app!", Toast.LENGTH_LONG).show();
                                     }
                                 })
                                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -129,6 +140,12 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent(SettingsActivity.this,HomeActivity.class);
+        startActivity(intent);
     }
 
     private void updateView(String lang) {

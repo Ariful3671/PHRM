@@ -169,8 +169,9 @@ public class AddMealActivity extends AppCompatActivity {
                                 value=0.0f;
                             }
 
-                            //Intent intent=new Intent(AddMealActivity.this,NutritionActivity.class);
-                            //startActivity(intent);
+                            NutritionActivity.nutrition.finish();
+                            Intent intent=new Intent(AddMealActivity.this,NutritionActivity.class);
+                            startActivity(intent);
                             finish();
 
                         }

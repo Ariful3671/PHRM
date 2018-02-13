@@ -1,5 +1,6 @@
 package com.troubleshooters.diu.phrm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
@@ -53,6 +54,7 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
 
     int hour,munite;
     Double necessary_calorie;
+    public static  Activity nutrition;
 
 
 
@@ -61,6 +63,8 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nutrition);
         setTitle(getString(R.string.nutration_plan_title));
+        nutrition=this;
+
 
         final String[] nutrition_name=getResources().getStringArray(R.array.nutrition_items);
         final String[] gain_nutrition=getResources().getStringArray(R.array.gained_and_necessary_nutrition);
@@ -520,7 +524,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
             calendar.setTime(date);
             currentTime.setTime(date);
             calendar.set(Calendar.HOUR_OF_DAY ,hourOfDay);
-            Toast.makeText(NutritionActivity.this, String.valueOf(hourOfDay), Toast.LENGTH_SHORT).show();
             calendar.set(Calendar.MINUTE,minute);
             if(calendar.before(currentTime))
             {

@@ -306,7 +306,7 @@ public class CreatMedicationPlanActivity extends AppCompatActivity implements Ti
 
 
 
-
+                                MedicationActivity.medication.finish();
                                 Intent intent1=new Intent(CreatMedicationPlanActivity.this,MedicationActivity.class);
                                 startActivity(intent1);
                                 finish();
