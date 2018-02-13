@@ -49,11 +49,11 @@ public class TestAnalysisActivity extends AppCompatActivity {
                                 startActivity(intentCholesterol);
                                 break;
                             case 3:
-                                Intent intentAltSgpt = new Intent(TestAnalysisActivity.this,TestAltSgpt.class);
+                                Intent intentAltSgpt = new Intent(TestAnalysisActivity.this,TestAstSgot.class);
                                 startActivity(intentAltSgpt);
                                 break;
                             case 4:
-                                Intent intentAstSgot = new Intent(TestAnalysisActivity.this,TestAstSgot.class);
+                                Intent intentAstSgot = new Intent(TestAnalysisActivity.this,TestAltSgpt.class);
                                 startActivity(intentAstSgot);
                                 break;
                         }
