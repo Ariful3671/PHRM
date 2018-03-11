@@ -22,6 +22,7 @@ public class StartExerciseActivity extends AppCompatActivity {
 
     ProgressBar runningExerciseProgress;
     TextView runningExerciseTimer;
+    TextView exerciseDetails;
     Button startExerciseBtn, addBtn;
     int timerDuration, durationTemp;
     int h, m, s;
@@ -40,6 +41,7 @@ public class StartExerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_exercise);
         runningExerciseProgress = (ProgressBar)findViewById(R.id.start_exercise_progressbar);
         runningExerciseTimer = (TextView)findViewById(R.id.tv_exercise_timer);
+        exerciseDetails = (TextView)findViewById(R.id.exercise_details);
         startExerciseBtn = (Button)findViewById(R.id.exercise_timer_button);
         addBtn = (Button)findViewById(R.id.exercise_add_btn);
         weightVal = Double.parseDouble(getIntent().getStringExtra("weight"));
@@ -49,6 +51,7 @@ public class StartExerciseActivity extends AppCompatActivity {
         sPExerciseEditor = sharedPreferencesExercise.edit();
         h=0; m=0; s=1;
         final int duration = sharedPreferencesExercise.getInt("exercise_duration", 0);
+        exerciseDetails.setText(getIntent().getStringExtra("exerciseDetail"));
 
         timerDuration = duration*60;
         durationTemp=timerDuration;

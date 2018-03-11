@@ -52,7 +52,7 @@ public class GlucoseActivity extends AppCompatActivity {
                             diabaticsStatus=diabatics.getSelectedItem().toString();
                             if(fasting.getSelectedItem().toString().equals("Fasting"))
                             {
-                                Toast
+
                                 if (diabatics.getSelectedItem().toString().equals("With Diabatics"))
                                 {
                                     if(glucouse>=4.4||glucouse<=7.2)

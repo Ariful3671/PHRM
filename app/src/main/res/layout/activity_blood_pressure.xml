@@ -36,6 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Systolic Blood Pressure"
+            android:inputType="numberDecimal"
             android:padding="5dp"
             android:layout_margin="5dp"
             android:background="@drawable/edittext_rectangle_round_corner" />
@@ -59,7 +60,7 @@
             android:id="@+id/diastolic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:layout_margin="5dp"
             android:padding="5dp"
             android:hint="Diastolic Blood Pressure"

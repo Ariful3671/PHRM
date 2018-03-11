@@ -237,8 +237,6 @@
         <item>Uric acid test</item>
         <item>ESR</item>
         <item>Urine Routine Examination</item>
-        <item>ECG</item>
-        <item>CBC (Complete Blood Count)</item>
     </string-array>
 
     //Serum Creatinine
@@ -253,7 +251,7 @@
         ii.	A high-protein diet\n
         iii.	Dehydration\n
         iv.	Kidney problems, such as kidney damage or infection\n
-        v.	Reduced blood flow to the kidneys due to shock, congestive heart failure, or complications of diabetes
+        v.	Reduced blood flow to the kidneys due to shock, congestive heart failure, or complications of diabetes\n
     </string>
 
     //Bilirubin
@@ -269,7 +267,7 @@
             i.	Jaundice.\n
             ii.	Problems with the liver.\n
             iii.Problems with Bile ducts.\n
-            iv.	Problems with Gallbladder.
+            iv.	Problems with Gallbladder.\n
 
     </string>
 
@@ -278,14 +276,14 @@
         A complete cholesterol test helps doctor to measure the amount of “good” and “bad” cholesterol and triglycerides, a type of fat, in patient’s blood. It helps to determine possibilities of,\n
         i.	Heart disease\n
         ii.	Stroke\n
-        iii.	Atherosclerosis, a clogging or hardening of your arteries
+        iii. Atherosclerosis, a clogging or hardening of your arteries
 
     </string>
     <string name="test_complete_cholesterol_range">
         i.	LDL (Low-density lipoprotein): 70 to 130 mg/dL (the lower the number, the better)\n
         ii.	HDL (High-density lipoprotein): more than 40 to 60 mg/dL (the higher the number, the better)\n
-        iii.	total cholesterol: less than 200 mg/dL (the lower the number, the better)\n
-        iv.	triglycerides: 10 to 150 mg/dL (the lower the number, the better)
+        iii. total cholesterol: less than 200 mg/dL (the lower the number, the better)\n
+        iv.	triglycerides: 10 to 150 mg/dL (the lower the number, the better)\n
     </string>
 
     //ALT or SGPT
@@ -305,7 +303,7 @@
         v.	a lack of blood flow to the liver\n
         vi.	hemochromatosis, which is a disorder that causes iron to build up in the body\n
         vii.	mononucleosis, which is an infection usually caused by the Epstein-Barr virus\n
-        viii.	pancreatitis, which is an inflammation of the pancreas
+        viii.	pancreatitis, which is an inflammation of the pancreas\n
 
 
     </string>
@@ -315,7 +313,7 @@
         AST test is commonly performed to check for liver diseases, such as hepatitis. It’s usually measured together with alanine aminotransferase (ALT). The AST-to-ALT ratio can help your doctor diagnose liver disease. This ratio can determine if there’s been damage to your liver as opposed to damage to your heart or muscles.
     </string>
     <string name="test_ast_sgot_range">
-        Typically the range for normal AST is reported between 10 to 40 units per liter.
+        Typically the range for normal AST is reported between 10 to 40 units per liter.\n
     </string>
 
     //Uric Acid
@@ -327,7 +325,48 @@
 
     </string>
     <string name="test_uric_acid_effect">
-        According to the American College of Rheumatology (ACR), your target level if you have gout is a blood uric acid level of less than 6.0 mg/dL. Low levels of uric acid are less common than high levels and are less of a health concern.
+        According to the American College of Rheumatology (ACR), your target level if you have gout is a blood uric acid level of less than 6.0 mg/dL. Low levels of uric acid are less common than high levels and are less of a health concern.\n
+    </string>
+
+    //ESR
+    <string name="test_esr_purpose">
+        It is a test that helps check for the presence of a disease, infection or condition in the body that may be causing inflammation. Though, it does not directly help in diagnosing a particular condition, it helps physicians know what other tests may be needed to detect the actual problem. It’s also a way to examine how well a person is doing to a specific treatment for a disease he/she is being treated.
+    </string>
+    <string name="test_esr_range">
+        Typically, an ESR test results are measured in millimetres per hour (mm/hr). Normal range of ESR Blood Test is as follows:-\n\n
+            I.	Men below the age of 50 must have an ESR rate under 15 mm/hr.\n
+            II.	Women below the age of 50 must have an ESR rate under 20 mm/hr.\n
+            III. Men above the age of 50 must have an ESR under 20 mm/hr.\n
+            IV.	Women above the age of 50 must have an ESR under 30 mm/hr.\n
+            V.	Newborns must have an ESR under 2 mm/hr.\n
+            VI.	Children who are yet to achieve puberty must have an ESR between 2 to 13 mm/hr.\n
+    </string>
+
+    //Urine Routin Examination
+    <string name="test_urine_routine_exam_purpose">
+        Sample will be kept it in conditions where microorganisms can multiply. Normally, no more than a small number of germs will be in the urine if there is no infection. If a larger number of germs are present, the technician will use a microscope or chemical tests to determine the specific types growing in the culture.
+    </string>
+    <string name="test_urine_routine_exam_range">
+        Normal values are as follows:\n
+            >	Color – Yellow (light/pale to dark/deep amber)\n
+            >	Clarity/turbidity – Clear or cloudy\n
+            >	pH – 4.5-8\n
+            >	Specific gravity – 1.005-1.025\n
+            >	Glucose - ≤130 mg/d\n
+            >	Ketones – None\n
+            >	Nitrites – Negative\n
+            >	Leukocyte esterase – Negative\n
+            >	Bilirubin – Negative\n
+            >	Urobilirubin – Small amount (0.5-1 mg/dL)\n
+            >	Blood - ≤3 RBCs\n
+            >	Protein - ≤150 mg/d\n
+            >	RBCs - ≤2 RBCs/hpf\n
+            >	WBCs - ≤2-5 WBCs/hpf\n
+            >	Squamous epithelial cells - ≤15-20 squamous epithelial cells/hpf\n
+            >	Casts – 0-5 hyaline casts/lpf\n
+            >	Crystals – Occasionally\n
+            >	Bacteria – None\n
+            >	Yeast - None\n
     </string>
 
 

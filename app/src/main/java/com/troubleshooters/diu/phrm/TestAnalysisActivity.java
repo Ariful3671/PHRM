@@ -49,12 +49,24 @@ public class TestAnalysisActivity extends AppCompatActivity {
                                 startActivity(intentCholesterol);
                                 break;
                             case 3:
-                                Intent intentAltSgpt = new Intent(TestAnalysisActivity.this,TestAstSgot.class);
+                                Intent intentAltSgpt = new Intent(TestAnalysisActivity.this,TestAltSgpt.class);
                                 startActivity(intentAltSgpt);
                                 break;
                             case 4:
-                                Intent intentAstSgot = new Intent(TestAnalysisActivity.this,TestAltSgpt.class);
+                                Intent intentAstSgot = new Intent(TestAnalysisActivity.this,TestAstSgot.class);
                                 startActivity(intentAstSgot);
+                                break;
+                            case 5:
+                                Intent intentUricAcid = new Intent(TestAnalysisActivity.this, TestUricAcid.class);
+                                startActivity(intentUricAcid);
+                                break;
+                            case 6:
+                                Intent intentEsr = new Intent(TestAnalysisActivity.this, TestESR.class);
+                                startActivity(intentEsr);
+                                break;
+                            case 7:
+                                Intent intentUrineRoutineExam = new Intent(TestAnalysisActivity.this, TestUrineRoutineExam.class);
+                                startActivity(intentUrineRoutineExam);
                                 break;
                         }
                     }

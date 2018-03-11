@@ -114,6 +114,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                         Intent intent=new Intent(AddExerciseActivity.this,StartExerciseActivity.class);
                         intent.putExtra("weight", sharedPreferencesPI.getString("weight", ""));
                         intent.putExtra("met", exerciseMets[metPosition]);
+                        intent.putExtra("exerciseDetail",exerciseName+"\nfor "+exerciseDurn);
                         startActivity(intent);
                     }catch (Exception e){
                         Toast.makeText(AddExerciseActivity.this, e.toString(), Toast.LENGTH_SHORT).show();

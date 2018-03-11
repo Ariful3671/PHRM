@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.troubleshooters.diu.phrm.TestAstSgot">
+    tools:context="com.troubleshooters.diu.phrm.TestAltSgpt">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,13 +17,13 @@
             android:layout_gravity="center"
             android:textAlignment="center"
             android:textSize="22sp"
-            android:text="6.	ALT (Alanine Aminotransferase) or SGPT (serum glutamic-pyruvic transaminase) Blood Test"
+            android:text="AST (Aspartate Aminotransferase) or SGOT (Serum Glutamic-oxaloacetic Transaminase) Test"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/analyse_alt_sgpt"
+            android:id="@+id/analyse_ast_sgot"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:padding="8dp"
@@ -36,11 +36,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/Complete_alt_sgpt"
+            android:id="@+id/linearLayout_ast_sgot"
             android:orientation="vertical"
             android:padding="2dp"
             android:layout_marginTop="6dp"
             >
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextAstInput"
+                android:inputType="numberDecimal"
+                android:hint="Enter test result (units per liter)"
+                />
 
             <TextView
                 android:layout_width="match_parent"
@@ -55,7 +63,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_complete_alt_sgpt"
+                android:id="@+id/btn_calculate_ast_sgot"
                 android:background="#89eda7"
                 android:text="Analyze"
                 android:textSize="18dp"
@@ -77,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/test_alt_sgpt_purpose"/>
+            android:text="@string/test_ast_sgot_purpose"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -85,27 +93,13 @@
             android:layout_marginTop="14dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:text="Normal Cholesterol Level:"/>
+            android:text="Normal AST Level:"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@string/test_alt_sgpt_range"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:text="Cause of  higher ALT level:"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/test_alt_sgpt_effect"/>
+            android:text="@string/test_ast_sgot_range"/>
 
 
     </LinearLayout>
