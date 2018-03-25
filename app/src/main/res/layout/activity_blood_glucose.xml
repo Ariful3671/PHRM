@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.troubleshooters.diu.phrm.GlucoseActivity">
+    tools:context="com.troubleshooters.diu.phrm.BloodGlucoseActivity">
 
     <TextView
         android:id="@+id/heading"
@@ -18,60 +18,43 @@
         android:layout_margin="2dp"/>
 
     <EditText
-        android:id="@+id/weight"
+        android:id="@+id/glucose_fasting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="Glucose level (mmol/L)"
-        android:padding="5dp"
+        android:layout_alignStart="@+id/heading"
         android:layout_below="@+id/heading"
+        android:background="@drawable/edittext_rectangle_round_corner"
+        android:hint="Fasting (mmol/L)"
+        android:inputType="numberDecimal"
+        android:maxLength="4"
+        android:padding="5dp" />
+    <EditText
+        android:id="@+id/glucose_postfasting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="2Hrs after meal (mmol/L)"
+        android:inputType="numberDecimal"
+        android:maxLength="4"
+        android:padding="5dp"
+        android:layout_below="@+id/glucose_fasting"
         android:background="@drawable/edittext_rectangle_round_corner"/>
-    <TextView
-        android:id="@+id/fasting_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Fasting Status"
-        android:layout_margin="5dp"
-        android:layout_below="@id/weight"/>
-    <Spinner
-        android:id="@+id/spinner_select_fasting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:layout_below="@+id/fasting_status"></Spinner>
+
     <TextView
         android:id="@+id/diabetic_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Diabatic Status"
+        android:text="Diabetes Status"
         android:layout_margin="5dp"
-        android:layout_below="@id/spinner_select_fasting"/>
+        android:layout_below="@id/glucose_postfasting"/>
     <Spinner
-        android:id="@+id/spinner_select_diabatics_status"
+        android:id="@+id/spinner_select_diabetics_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layout_below="@+id/diabetic_status"></Spinner>
 
 
-    <RadioGroup
-        android:id="@+id/rg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_below="@+id/spinner_select_diabatics_status"
-        >
-        <RadioButton
-            android:id="@+id/m"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="male"/>
-        <RadioButton
-            android:id="@+id/f"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Female"/>
-    </RadioGroup>
     <Button
         android:id="@+id/cal"
         android:layout_width="match_parent"
@@ -80,6 +63,18 @@
         android:textColor="#FFF"
         android:layout_margin="2dp"
         android:background="@drawable/button_rectangle_round_corner"
-        android:layout_below="@id/rg"/>
+        android:layout_below="@id/spinner_select_diabetics_status"/>
+
+    <Button
+        android:id="@+id/add_record_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cal"
+        android:text="Add to record"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textColor="#FFF"
+        android:background="@drawable/medication_creat_plan_button"/>
 
 </RelativeLayout>

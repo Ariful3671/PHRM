@@ -375,10 +375,10 @@
         <item>Fasting</item>
         <item>2 houres after meal</item>
     </string-array>
-    <string-array name="diabatics_status">
+    <string-array name="diabetics_status">
         <item>Select option</item>
-        <item>With Diabatics</item>
-        <item>Without Diabatics</item>
+        <item>With Diabetes</item>
+        <item>Without Diabetes</item>
     </string-array>
 
 

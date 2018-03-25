@@ -36,7 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Systolic Blood Pressure"
-            android:inputType="numberDecimal"
+            android:inputType="number"
+            android:maxLength="3"
             android:padding="5dp"
             android:layout_margin="5dp"
             android:background="@drawable/edittext_rectangle_round_corner" />
@@ -60,7 +61,8 @@
             android:id="@+id/diastolic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
+            android:inputType="number"
+            android:maxLength="3"
             android:layout_margin="5dp"
             android:padding="5dp"
             android:hint="Diastolic Blood Pressure"
@@ -76,6 +78,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Calculate"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:textColor="#FFF"
+        android:background="@drawable/medication_creat_plan_button"/>
+
+    <Button
+        android:id="@+id/add_record_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to record"
+        android:layout_marginTop="6dp"
         android:layout_marginLeft="2dp"
         android:layout_marginRight="2dp"
         android:textColor="#FFF"

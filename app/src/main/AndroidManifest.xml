@@ -71,9 +71,6 @@
             android:name=".BloodPressureActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".GlucoseActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".AddMealActivity"
             android:screenOrientation="portrait" />
 
@@ -99,14 +96,32 @@
         <activity
             android:name=".ActivityGenerateReminder"
             android:screenOrientation="portrait" />
-        <activity android:name=".TestSerumCreatinine" android:screenOrientation="portrait"/>
-        <activity android:name=".TestBilirubin" android:screenOrientation="portrait"/>
-        <activity android:name=".TestCompleteCholestrol" android:screenOrientation="portrait"/>
-        <activity android:name=".TestAltSgpt" android:screenOrientation="portrait"/>
-        <activity android:name=".TestAstSgot" android:screenOrientation="portrait"/>
-        <activity android:name=".TestUricAcid" android:screenOrientation="portrait"/>
-        <activity android:name=".TestESR" android:screenOrientation="portrait"/>
-        <activity android:name=".TestUrineRoutineExam" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".TestSerumCreatinine"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestBilirubin"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestCompleteCholestrol"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestAltSgpt"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestAstSgot"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestUricAcid"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestESR"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".TestUrineRoutineExam"
+            android:screenOrientation="portrait" />
+        <activity android:name=".BloodGlucoseActivity" />
+        <activity android:name=".TipsAndNews"></activity>
     </application>
 
 </manifest>
