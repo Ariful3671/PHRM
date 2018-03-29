@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8F8F5">
+
+    <TextView
+        android:id="@+id/textview_opening_camera"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Select an option"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:background="#1ABC9C"/>
+
+    <ListView
+        android:id="@+id/listViewOptionns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_opening_camera"></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/listViewOptionns"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/cancle_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:text="Cancel"
+            android:background="#1ABC9C"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

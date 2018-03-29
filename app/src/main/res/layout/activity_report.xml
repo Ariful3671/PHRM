@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.troubleshooters.diu.phrm.ReportActivity">
@@ -11,6 +12,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerInParent="true"
+        android:visibility="gone"
         />
     <TextView
         android:id="@+id/loading_textview_report"
@@ -19,14 +21,8 @@
         android:layout_below="@+id/progress_bar_report"
         android:layout_centerHorizontal="true"
         android:text="Loading Data..."
-        />
-
-    <ListView
-        android:id="@+id/listview_report"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:visibility="gone"
-        ></ListView>
+        />
 
     <TextView
         android:id="@+id/textview_report"
@@ -35,5 +31,11 @@
         android:text="No medical reports"
         android:layout_centerInParent="true"
         android:visibility="gone"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview_report"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>

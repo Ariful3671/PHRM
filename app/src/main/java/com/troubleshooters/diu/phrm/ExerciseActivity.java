@@ -711,9 +711,6 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
 
 
 
-
-
-
     //Default Time set Listener
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -761,9 +758,9 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
                 calorieBurnProgressbar.setProgress(0);
             }
             else {
-                burnedCalorie.setText(burnedCalorieVal.toString());
+                burnedCalorie.setText(String.valueOf(burnedCalorieVal.toString()));
                 burnableCal = Double.parseDouble(burnableCalorieVal);
-                burnedCal = Double.parseDouble(burnedCalorieVal.toString());
+                burnedCal = Double.parseDouble(String.valueOf(burnedCalorieVal).toString());
                 burnedPrcnt = (burnedCal/burnableCal)*100.0;
                 progress = Integer.valueOf(burnedPrcnt.intValue());
                 //if(progress>100)

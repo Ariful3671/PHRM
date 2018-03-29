@@ -149,7 +149,7 @@ public class HomeActivity extends AppCompatActivity {
             flipperWeb.setAutoStart(true);
             flipperWeb.setInAnimation(fade_in);
             flipperWeb.setOutAnimation(fade_out);
-            flipperWeb.setFlipInterval(20000);
+            flipperWeb.setFlipInterval(15000);
             flipperWeb.startFlipping();
         }
         else{
@@ -364,10 +364,10 @@ public class HomeActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     break;
 
-                            /*case R.id.bottom_navigation_report:
+                            case R.id.bottom_navigation_report:
                                 intent=new Intent(HomeActivity.this,ReportActivity.class);
                                 startActivity(intent);
-                                break;*/
+                                break;
                         }
                         return false;
                     }
@@ -651,6 +651,8 @@ public class HomeActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences_time_exercise=getSharedPreferences("timeExercise", Context.MODE_PRIVATE);
             SharedPreferences sharedPreferences_medicine=getSharedPreferences("medication",Context.MODE_PRIVATE);
             SharedPreferences sharedPreferencesExercise=getSharedPreferences("exercise", Context.MODE_PRIVATE);
+            SharedPreferences bloodPressureData = getSharedPreferences("BloodPressureData", Context.MODE_PRIVATE);
+            SharedPreferences bloodGlucoseData = getSharedPreferences("BloodGlucoseData", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor=sharedPreferences.edit();
 
 
@@ -740,6 +742,8 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences_medicine.edit().clear().commit();
                 sharedPreferencesExercise.edit().clear().commit();
                 sharedPreferences_RID.edit().clear().commit();
+                //bloodPressureData.edit().clear().commit();
+                //bloodGlucoseData.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "yes");

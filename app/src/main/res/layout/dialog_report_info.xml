@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8F8F5">
+
+    <TextView
+        android:id="@+id/tvReportInfo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Report Information"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#FFF"
+        android:background="#1ABC9C"/>
+
+    <TextView
+        android:id="@+id/tvHospitalName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Hospital Name"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#5C5C5C"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/tvReportInfo"/>
+    <EditText
+        android:id="@+id/etHospitalName"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/tvHospitalName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:id="@+id/tvTestReportType"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="Test Report Type"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#5C5C5C"
+        android:layout_below="@+id/etHospitalName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <EditText
+        android:id="@+id/ettestReportType"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tvTestReportType"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+    <Button
+        android:id="@+id/buttonDone"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="DONE"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ettestReportType"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFF"
+        android:background="@drawable/button_report_info"
+        android:layout_marginBottom="15dp"/>
+
+</RelativeLayout>
