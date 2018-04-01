@@ -28,7 +28,7 @@ public class ResetApp extends BroadcastReceiver{
         editor.putFloat("gained_carbohydrate",0.0f);
         editor.commit();
 
-        editor1.putString("burnedCalorie","");
+        editor1.putFloat("burnedCalorie",0.0f);
         editor1.commit();
 
 

@@ -3,6 +3,7 @@ package com.troubleshooters.diu.phrm;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,8 +13,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.troubleshooters.diu.phrm.Helper.LocaleHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import io.paperdb.Paper;
 
 public class BloodGlucoseActivity extends AppCompatActivity {
 
@@ -24,6 +29,8 @@ public class BloodGlucoseActivity extends AppCompatActivity {
 
     String diabeticsStatus, fastingStatus, afterMealStatus;
     Double glucose1, glucose2;
+
+    String month_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,29 @@ public class BloodGlucoseActivity extends AppCompatActivity {
         b=(Button)findViewById(R.id.cal);
         addToRecord = (Button)findViewById(R.id.add_record_button);
         addToRecord.setVisibility(View.GONE);
+
+
+        //To override the Bangla language issue in the exercise barchart.
+        Paper.init(this);
+        String language = Paper.book().read("language");
+        if(language.equals("bn")){
+            Paper.book().write("language", "en");
+            updateView((String)Paper.book().read("language"));
+
+            //getting date
+            Calendar cal=Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMM-dd");
+            month_name = month_date.format(cal.getTime());
+
+            Paper.book().write("language", "bn");
+            updateView((String)Paper.book().read("language"));
+        }
+        else {
+            //getting date
+            Calendar cal=Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMM-dd");
+            month_name = month_date.format(cal.getTime());
+        }
 
 
 
@@ -207,9 +237,6 @@ public class BloodGlucoseActivity extends AppCompatActivity {
 
                     }
 
-                    Calendar cal=Calendar.getInstance();
-                    SimpleDateFormat month_date = new SimpleDateFormat("MMM-dd");
-                    String month_name = month_date.format(cal.getTime());
 
                     String entry = month_name+fastingVal+afterMealVal;
 
@@ -237,6 +264,13 @@ public class BloodGlucoseActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+    //Updating language change
+    private void updateView(String lang) {
+        Context context = LocaleHelper.setLocale(this, lang);
+        Resources resources = context.getResources();
 
     }
 }

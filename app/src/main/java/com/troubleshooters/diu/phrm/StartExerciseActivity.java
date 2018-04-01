@@ -58,6 +58,7 @@ public class StartExerciseActivity extends AppCompatActivity {
         runningExerciseProgress.setMax(timerDuration);
         timerOn=false;
 
+        Toast.makeText(this, String.valueOf(duration), Toast.LENGTH_LONG).show();
 
         startExerciseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,9 +143,7 @@ public class StartExerciseActivity extends AppCompatActivity {
                         burnedCal += pBurnedCalorie;
                     }
                     Float value1=new Float(burnedCal);
-                    DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                    Float formatedVal = Float.valueOf(decimalFormat.format(value1));
-                    sPExerciseEditor.putFloat("burnedCalorie", formatedVal);
+                    sPExerciseEditor.putFloat("burnedCalorie", value1);
                     sPExerciseEditor.commit();
                     finish();
                 }

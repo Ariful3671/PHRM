@@ -279,6 +279,7 @@ public class MedicationActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        finish();
                         Intent intent=new Intent(MedicationActivity.this,CreatMedicationPlanActivity.class);
                         startActivity(intent);
                     }

@@ -121,9 +121,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         }
 
 
-
-
-
         //Reset gain value 12:00
         Calendar calendar=Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY ,24);
@@ -132,12 +129,6 @@ public class NutritionActivity extends AppCompatActivity implements TimePickerDi
         PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),1000,intent,PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
-
-
-
-
-
-
 
 
 

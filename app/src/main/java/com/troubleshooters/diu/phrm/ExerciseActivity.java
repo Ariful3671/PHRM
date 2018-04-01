@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,6 +32,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.troubleshooters.diu.phrm.Helper.LocaleHelper;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -39,6 +41,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.paperdb.Paper;
+
 public class ExerciseActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
 
     TextView burnedCalorie, burnableCalorie;
@@ -46,7 +50,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
     BarChart exerciseBarChart;
     TextView addExercise, addTarget;
     Switch switchReminder;
-    EditText exerciseReminder1, exerciseReminder2, exerciseReminder3;
+    TextView exerciseReminder1, exerciseReminder2, exerciseReminder3;
     TextView setTime1,setTime2, setTime3;
     LinearLayout exerciseReminderLayout;
     RelativeLayout reminderlayout1,reminderlayout2,reminderlayout3;
@@ -54,7 +58,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
     SharedPreferences sharedPreferencesExercise;
     SharedPreferences.Editor sPExerciseEditor;
 
-    String burnableCalorieVal;
+    Float burnableCalorieVal;
     Float burnedCalorieVal;
 
     BarDataSet barDataSetEntries;
@@ -79,9 +83,9 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
         addExercise=(TextView)findViewById(R.id.text_view_add_exercise);
         addTarget=(TextView)findViewById(R.id.text_view_add_target);
         switchReminder=(Switch)findViewById(R.id.switch_exercise_reminder);
-        exerciseReminder1=(EditText)findViewById(R.id.editText_exercise_reminder1);
-        exerciseReminder2=(EditText)findViewById(R.id.editText_exercise_reminder2);
-        exerciseReminder3=(EditText)findViewById(R.id.editText_exercise_reminder3);
+        exerciseReminder1=(TextView) findViewById(R.id.editText_exercise_reminder1);
+        exerciseReminder2=(TextView) findViewById(R.id.editText_exercise_reminder2);
+        exerciseReminder3=(TextView) findViewById(R.id.editText_exercise_reminder3);
         setTime1=(TextView)findViewById(R.id.set_time_exercise_reminder1);
         setTime2=(TextView)findViewById(R.id.set_time_exercise_reminder2);
         setTime3=(TextView)findViewById(R.id.set_time_exercise_reminder3);
@@ -102,10 +106,10 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
         Calendar calendar=Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY ,24);
         calendar.set(Calendar.MINUTE,0);
-        Intent intent=new Intent(getApplicationContext(),ResetApp.class);
-        PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),2000,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
+        Intent intentEx=new Intent(getApplicationContext(),ResetApp.class);
+        PendingIntent pendingIntentEx=PendingIntent.getBroadcast(getApplicationContext(),2000,intentEx,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManagerEx=(AlarmManager)getSystemService(ALARM_SERVICE);
+        alarmManagerEx.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManagerEx.INTERVAL_DAY,pendingIntentEx);
 
 
 
@@ -135,7 +139,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
         else{
             //Update profile
 
-            if(sharedPreferencesExercise.getString("target","").equals("")){
+            if(sharedPreferencesExercise.getFloat("target", 0.0f)==0.0f){
                 Toast.makeText(this, "You don't have any target yet!", Toast.LENGTH_SHORT).show();
             }
 
@@ -155,19 +159,19 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
                 exerciseTargetDialogBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         int id = RG.getCheckedRadioButtonId();
-                        String exerciseTarget;
+                        float exerciseTarget;
                         Double maxVal;
                         if (id == R.id.RB_daily_target) {
-                            exerciseTarget = String.valueOf(setDailyTarget.getText());
-                            if(exerciseTarget==""){
+                            exerciseTarget = Float.parseFloat(setDailyTarget.getText().toString());
+                            if(exerciseTarget==0.0f){
                                 Toast.makeText(ExerciseActivity.this, "You did not select any target option!", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                maxVal = Double.parseDouble(exerciseTarget);
+                                maxVal = Double.parseDouble(String.valueOf(exerciseTarget));
                                 if (maxVal > 2000.0 || maxVal < 100) {
                                     Toast.makeText(ExerciseActivity.this, "Exercise target must be between 100 to 2000 Calorie", Toast.LENGTH_LONG).show();
                                 } else {
-                                    sPExerciseEditor.putString("target", exerciseTarget);
+                                    sPExerciseEditor.putFloat("target", exerciseTarget);
                                     sPExerciseEditor.commit();
                                 }
                             }
@@ -175,18 +179,19 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
                         } else if (id == R.id.RB_weakly_target) {
                             setDailyTarget.setVisibility(View.GONE);
                             setWeaklyTarget.setVisibility(View.VISIBLE);
-                            exerciseTarget = String.valueOf(setWeaklyTarget.getText());
-                            if(exerciseTarget==""){
+                            exerciseTarget = Float.parseFloat(setWeaklyTarget.getText().toString());
+                            if(exerciseTarget==0.0f){
                                 Toast.makeText(ExerciseActivity.this, "You did not select any target option!", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Double weaklyTarget = Double.parseDouble(exerciseTarget);
+                                Double weaklyTarget = Double.parseDouble(String.valueOf(exerciseTarget));
                                 if (weaklyTarget > 1.0) {
                                     Toast.makeText(ExerciseActivity.this, "Invalid Target!", Toast.LENGTH_SHORT).show();
                                 } else {
                                     Double dailyTarget = (weaklyTarget * (3500.0 * 2.2)) / 7.0;
-                                    String value = new DecimalFormat("##.#").format(dailyTarget);
-                                    sPExerciseEditor.putString("target", value);
+                                    float targetFloat = Float.parseFloat(String.valueOf(dailyTarget));
+                                    //String value = new DecimalFormat("##.#").format(dailyTarget);
+                                    sPExerciseEditor.putFloat("target", targetFloat);
                                     sPExerciseEditor.commit();
                                 }
                             }
@@ -196,9 +201,6 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
                             Toast.makeText(ExerciseActivity.this, "You did not set any target!", Toast.LENGTH_SHORT).show();
                         }
                         setCalorie();
-                        setBarChart();
-
-
                     }
                 });
                 exerciseTargetDialogBuilder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -403,7 +405,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
                         {
                             android.support.v7.app.AlertDialog.Builder builder;
                             builder = new android.support.v7.app.AlertDialog.Builder(ExerciseActivity.this, R.style.CustomDialogTheme);
-                            builder.setMessage("Cancel your reminder for "+exerciseReminder1.getHint().toString()+" !")
+                            builder.setMessage("Cancel your reminder for "+exerciseReminder1.getText().toString()+" !")
                                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
@@ -467,7 +469,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
                         {
                             android.support.v7.app.AlertDialog.Builder builder;
                             builder = new android.support.v7.app.AlertDialog.Builder(ExerciseActivity.this, R.style.CustomDialogTheme);
-                            builder.setMessage("Cancel your reminder for "+exerciseReminder3.getHint().toString()+" !")
+                            builder.setMessage("Cancel your reminder for "+exerciseReminder3.getText().toString()+" !")
                                     .setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
@@ -532,7 +534,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
             }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
             intent.putExtra("NID",105);
-            intent.putExtra("text","Time to Exercise1");
+            intent.putExtra("text","Time to Exercise-1");
             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),105,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
@@ -591,7 +593,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
             }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
             intent.putExtra("NID",106);
-            intent.putExtra("text","Time to Exercise2");
+            intent.putExtra("text","Time to Exercise-2");
             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),106,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
@@ -649,7 +651,7 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
             }
             Intent intent=new Intent(getApplicationContext(),NotificationReceiver.class);
             intent.putExtra("NID",107);
-            intent.putExtra("text","Time to Exercise3");
+            intent.putExtra("text","Time to Exercise-3");
             PendingIntent pendingIntent=PendingIntent.getBroadcast(getApplicationContext(),107,intent,PendingIntent.FLAG_UPDATE_CURRENT);
             AlarmManager alarmManager=(AlarmManager)getSystemService(ALARM_SERVICE);
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent);
@@ -682,8 +684,23 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
 
     private void setBarChart() {
         Float todaysBurnedCalorie = sharedPreferencesExercise.getFloat("burnedCalorie", 0.0f);
+
+        //To override the Bangla language issue in the exercise barchart.
+        Paper.init(this);
+        String language = Paper.book().read("language");
+        if(language.equals("bn")){
+            Paper.book().write("language", "en");
+            updateView((String)Paper.book().read("language"));
+            SimpleDateFormat sdfBn = new SimpleDateFormat("EEE");
+            Date dBn = new Date();
+            dayOfTheWeek = sdfBn.format(dBn);
+            Paper.book().write("language", "bn");
+            updateView((String)Paper.book().read("language"));
+        }
+
         sPExerciseEditor.putFloat(dayOfTheWeek, todaysBurnedCalorie);
         sPExerciseEditor.commit();
+
 
         ArrayList<BarEntry> barEntries=new ArrayList<BarEntry>();
         barEntries.add(new BarEntry(0,sharedPreferencesExercise.getFloat("Sun", 0.0f)));
@@ -697,8 +714,8 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
         barDataSetEntries = new BarDataSet(barEntries,"Exercise Level");
         barDataSetEntries.setColors(ColorTemplate.COLORFUL_COLORS);
 
-        BarData barData = new BarData(barDataSetEntries);
 
+        BarData barData = new BarData(barDataSetEntries);
 
 
         exerciseBarChart.setData(barData);
@@ -718,7 +735,12 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
     }
 
 
+    //Updating language change
+    private void updateView(String lang) {
+        Context context = LocaleHelper.setLocale(this, lang);
+        Resources resources = context.getResources();
 
+    }
 
 
 
@@ -747,29 +769,27 @@ public class ExerciseActivity extends AppCompatActivity implements TimePickerDia
 
         Double burnableCal, burnedCal, burnedPrcnt;
         int progress;
-        burnableCalorieVal = sharedPreferencesExercise.getString("target", "");
+        burnableCalorieVal = sharedPreferencesExercise.getFloat("target", 0.0f);
         burnedCalorieVal = sharedPreferencesExercise.getFloat("burnedCalorie", 0.0f);
-        if(burnableCalorieVal=="") {
-            burnableCalorie.setText("0");
+        if(burnableCalorieVal==0.0f) {
+            burnableCalorie.setText(new DecimalFormat("##").format(burnableCalorieVal));
         } else {
-            burnableCalorie.setText(burnableCalorieVal);
-            if(burnedCalorieVal==0.0){
-                burnedCalorie.setText("0");
+            String burnableCalStatus = new DecimalFormat("##").format(burnableCalorieVal);
+            burnableCalorie.setText(burnableCalStatus);
+            if(burnedCalorieVal==0.0f){
+                burnedCalorie.setText(new DecimalFormat("##").format(burnedCalorieVal));
                 calorieBurnProgressbar.setProgress(0);
             }
             else {
-                burnedCalorie.setText(String.valueOf(burnedCalorieVal.toString()));
-                burnableCal = Double.parseDouble(burnableCalorieVal);
-                burnedCal = Double.parseDouble(String.valueOf(burnedCalorieVal).toString());
+                burnedCalorie.setText(new DecimalFormat("##.#").format(burnedCalorieVal));
+                burnableCal = Double.parseDouble(String.valueOf(burnableCalorieVal));
+                burnedCal = Double.parseDouble(String.valueOf(burnedCalorieVal));
                 burnedPrcnt = (burnedCal/burnableCal)*100.0;
                 progress = Integer.valueOf(burnedPrcnt.intValue());
-                //if(progress>100)
-                //    progress=100;
                 calorieBurnProgressbar.setProgress(progress);
             }
 
         }
 
-        //SharedPreferences.Editor sPTargetEditor = sPCalorieUpdate.edit();
     }
 }

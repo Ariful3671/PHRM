@@ -159,9 +159,7 @@ public class AddExerciseActivity extends AppCompatActivity {
                         }
 
                         Float value1=new Float(burnedCalorie);
-                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-                        Float formatedVal = Float.valueOf(decimalFormat.format(value1));
-                        sPExerciseEditor.putFloat("burnedCalorie", formatedVal);
+                        sPExerciseEditor.putFloat("burnedCalorie", value1);
                         sPExerciseEditor.commit();
                     }
                 }catch (Exception e){

@@ -114,11 +114,7 @@ public class HomeActivity extends AppCompatActivity {
         glucoseSummaryLayout.setVisibility(View.GONE);
 
         //Setting language
-        Paper.init(this);
-        String language = Paper.book().read("language");
-        if(language == null)
-            Paper.book().write("language", "en");
-        updateView((String)Paper.book().read("language"));
+        setLanguage();
 
         setTitle(getString(R.string.home_title));//Changing activity name.
         tipsAndNewsLayout = (RelativeLayout)findViewById(R.id.tips_and_news_layout);
@@ -175,22 +171,10 @@ public class HomeActivity extends AppCompatActivity {
         DatabaseReference ref = database.getReference("users").child(user);
 
         //bp summary implementation
-        SharedPreferences bloodPressureData = getSharedPreferences("BloodPressureData", Context.MODE_PRIVATE);
-        String bpDataString = bloodPressureData.getString("bpString", "");
-        if(bpDataString!=""){
-            summaryLayout.setVisibility(View.VISIBLE);
-            bpSummaryLayout.setVisibility(View.VISIBLE);
-            setBpData();
-        }
+        bpSummary();
 
         //bg summary implementation
-        SharedPreferences bloodGlucoseData = getSharedPreferences("BloodGlucoseData", Context.MODE_PRIVATE);
-        String bgDataString = bloodGlucoseData.getString("bgString", "");
-        if(bgDataString!=""){
-            summaryLayout.setVisibility(View.VISIBLE);
-            glucoseSummaryLayout.setVisibility(View.VISIBLE);
-            setBgData();
-        }
+        bgSummary();
 
 
 
@@ -446,11 +430,12 @@ public class HomeActivity extends AppCompatActivity {
                     showHideSummary.setText("Show Summary");
                     bpSummaryLayout.setVisibility(View.GONE);
                     glucoseSummaryLayout.setVisibility(View.GONE);
+
                 }
                 else{
                     showHideSummary.setText("Hide Summary");
-                    bpSummaryLayout.setVisibility(View.VISIBLE);
-                    glucoseSummaryLayout.setVisibility(View.VISIBLE);
+                    bpSummary();
+                    bgSummary();
                 }
             }
         });
@@ -475,6 +460,34 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setLanguage() {
+        Paper.init(this);
+        String language = Paper.book().read("language");
+        if(language == null)
+            Paper.book().write("language", "en");
+        updateView((String)Paper.book().read("language"));
+    }
+
+    private void bgSummary() {
+        SharedPreferences bloodGlucoseData = getSharedPreferences("BloodGlucoseData", Context.MODE_PRIVATE);
+        String bgDataString = bloodGlucoseData.getString("bgString", "");
+        if(bgDataString!=""){
+            summaryLayout.setVisibility(View.VISIBLE);
+            glucoseSummaryLayout.setVisibility(View.VISIBLE);
+            setBgData();
+        }
+    }
+
+    private void bpSummary() {
+        SharedPreferences bloodPressureData = getSharedPreferences("BloodPressureData", Context.MODE_PRIVATE);
+        String bpDataString = bloodPressureData.getString("bpString", "");
+        if(bpDataString!=""){
+            summaryLayout.setVisibility(View.VISIBLE);
+            bpSummaryLayout.setVisibility(View.VISIBLE);
+            setBpData();
+        }
     }
 
 
@@ -574,7 +587,7 @@ public class HomeActivity extends AppCompatActivity {
         bgChart.getAxisLeft().setTextSize(8f);
         bgChart.getXAxis().setTextSize(8f);
         YAxis bgYxxis = bgChart.getAxisLeft();
-        bgYxxis.setAxisMaximum(30f);
+        bgYxxis.setAxisMaximum(25f);
         bgYxxis.setAxisMinimum(0f);
         XAxis bgXaxis = bgChart.getXAxis();
         bgXaxis.setValueFormatter(new xAxisValueFormatter(bgDates));
@@ -742,8 +755,8 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences_medicine.edit().clear().commit();
                 sharedPreferencesExercise.edit().clear().commit();
                 sharedPreferences_RID.edit().clear().commit();
-                //bloodPressureData.edit().clear().commit();
-                //bloodGlucoseData.edit().clear().commit();
+                bloodPressureData.edit().clear().commit();
+                bloodGlucoseData.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "yes");
@@ -842,6 +855,9 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences_time_exercise.edit().clear().commit();
                 sharedPreferences_medicine.edit().clear().commit();
                 sharedPreferences_RID.edit().clear().commit();
+                sharedPreferencesExercise.edit().clear().commit();
+                bloodPressureData.edit().clear().commit();
+                bloodGlucoseData.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");
@@ -944,6 +960,9 @@ public class HomeActivity extends AppCompatActivity {
                 sharedPreferences_time_exercise.edit().clear().commit();
                 sharedPreferences_medicine.edit().clear().commit();
                 sharedPreferences_RID.edit().clear().commit();
+                sharedPreferencesExercise.edit().clear().commit();
+                bloodPressureData.edit().clear().commit();
+                bloodGlucoseData.edit().clear().commit();
                 editor.putString("userid",userid);
                 editor.putString("password",password);
                 editor.putString("save password status", "no");
@@ -957,6 +976,14 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         }
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        setLanguage();
+        bpSummary();
+        bgSummary();
     }
 }
 

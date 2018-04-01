@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.troubleshooters.diu.phrm.Helper.LocaleHelper;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
+
+import io.paperdb.Paper;
 
 public class BloodPressureActivity extends AppCompatActivity {
 
@@ -25,6 +31,8 @@ public class BloodPressureActivity extends AppCompatActivity {
 
     int up_pressure;
     int down_pressure;
+
+    String month_name;
 
 
     @Override
@@ -37,6 +45,30 @@ public class BloodPressureActivity extends AppCompatActivity {
         down=(EditText)findViewById(R.id.diastolic);
         calculate=(Button)findViewById(R.id.calculate_button);
         addToRecord = (Button)findViewById(R.id.add_record_button);
+
+        addToRecord.setVisibility(View.GONE);
+
+        //To override the Bangla language issue in the exercise barchart.
+        Paper.init(this);
+        String language = Paper.book().read("language");
+        if(language.equals("bn")){
+            Paper.book().write("language", "en");
+            updateView((String)Paper.book().read("language"));
+
+            //getting date
+            Calendar cal=Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMM-dd");
+            month_name = month_date.format(cal.getTime());
+
+            Paper.book().write("language", "bn");
+            updateView((String)Paper.book().read("language"));
+        }
+        else {
+            //getting date
+            Calendar cal=Calendar.getInstance();
+            SimpleDateFormat month_date = new SimpleDateFormat("MMM-dd");
+            month_name = month_date.format(cal.getTime());
+        }
 
         calculate.setOnClickListener(
                 new View.OnClickListener() {
@@ -65,6 +97,7 @@ public class BloodPressureActivity extends AppCompatActivity {
 
                                         }
                                     }).show();
+                            addToRecord.setVisibility(View.VISIBLE);
                         }
                         else if((up_pressure>=90&&up_pressure<=120)&&(down_pressure>=60&&down_pressure<=80))
                         {
@@ -78,6 +111,7 @@ public class BloodPressureActivity extends AppCompatActivity {
 
                                         }
                                     }).show();
+                            addToRecord.setVisibility(View.VISIBLE);
                         }
                         else if((up_pressure>=121&&up_pressure<=140)&&(down_pressure>=81&&down_pressure<90))
                         {
@@ -91,6 +125,7 @@ public class BloodPressureActivity extends AppCompatActivity {
 
                                         }
                                     }).show();
+                            addToRecord.setVisibility(View.VISIBLE);
                         }
                         else if((up_pressure>=141&&up_pressure<200)&&(down_pressure>=90&&down_pressure<120))
                         {
@@ -104,6 +139,7 @@ public class BloodPressureActivity extends AppCompatActivity {
 
                                         }
                                     }).show();
+                            addToRecord.setVisibility(View.VISIBLE);
                         }
                         else{
                             android.support.v7.app.AlertDialog.Builder builder;
@@ -120,8 +156,6 @@ public class BloodPressureActivity extends AppCompatActivity {
                                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
 
-                                            Intent intent=new Intent(BloodPressureActivity.this,HomeActivity.class);
-                                            startActivity(intent);
                                             finish();
 
                                         }
@@ -146,10 +180,7 @@ public class BloodPressureActivity extends AppCompatActivity {
                     //getting BP data
                     up_pressure=Integer.parseInt(up.getText().toString());
                     down_pressure=Integer.parseInt(down.getText().toString());
-                    //getting date
-                    Calendar cal=Calendar.getInstance();
-                    SimpleDateFormat month_date = new SimpleDateFormat("MMM-dd");
-                    String month_name = month_date.format(cal.getTime());
+
                     //making entry for storing
                     String sys= String.valueOf(up_pressure);
                     if(sys.length()==2){
@@ -188,7 +219,12 @@ public class BloodPressureActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    //Updating language change
+    private void updateView(String lang) {
+        Context context = LocaleHelper.setLocale(this, lang);
+        Resources resources = context.getResources();
 
     }
 }

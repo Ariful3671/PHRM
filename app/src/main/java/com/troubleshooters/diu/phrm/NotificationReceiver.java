@@ -36,7 +36,7 @@ public class NotificationReceiver extends BroadcastReceiver{
             PendingIntent pendingIntent=PendingIntent.getActivity(context,NID,reaptingIntent,PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationCompat.Builder builder=new NotificationCompat.Builder(context,"")
                     .setContentIntent(pendingIntent)
-                    .setSmallIcon(R.drawable.breakfast_icon)
+                    .setSmallIcon(R.drawable.app_logo)
                     .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .setVibrate(new long[]{1000,1000,1000,1000})
                     .setContentTitle("PHRM")

@@ -144,6 +144,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        finish();
         Intent intent=new Intent(SettingsActivity.this,HomeActivity.class);
         startActivity(intent);
     }

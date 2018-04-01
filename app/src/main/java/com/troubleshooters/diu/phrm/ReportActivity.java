@@ -58,6 +58,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -95,6 +96,12 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         setTitle("Reports");
 
         report = this;
+
+
+        //test
+        float ft = new Float(10.524646);
+        String s = new DecimalFormat("00.00").format(ft);
+        Toast.makeText(report, s, Toast.LENGTH_LONG).show();
 
         //........................................This for online report collection...................................................
 
@@ -208,6 +215,7 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         String user = sharedPreferences.getString("userid", "");
         isStoragePermissionGranted();
         File f = new File(Environment.getExternalStorageDirectory() + "/PHRM/" + user);
+
         if (!f.isDirectory()) {
             noReports.setVisibility(View.VISIBLE);
         } else {
