@@ -3,11 +3,12 @@
     package="com.troubleshooters.diu.phrm">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MainApplication"
@@ -122,8 +123,10 @@
         <activity
             android:name=".TestUrineRoutineExam"
             android:screenOrientation="portrait" />
-        <activity android:name=".BloodGlucoseActivity" android:screenOrientation="portrait" />
-        <activity android:name=".TipsAndNews"></activity>
+        <activity
+            android:name=".BloodGlucoseActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TipsAndNews" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -134,6 +137,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
+
+        <activity android:name=".CustomCamera"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -349,8 +349,10 @@ public class HomeActivity extends AppCompatActivity {
                                     break;
 
                             case R.id.bottom_navigation_report:
-                                intent=new Intent(HomeActivity.this,ReportActivity.class);
-                                startActivity(intent);
+                                Intent intent1;
+                                intent1=new Intent(HomeActivity.this,ReportActivity.class);
+                                intent1.putExtra("loadingTime",2);
+                                startActivity(intent1);
                                 break;
                         }
                         return false;

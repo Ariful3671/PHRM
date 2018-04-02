@@ -84,9 +84,11 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
     List<ModelReportInfo> reportInfo;
     RecyclerView recyclerView;
     RelativeLayout rootLayout;
+    int loadingTime;
     public static Activity report;
     ManualReportAdapter adapter;
     int flag;
+    public  static Activity reportActivity;
 
 
     @Override
@@ -94,14 +96,11 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
         setTitle("Reports");
+        loadingTime=getIntent().getIntExtra("loadingTime",3000);
 
         report = this;
 
 
-        //test
-        float ft = new Float(10.524646);
-        String s = new DecimalFormat("00.00").format(ft);
-        Toast.makeText(report, s, Toast.LENGTH_LONG).show();
 
         //........................................This for online report collection...................................................
 
@@ -208,13 +207,19 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        reportActivity=this;
         progressBar = (ProgressBar) findViewById(R.id.progress_bar_report);
         noReports = (TextView) findViewById(R.id.textview_report);
         loading = (TextView) findViewById(R.id.loading_textview_report);
         SharedPreferences sharedPreferences = getSharedPreferences("profileinfo", Context.MODE_PRIVATE);
         String user = sharedPreferences.getString("userid", "");
         isStoragePermissionGranted();
-        File f = new File(Environment.getExternalStorageDirectory() + "/PHRM/" + user);
+
+
+
+
+        final File f = new File(Environment.getExternalStorageDirectory() + "/PHRM/" + user);
+
 
         if (!f.isDirectory()) {
             noReports.setVisibility(View.VISIBLE);
@@ -230,6 +235,7 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                 //Toast.makeText(report, "in 0", Toast.LENGTH_SHORT).show();
             } else {
                 //Toast.makeText(report, "in else else", Toast.LENGTH_SHORT).show();
+                noReports.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
                 loading.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
@@ -241,26 +247,38 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                         recyclerView.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                         loading.setVisibility(View.GONE);
+                        reportInfo = new ArrayList<ModelReportInfo>();
+                        for (File file : f.listFiles()) {
+                            if (file.isFile()) {
+                                String name = file.getName();
+                                String[] nameArray = name.split("_");
+                                reportInfo.add(new ModelReportInfo(nameArray[0], nameArray[1], nameArray[2], file));
+                                adapter = new ManualReportAdapter(ReportActivity.this, reportInfo);
+                                recyclerView.setAdapter(adapter);
+
+                            }
+                        }
+
+                        File fil=new File(Environment.getExternalStorageDirectory(),"PHRM/temp");
+                        if(fil.exists())
+                        {
+                            String[] children=fil.list();
+                            for(int i=0;i<children.length;i++)
+                            {
+                                new File(fil,children[i]).delete();
+                            }
+                            fil.delete();
+                        }
                     }
 
-                }, 3000);
+                }, loadingTime);
             }
 
 
             //progressBar.setVisibility(View.GONE);
 
 
-            reportInfo = new ArrayList<ModelReportInfo>();
-            for (File file : f.listFiles()) {
-                if (file.isFile()) {
-                    String name = file.getName();
-                    String[] nameArray = name.split("_");
-                    reportInfo.add(new ModelReportInfo(nameArray[0], nameArray[1], nameArray[2], file));
-                    adapter = new ManualReportAdapter(ReportActivity.this, reportInfo);
-                    recyclerView.setAdapter(adapter);
 
-                }
-            }
 
         }
 
@@ -318,8 +336,6 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                                 listView = (ListView) nview.findViewById(R.id.listViewOptionns);
                                 arrayAdapter = new ArrayAdapter<String>(ReportActivity.this, android.R.layout.simple_list_item_1, options);
                                 listView.setAdapter(arrayAdapter);
-                                hospitalName = HN.getText().toString();
-                                reportType = RT.getText().toString();
                                 listView.setOnItemClickListener(
                                         new AdapterView.OnItemClickListener() {
                                             @Override
@@ -329,13 +345,10 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                                                     dialog1.cancel();
                                                 }
                                                 if (position == 1) {
-
-                                                    //MediaStore.ACTION_IMAGE_CAPTURE
-                                                    //intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(image));
-                                                    //MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA
-
-                                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                                    startActivityForResult(intent,2);
+                                                    Intent intent=new Intent(ReportActivity.this,CustomCamera.class);
+                                                    intent.putExtra("HN",hospitalName);
+                                                    intent.putExtra("RT",reportType);
+                                                    startActivity(intent);
                                                 }
                                             }
                                         }
@@ -344,7 +357,6 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                                 dialog.cancel();
                                 dialog1.setView(nview);
                                 dialog1.show();
-
                                 cancel.setOnClickListener(
                                         new View.OnClickListener() {
                                             @Override
@@ -404,9 +416,11 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                         new ImageLoader(uriArray, this, hospitalName, reportType).execute();
                     }
                 }
+
                 progressBar.setVisibility(View.VISIBLE);
                 loading.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
+                noReports.setVisibility(View.INVISIBLE);
 
                 new Handler().postDelayed(new Runnable() {
 
@@ -423,38 +437,10 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
             }
             super.onActivityResult(requestCode, resultCode, data);
         }
-        if(requestCode==2)
-        {
-            /*Date curDate = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss a");
-            String DateToStr = format.format(curDate);
-            isStoragePermissionGranted();
-            File root = new File(Environment.getExternalStorageDirectory(), "PHRM");
-            if (!root.exists()) {
-                root.mkdir();
-            }
 
-            File image=new File(root,"PHRM"+DateToStr+".jpg");
-            FileOutputStream outputStream=new FileOutputStream(image);
-            bmp.compress(Bitmap.CompressFormat.JPEG,100,outputStream);*/
-            if(data!=null)
-            {
-                Bitmap bmp = (Bitmap)data.getExtras().get("data");
-            }
-            else{
-                Toast.makeText(report, "Data is null", Toast.LENGTH_SHORT).show();
-            }
-
-
-            //Uri tempUri = getImageUri(getApplicationContext(), bmp);
-            //String path = getRealPathFromURI(tempUri);
-            //Toast.makeText(report, path, Toast.LENGTH_SHORT).show();
-
-
-        }
     }
 
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
+    /*public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
@@ -466,12 +452,12 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
         return cursor.getString(idx);
-    }
+    }*/
 
 
 //.....................................Is sample size calculation (start)................................
 
-    public static int calculateInSampleSize(
+    /*public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
@@ -492,7 +478,7 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         }
 
         return inSampleSize;
-    }
+    }*/
 
     //.....................................Is sample size calculation (end)................................
 
@@ -519,7 +505,7 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
 
 //.....................................Comvert URI to Path(Start)..............................................
 
-    public static String getPath(final Context context, final Uri uri) {
+    /*public static String getPath(final Context context, final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
@@ -584,7 +570,7 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
         }
 
         return null;
-    }
+    }*/
 
     /**
      * Get the value of the data column for this Uri. This is useful for
@@ -596,7 +582,7 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
      * @param selectionArgs (Optional) Selection arguments used in the query.
      * @return The value of the _data column, which is typically a file path.
      */
-    public static String getDataColumn(Context context, Uri uri, String selection,
+    /*public static String getDataColumn(Context context, Uri uri, String selection,
                                        String[] selectionArgs) {
 
         Cursor cursor = null;
@@ -617,40 +603,40 @@ public class ReportActivity extends AppCompatActivity implements RecyclerTouchHe
                 cursor.close();
         }
         return null;
-    }
+    }*/
 
 
     /**
      * @param uri The Uri to check.
      * @return Whether the Uri authority is ExternalStorageProvider.
      */
-    public static boolean isExternalStorageDocument(Uri uri) {
+    /*public static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
-    }
+    }*/
 
     /**
      * @param uri The Uri to check.
      * @return Whether the Uri authority is DownloadsProvider.
      */
-    public static boolean isDownloadsDocument(Uri uri) {
+    /*public static boolean isDownloadsDocument(Uri uri) {
         return "com.android.providers.downloads.documents".equals(uri.getAuthority());
-    }
+    }*/
 
     /**
      * @param uri The Uri to check.
      * @return Whether the Uri authority is MediaProvider.
      */
-    public static boolean isMediaDocument(Uri uri) {
+    /*public static boolean isMediaDocument(Uri uri) {
         return "com.android.providers.media.documents".equals(uri.getAuthority());
-    }
+    }*/
 
     /**
-     * @param uri The Uri to check.
+     * @param //uri The Uri to check.
      * @return Whether the Uri authority is Google Photos.
      */
-    public static boolean isGooglePhotosUri(Uri uri) {
+    /*public static boolean isGooglePhotosUri(Uri uri) {
         return "com.google.android.apps.photos.content".equals(uri.getAuthority());
-    }
+    }*/
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, final int position) {

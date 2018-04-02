@@ -117,13 +117,11 @@ public class ImageLoader extends AsyncTask<Void,Void,Void> {
         isStoragePermissionGranted();
         SharedPreferences sharedPreferences=context.getSharedPreferences("profileinfo",Context.MODE_PRIVATE);
         String user=sharedPreferences.getString("userid","");
-        File root = new File(Environment.getExternalStorageDirectory(), File.separator+"PHRM/"+user);
+        File root = new File(Environment.getExternalStorageDirectory(), "PHRM/"+user);
         if (!root.exists()) {
-            //Toast.makeText(context.getApplicationContext(), "new directory", Toast.LENGTH_SHORT).show();
             root.mkdirs();
+            //Toast.makeText(context.getApplicationContext(), "new directory", Toast.LENGTH_SHORT).show();
         }
-        //Toast.makeText(context.getApplicationContext(), "new directory not", Toast.LENGTH_SHORT).show();
-
 
         Date curDate = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss a");
