@@ -137,9 +137,9 @@ public class HomeActivity extends AppCompatActivity {
             flipperNoweb.setVisibility(View.GONE);
             flipperWeb.setVisibility(View.VISIBLE);
             tips.setWebViewClient(new WebViewClient());
-            tips.loadUrl("https://sites.google.com/diu.edu.bd/diutroubleshooters/about/health-tips?authuser=1");
+            tips.loadUrl("https://sites.google.com/diu.edu.bd/phrmtipsnews/tips?authuser=1");
             news.setWebViewClient(new WebViewClient());
-            news.loadUrl("https://sites.google.com/diu.edu.bd/diutroubleshooters/about/news?authuser=1");
+            news.loadUrl("https://sites.google.com/diu.edu.bd/phrmtipsnews/news?authuser=1");
             fade_in= AnimationUtils.loadAnimation(this,R.anim.fade_in);
             fade_out= AnimationUtils.loadAnimation(this,R.anim.fade_out);
             flipperWeb.setAutoStart(true);
@@ -450,13 +450,13 @@ public class HomeActivity extends AppCompatActivity {
                 if(flipperWeb.getCurrentView()==tips){
                     Intent intent = new Intent(HomeActivity.this, TipsAndNews.class);
                     intent.putExtra("label", "Tips");
-                    intent.putExtra("url", "https://sites.google.com/diu.edu.bd/diutroubleshooters/about/health-tips?authuser=1");
+                    intent.putExtra("url", "https://sites.google.com/diu.edu.bd/phrmtipsnews/tips?authuser=1");
                     startActivity(intent);
                 }
                 else {
                     Intent intent = new Intent(HomeActivity.this, TipsAndNews.class);
                     intent.putExtra("label", "News");
-                    intent.putExtra("url", "https://sites.google.com/diu.edu.bd/diutroubleshooters/about/news?authuser=1");
+                    intent.putExtra("url", "https://sites.google.com/diu.edu.bd/phrmtipsnews/news?authuser=1");
                     startActivity(intent);
                 }
             }

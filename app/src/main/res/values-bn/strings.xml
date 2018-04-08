@@ -15,7 +15,7 @@
     <string name="health_plan">হেলথ প্ল্যান</string>
     <string name="test_record">টেস্ট রেকর্ড</string>
     <string name="bottom_nev_home">হোম</string>
-    <string name="bottom_nev_notification">নোটিফিকেশান</string>
+    <string name="bottom_nev_notification">রিমাইন্ডার</string>
     <string name="bottom_nev_reports">রিপোর্ট গুলো</string>
     <string name="menu_log_out">লগ আউট</string>
     <string name="nutration_plan_title">নিউট্রিশন প্ল্যান</string>
@@ -54,7 +54,7 @@
     <string-array name="grid_test_record">
         <item>রক্তচাপ</item>
         <item>গ্লুকোজ</item>
-        <item>বি এম আই</item>
+        <item>অন্যান্য টেস্ট</item>
     </string-array>
 
     <string-array name="grid_daily_routine_button">

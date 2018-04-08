@@ -5,9 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_gravity="center"
     android:padding="12dp"
     android:background="#b7a3dc"
     tools:context="com.troubleshooters.diu.phrm.AddMealActivity">
+
+    <ListView
+        android:id="@+id/list_view_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:visibility="gone"
+        >
+    </ListView>
 
     <TextView
         android:id="@+id/textView_select_exercise"
@@ -15,17 +24,9 @@
         android:layout_height="wrap_content"
         android:background="#d4f5f5"
         android:padding="8dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="8dp"
         android:textSize="20dp"
         android:hint="Select Exercise"></TextView>
-
-    <ListView
-        android:id="@+id/list_view_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        >
-    </ListView>
 
     <TextView
         android:id="@+id/editText_exercise_time"
